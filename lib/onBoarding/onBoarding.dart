@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grad/constants/constant.dart';
+import 'package:grad/home/user_home_page.dart';
 import 'package:grad/register.dart';
 
 import '../contents/contents_onBiarding_Model.dart';
@@ -52,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 style: const TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF811F1A),
+                  color: kPrimaryColor,
                 ),
               ),
               Padding(
@@ -99,7 +101,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MyHomePage(title: "Blood Chain"),
+                            builder: (context) => const HomePage(),
                           ),
                         );
                       }
@@ -129,7 +131,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         decoration:  BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: currentIndex == index
-                              ? const Color(0xFF811F1A)
+                              ?  kPrimaryColor
                               : const  Color(0xFFD4D4D4),
                         ),
                       ),
