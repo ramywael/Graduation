@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
-import 'package:grad/custom/text.dart';
+import 'package:grad/custom_widgets/text.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
 as MaterialSymbolsIcons;
 
