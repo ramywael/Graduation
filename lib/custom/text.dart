@@ -12,6 +12,7 @@ class CustomTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: TextAlign.center,
       style:  TextStyle(
         color: kPrimaryColor,
         fontSize: fontSize,

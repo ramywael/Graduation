@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grad/contents/contents_onBiarding_Model.dart';
-
-import 'onBoarding/onBoarding.dart';
+import 'package:grad/screens/onBoarding/onBoarding.dart';
 
 class DonationBlood extends StatelessWidget {
   const DonationBlood({super.key});

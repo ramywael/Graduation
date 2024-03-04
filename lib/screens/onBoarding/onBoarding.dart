@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
-import 'package:grad/home/user_home_page.dart';
+import 'package:grad/contents/contents_onBiarding_Model.dart';
 import 'package:grad/register.dart';
+import 'package:grad/screens/home/user_home_page.dart';
 
-import '../contents/contents_onBiarding_Model.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
