@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
-import 'package:grad/screens/donateNowCategory/Donate.dart';
 
 class CustomCategoryHomeScreen extends StatelessWidget {
   final String text;
   final IconData icon;
-  final Widget navigateToScreen;
+  //final Widget navigateToScreen;
+  final Function() onTap;
   const CustomCategoryHomeScreen({
     super.key,
     required this.text,
     required this.icon,
-    required this.navigateToScreen,
-  });
+    //required this.navigateToScreen,
+    required this.onTap,
+  }
+);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-       Navigator.of(context).push(
-         MaterialPageRoute(builder: (context) => navigateToScreen,)
-       );
-      },
+      // onTap: () {
+      //  Navigator.of(context).push(
+      //    MaterialPageRoute(builder: (context) => navigateToScreen,)
+      //  );
+      // },
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
             color: const Color.fromARGB(0, 255, 255, 255).withOpacity(0.5),
