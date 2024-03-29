@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grad/custom_widgets/category_home_screen.dart';
 import 'package:grad/screens/donateNowCategory/donate.dart';
 import 'package:grad/screens/donateNowCategory/eligibility_check.dart';
+import 'package:grad/screens/requestablood/request_a_blood.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
     as MaterialSymbolsIcons;
 
@@ -42,7 +43,7 @@ class RowCategoriesHomeScreen extends StatelessWidget {
               // navigateToScreen: DonateNow(),
               onTap: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const DonateNow(),
+                  builder: (context) =>  const RequestBlood(),
                 ));
               },
             ),

@@ -1,11 +1,13 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart'
-    as MaterialSymbolsIcons;
 
 class CustomCurvedNavBar extends StatefulWidget {
-  const CustomCurvedNavBar({Key? key}) : super(key: key);
+  final IconData icon1;
+  final IconData icon2;
+  final IconData icon3;
+  final List<Widget> screens;
+  const CustomCurvedNavBar({Key? key, required this.icon1, required this.icon2, required this.icon3, required this.screens}) : super(key: key);
 
   @override
   State<CustomCurvedNavBar> createState() => _CustomCurvedNavBarState();
@@ -13,28 +15,29 @@ class CustomCurvedNavBar extends StatefulWidget {
 
 class _CustomCurvedNavBarState extends State<CustomCurvedNavBar> {
   int currentIndex = 1;
-  List<Widget> navBarContent =const[
-    Icon(
-      MaterialSymbolsIcons.Symbols.chat,
-      size: 25,
-      color: kPrimaryColor,
-      fill: 1,
-    ),
-    Icon(
-      MaterialSymbolsIcons.Symbols.home,
-      size: 25,
-      color: kPrimaryColor,
-      fill: 1,
-    ),
-    Icon(
-      MaterialSymbolsIcons.Symbols.person,
-      size: 25,
-      color: kPrimaryColor,
-      fill: 1,
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
+    List<Widget> navBarContent =[
+      Icon(
+        widget.icon1,
+        size: 25,
+        color: kPrimaryColor,
+        fill: 1,
+      ),
+      Icon(
+        widget.icon2,
+        size: 25,
+        color: kPrimaryColor,
+        fill: 1,
+      ),
+      Icon(
+        widget.icon3,
+        size: 25,
+        color: kPrimaryColor,
+        fill: 1,
+      ),
+    ];
+
     return CurvedNavigationBar(
       index: currentIndex,
       backgroundColor: kPrimaryColor,
@@ -42,8 +45,16 @@ class _CustomCurvedNavBarState extends State<CustomCurvedNavBar> {
       items:navBarContent,
       onTap: (value) {
         setState(() {
-          currentIndex = value;
-        });
+          if(currentIndex != value) {
+            currentIndex = value;
+            const Duration(
+             seconds: 1,
+            );
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => widget.screens[currentIndex]));
+          }
+        },
+        );
       },
     );
   }

@@ -138,3 +138,33 @@
 // ),
 // ),
 
+//............................
+
+
+// PreferredSize(
+// preferredSize: const Size.fromHeight(50),
+// child: Container(
+// decoration: BoxDecoration(
+// color: Colors.white,
+// boxShadow: kBoxShadow,
+// ),
+// child: AppBar(
+// toolbarHeight: 80,
+// centerTitle: true,
+// actions: [
+// IconButton(
+// onPressed: () {},
+// icon: const Icon(
+// Icons.person,
+// color: Colors.black,
+// size: 30,
+// ),
+// )
+// ],
+// title: const CustomTextWidget(
+// text: "Blood Connect",
+// fontSize: 30,
+// ),
+// ),
+// ),
+// ),

@@ -4,7 +4,10 @@ import 'package:grad/custom_widgets/category_home_screen.dart';
 import 'package:grad/custom_widgets/curved_navigation_bar.dart';
 import 'package:grad/custom_widgets/text.dart';
 import 'package:grad/screens/donateNowCategory/donate.dart';
+import 'package:grad/screens/findBloodDonor/choose_donor.dart';
 import 'package:grad/screens/home/row_categories_home_screen.dart';
+import 'package:grad/screens/home/user_home_page.dart';
+import 'package:grad/screens/requestablood/request_a_blood.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
     as MaterialSymbolsIcons;
 
@@ -61,14 +64,24 @@ class ContainerHomeScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => const DonateNow(),
+                      builder: (context) => const ChooseDonor(),
                     ),
                   );
                 },
                 // navigateToScreen: DonateNow(),
               ),
             ),
-            const Expanded(child: CustomCurvedNavBar()),
+            const Expanded(child: CustomCurvedNavBar(
+              screens: [
+                RequestBlood(),
+                HomePage(),
+                DonateNow(),
+              ],
+             icon1: MaterialSymbolsIcons.Symbols.chat,
+              icon2: MaterialSymbolsIcons.Symbols.home,
+              icon3: MaterialSymbolsIcons.Symbols.person,
+            ),
+            ),
           ],
         ),
       ),
