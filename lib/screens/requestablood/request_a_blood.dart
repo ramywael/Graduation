@@ -166,8 +166,7 @@ class _RequestBloodState extends State<RequestBlood> {
                                   (urgencyLevel) {
                             return DropdownMenuItem(
                               value: urgencyLevel,
-                              child:
-                                  Text(urgencyLevel.toString().split(".").last),
+                              child: Text(urgencyLevel.toString().split(".").last),
                             );
                           }).toList(),
                           onChanged: (value) {
