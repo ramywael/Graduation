@@ -15,8 +15,13 @@ class RowCategoriesHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      padding: EdgeInsets.symmetric(
+        horizontal: screenWidth * 0.05,  // Adjusted based on screen width
+        vertical: screenWidth * 0.1,      // Adjusted based on screen width
+      ),
       child: Row(
         children: [
           Expanded(
@@ -26,15 +31,15 @@ class RowCategoriesHomeScreen extends StatelessWidget {
               //navigateToScreen: const EligibilityCheck(),
               onTap: isDonated
                   ? () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const EligibilityCheck(),
-                      ));
-                    }
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const EligibilityCheck(),
+                ));
+              }
                   : () {},
             ),
           ),
-          const SizedBox(
-            width: 20,
+          SizedBox(
+            width: screenWidth * 0.05,    // Adjusted based on screen width
           ),
           Expanded(
             child: CustomCategoryHomeScreen(

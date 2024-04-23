@@ -1,9 +1,14 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/screens/home/user_home_page.dart';
+
 import '../../constants/constant.dart';
+import '../../custom_widgets/login_and_signup_screens/Sign_up_clipper_text.dart';
 import '../../custom_widgets/login_and_signup_screens/custom_button.dart';
 import '../../custom_widgets/login_and_signup_screens/custom_text_form_field.dart';
 import '../../custom_widgets/login_and_signup_screens/wave_clipper.dart';
+import 'login.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});
