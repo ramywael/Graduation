@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key,
+  const CustomTextFormField({
+    Key? key,
     required this.controller,
     required this.inputType,
     this.prefixIcon,
     this.suffixIcon,
-    this.isPassword=false,
+    this.isPassword = false,
     required this.labelName,
     this.validator,
-    this.onSaved
-  });
+    this.onSaved,
+  }) : super(key: key);
 
-  final TextEditingController controller ;
+  final TextEditingController controller;
   final TextInputType inputType;
   final Icon? prefixIcon;
   final IconButton? suffixIcon;
-   final bool isPassword;
+  final bool isPassword;
   final String labelName;
   final void Function(String?)? onSaved;
   final String? Function(String?)? validator;
@@ -24,9 +25,9 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15,right: 22.0,left: 22.0),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: MediaQuery.of(context).size.width * 0.065),
       child: Card(
-        shape: const CircleBorder(eccentricity: 1),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: Container(
           height: 50,
           decoration: BoxDecoration(
@@ -46,23 +47,18 @@ class CustomTextFormField extends StatelessWidget {
             controller: controller,
             keyboardType: inputType,
             obscureText: isPassword,
+            style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04), // Set a base font size
             decoration: InputDecoration(
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  borderSide: BorderSide.none
-              ),
+              border: InputBorder.none,
               prefixIcon: prefixIcon,
               suffixIcon: suffixIcon,
-              label: Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  labelName,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.grey
-                  ),),
+              labelText: labelName,
+              labelStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: MediaQuery.of(context).size.width * 0.04, // Set font size based on screen width
+                color: Colors.grey,
               ),
+              contentPadding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03),
             ),
             validator: validator,
           ),

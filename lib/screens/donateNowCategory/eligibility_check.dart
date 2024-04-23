@@ -15,6 +15,25 @@ class _EligibilityCheckState extends State<EligibilityCheck> {
   List<String> userAnswers = [];
   bool isEligible = true;
   int currentQuestionIndex = 0;
+
+  double getFontSize(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 600) {
+      return 24.0;
+    } else {
+      return 18.0;
+    }
+  }
+
+  double getPadding(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    if (screenWidth > 600) {
+      return 100.0;
+    } else {
+      return 50.0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,49 +53,49 @@ class _EligibilityCheckState extends State<EligibilityCheck> {
             Text(
               questionsModel[currentQuestionIndex]["question"],
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 18,
+              style: TextStyle(
+                fontSize: getFontSize(context),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 GestureDetector(
                   onTap: () {
-                    setState(
-                      () {
-                        userAnswers.add("yes");
-                        isEligible = false;
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            backgroundColor: kPrimaryColor,
-                            content: Text(
-                              "Sorry, you are not eligible to donate",
-                            ),
+                    setState(() {
+                      userAnswers.add("yes");
+                      isEligible = false;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: kPrimaryColor,
+                          content: Text(
+                            "Sorry, you are not eligible to donate",
                           ),
-                        );
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) =>  HomePage(isDonated:isEligible),
-                        ));
-                      },
-                    );
+                        ),
+                      );
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => HomePage(isDonated: isEligible),
+                      ));
+                    });
                   },
                   child: Container(
                     decoration: BoxDecoration(
                       color: kSecondaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: MediaQuery.of(context).size.height * 0.013,
+                        horizontal: getPadding(context),
+                      ),
                       child: Text(
                         "Yes",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: MediaQuery.of(context).size.width > 600 ? 20 : 16,
                         ),
                       ),
                     ),
@@ -84,40 +103,39 @@ class _EligibilityCheckState extends State<EligibilityCheck> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    setState(
-                      () {
-                        userAnswers.add("no");
-                        currentQuestionIndex++;
-                        if (currentQuestionIndex == questionsModel.length-1) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              backgroundColor: kSecondaryColor,
-                              content: Text(
-                                "You are eligible to donate",
-                              ),
+                    setState(() {
+                      userAnswers.add("no");
+                      currentQuestionIndex++;
+                      if (currentQuestionIndex == questionsModel.length - 1) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: kSecondaryColor,
+                            content: Text(
+                              "You are eligible to donate",
                             ),
-                          );
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                            builder: (context) => const DonateNow(),
-                          ));
-                        }
-                      },
-                    );
+                          ),
+                        );
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const DonateNow(),
+                        ));
+                      }
+                    });
                   },
                   child: Container(
                     decoration: BoxDecoration(
                       color: kPrimaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-                      child: Text(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: MediaQuery.of(context).size.height * 0.013,
+                        horizontal: getPadding(context),
+                      ),
+                      child:  Text(
                         "No",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                            fontSize: MediaQuery.of(context).size.width > 600 ? 20 : 16,
                         ),
                       ),
                     ),

@@ -2,59 +2,71 @@ import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 
 class ListViewDonors extends StatelessWidget {
-  const ListViewDonors({
-    super.key,
-  });
+  const ListViewDonors({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    // Responsive padding
+    final double horizontalPadding = screenWidth * 0.05;
+    final double verticalPadding = screenHeight * 0.02;
+
+    // Responsive font sizes
+    final titleFontSize = screenWidth * 0.05;
+    final subtitleFontSize = screenWidth * 0.04;
+
+    // Responsive icon size
+    final iconSize = screenWidth * 0.12;
+
     return Expanded(
       child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        itemCount: 3,
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
+        itemCount: 3, // Adjust itemCount based on your data
         itemBuilder: (context, index) {
           return Container(
-            margin: const EdgeInsets.symmetric(vertical: 10),
+            margin: EdgeInsets.symmetric(vertical: verticalPadding * 0.65),
             decoration: BoxDecoration(
               color: Colors.white,
-              boxShadow: kBoxShadow,
+              boxShadow: kElevationToShadow[4],
               borderRadius: BorderRadius.circular(20),
             ),
-            child:  const ListTile(
-              contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              trailing: Icon(
+            child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              trailing: const Icon(
                 Icons.arrow_forward,
-                color: kPrimaryColor,
+                color: Colors.red, // Adjust color as needed
               ),
               title: Text(
                 "John Doe",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: titleFontSize,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               subtitle: Text(
                 "New York",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: subtitleFontSize,
                 ),
               ),
               leading: SizedBox(
-                width: 50,
-                height: 50,
+                width: iconSize,
+                height: iconSize,
                 child: Row(
                   children: [
                     Icon(
                       Icons.bloodtype,
-                      fill: 1,
-                      color: kPrimaryColor,
+                      size: iconSize * 0.5,
+                      color: Colors.red, // Adjust color as needed
                     ),
                     Text(
                       "A+",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: subtitleFontSize,
                         fontWeight: FontWeight.bold,
-                        color: kPrimaryColor,
+                        color: Colors.red, // Adjust color as needed
                       ),
                     )
                   ],

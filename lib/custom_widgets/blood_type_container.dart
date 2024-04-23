@@ -8,7 +8,6 @@ class BloodTypeContainer extends StatelessWidget {
     required this.governorate,
     required this.timeLimit
   });
-
   final String bloodType;
   final String name;
   final String governorate;
@@ -119,7 +118,7 @@ class BloodTypeContainer extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 23,),
+              const SizedBox(height: 23,),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -142,16 +141,16 @@ class BloodTypeContainer extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Container(
                       height: 50,
                       width: 165,
                       decoration: BoxDecoration(
-                        color: Color(0xff81201a),
+                        color: const Color(0xff81201a),
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: TextButton(onPressed: (){},
-                        child: Text(
+                        child: const Text(
                           'Refuse',
                           style: TextStyle(
                               color: Colors.white,
