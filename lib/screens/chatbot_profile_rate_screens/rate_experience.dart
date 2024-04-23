@@ -4,7 +4,7 @@ import '../../custom_widgets/rate_experience_screen/column_content.dart';
 
 
 class RateExperience extends StatelessWidget {
-  const RateExperience({required Key key}) : super(key: key);
+  const RateExperience({super.key});
 
   @override
   Widget build(BuildContext context) {
