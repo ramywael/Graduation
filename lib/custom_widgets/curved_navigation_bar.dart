@@ -7,7 +7,14 @@ class CustomCurvedNavBar extends StatefulWidget {
   final IconData icon2;
   final IconData icon3;
   final List<Widget> screens;
-  const CustomCurvedNavBar({Key? key, required this.icon1, required this.icon2, required this.icon3, required this.screens}) : super(key: key);
+
+  const CustomCurvedNavBar({
+    Key? key,
+    required this.icon1,
+    required this.icon2,
+    required this.icon3,
+    required this.screens,
+  }) : super(key: key);
 
   @override
   State<CustomCurvedNavBar> createState() => _CustomCurvedNavBarState();
@@ -15,46 +22,53 @@ class CustomCurvedNavBar extends StatefulWidget {
 
 class _CustomCurvedNavBarState extends State<CustomCurvedNavBar> {
   int currentIndex = 1;
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> navBarContent =[
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    List<Widget> navBarContent = [
       Icon(
         widget.icon1,
-        size: 25,
+        size: screenWidth * 0.06, // Adjusted icon size
         color: kPrimaryColor,
         fill: 1,
       ),
       Icon(
         widget.icon2,
-        size: 25,
+        size: screenWidth * 0.06, // Adjusted icon size
         color: kPrimaryColor,
         fill: 1,
       ),
       Icon(
         widget.icon3,
-        size: 25,
+        size: screenWidth * 0.06, // Adjusted icon size
         color: kPrimaryColor,
         fill: 1,
       ),
     ];
 
     return CurvedNavigationBar(
+      height: screenWidth * 0.135, // Adjusted height
       index: currentIndex,
       backgroundColor: kPrimaryColor,
       animationDuration: const Duration(milliseconds: 300),
-      items:navBarContent,
+      items: navBarContent,
       onTap: (value) {
         setState(() {
-          if(currentIndex != value) {
+          if (currentIndex != value) {
             currentIndex = value;
             const Duration(
-             seconds: 1,
+              seconds: 1,
             );
-            Navigator.push(context, MaterialPageRoute(
-                builder: (context) => widget.screens[currentIndex]));
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => widget.screens[currentIndex],
+              ),
+            );
           }
-        },
-        );
+        });
       },
     );
   }

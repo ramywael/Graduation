@@ -166,7 +166,8 @@ class _RequestBloodState extends State<RequestBlood> {
                                   (urgencyLevel) {
                             return DropdownMenuItem(
                               value: urgencyLevel,
-                              child: Text(urgencyLevel.toString().split(".").last),
+                              child:
+                                  Text(urgencyLevel.toString().split(".").last),
                             );
                           }).toList(),
                           onChanged: (value) {
@@ -199,9 +200,10 @@ class _RequestBloodState extends State<RequestBlood> {
               RequestBlood(),
               HomePage(),
             ],
-              icon1: MaterialSymbolsIcons.Symbols.home,
-              icon2: MaterialSymbolsIcons.Symbols.bloodtype,
-              icon3: MaterialSymbolsIcons.Symbols.person)
+            icon1: MaterialSymbolsIcons.Symbols.home,
+            icon2: MaterialSymbolsIcons.Symbols.bloodtype,
+            icon3: MaterialSymbolsIcons.Symbols.person,
+          )
         ],
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
-import 'package:grad/custom_widgets/custom_button.dart';
+import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/custom_widgets/text.dart';
 
 class DonateContainer extends StatelessWidget {

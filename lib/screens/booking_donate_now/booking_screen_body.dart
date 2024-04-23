@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
-import 'package:grad/custom_widgets/custom_button.dart';
+import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/custom_widgets/table_calender.dart';
 import 'package:grad/screens/booking_donate_now/time_slot_container.dart';
 

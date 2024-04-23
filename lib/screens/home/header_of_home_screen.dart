@@ -9,17 +9,20 @@ class HeaderOfHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 80,horizontal: 20),
-      // width: 343,
-      // height: 191,
+      margin: EdgeInsets.symmetric(
+        vertical: screenHeight * 0.06,  // Adjusted based on screen height
+        horizontal: screenWidth * 0.05,  // Adjusted based on screen width
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(screenWidth * 0.064),  // Adjusted based on screen width
         boxShadow: kBoxShadow,
       ),
       child: const ContentOfHeaderHomePage(),
     );
   }
 }
-

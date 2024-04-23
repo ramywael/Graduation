@@ -1,15 +1,99 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/custom_widgets/category_home_screen.dart';
 import 'package:grad/custom_widgets/curved_navigation_bar.dart';
 import 'package:grad/custom_widgets/text.dart';
-import 'package:grad/screens/donateNowCategory/donate.dart';
+import 'package:grad/screens/chatbot_profile_rate_screens/chatbot.dart';
 import 'package:grad/screens/findBloodDonor/choose_donor.dart';
 import 'package:grad/screens/home/row_categories_home_screen.dart';
 import 'package:grad/screens/home/user_home_page.dart';
-import 'package:grad/screens/requestablood/request_a_blood.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
     as MaterialSymbolsIcons;
+
+import '../chatbot_profile_rate_screens/profile.dart';
+
+// class ContainerHomeScreen extends StatelessWidget {
+//   final bool isDonated;
+//   const ContainerHomeScreen({
+//     super.key,
+//     required this.isDonated,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Expanded(
+//       child: Container(
+//         decoration: const BoxDecoration(
+//           color: Color(0xffF0F0F0),
+//           borderRadius: BorderRadius.only(
+//             topLeft: Radius.circular(30),
+//             topRight: Radius.circular(30),
+//           ),
+//         ),
+//         child: Column(
+//           children: [
+//             Padding(
+//               padding: const EdgeInsets.only(
+//                 top: 25,
+//               ),
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(10),
+//                   border: Border.all(
+//                     color: kPrimaryColor,
+//                     width: 1,
+//                   ),
+//                 ),
+//                 child: const Padding(
+//                   padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+//                   child: CustomTextWidget(
+//                     text: "Be Today's Hero",
+//                     fontSize: 26,
+//                     fontFamily: "Pacifico",
+//                   ),
+//                 ),
+//               ),
+//             ),
+//             RowCategoriesHomeScreen(
+//               isDonated: isDonated,
+//             ),
+//             Padding(
+//               padding: const EdgeInsets.only(bottom: 70, left: 40, right: 40),
+//               child: CustomCategoryHomeScreen(
+//                 text: "Find a Blood Donor",
+//                 icon: MaterialSymbolsIcons.Symbols.warehouse_rounded,
+//                 onTap: () {
+//                   Navigator.of(context).pushReplacement(
+//                     MaterialPageRoute(
+//                       builder: (context) => const ChooseDonor(),
+//                     ),
+//                   );
+//                 },
+//                 // navigateToScreen: DonateNow(),
+//               ),
+//             ),
+//             const Expanded(child: CustomCurvedNavBar(
+//               screens: [
+//                 Chatbot(
+//                   screenName: HomePage(),
+//                 ),
+//                 HomePage(),
+//                 ProfileView(),
+//               ],
+//              icon1: MaterialSymbolsIcons.Symbols.chat,
+//               icon2: MaterialSymbolsIcons.Symbols.home,
+//               icon3: MaterialSymbolsIcons.Symbols.person,
+//             ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 
 class ContainerHomeScreen extends StatelessWidget {
   final bool isDonated;
@@ -20,34 +104,42 @@ class ContainerHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Expanded(
       child: Container(
-        decoration: const BoxDecoration(
-          color: Color(0xffF0F0F0),
+        decoration:  BoxDecoration(
+          color: const Color(0xffF0F0F0),
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
+            topLeft: Radius.circular(screenWidth * 0.03), // Adjusted based on screen width
+            topRight: Radius.circular(screenWidth * 0.03), // Adjusted based on screen width
           ),
         ),
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                top: 25,
+              padding: EdgeInsets.only(
+                top: screenHeight * 0.02, // Adjusted based on screen height
+                left: screenWidth * 0.05, // Adjusted based on screen width
+                right: screenWidth * 0.05, // Adjusted based on screen width
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(screenWidth * 0.01), // Adjusted based on screen width
                   border: Border.all(
                     color: kPrimaryColor,
-                    width: 1,
+                    width: screenWidth * 0.004, // Adjusted based on screen width
                   ),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: screenHeight * 0.005, // Adjusted based on screen height
+                    horizontal: screenWidth * 0.02, // Adjusted based on screen width
+                  ),
                   child: CustomTextWidget(
                     text: "Be Today's Hero",
-                    fontSize: 26,
+                    fontSize: screenWidth * 0.065, // Adjusted based on screen width
                     fontFamily: "Pacifico",
                   ),
                 ),
@@ -57,7 +149,11 @@ class ContainerHomeScreen extends StatelessWidget {
               isDonated: isDonated,
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 70, left: 40, right: 40),
+              padding: EdgeInsets.only(
+                bottom: screenHeight * 0.09, // Adjusted based on screen height
+                left: screenWidth * 0.1, // Adjusted based on screen width
+                right: screenWidth * 0.1, // Adjusted based on screen width
+              ),
               child: CustomCategoryHomeScreen(
                 text: "Find a Blood Donor",
                 icon: MaterialSymbolsIcons.Symbols.warehouse_rounded,
@@ -68,19 +164,26 @@ class ContainerHomeScreen extends StatelessWidget {
                     ),
                   );
                 },
-                // navigateToScreen: DonateNow(),
               ),
             ),
-            const Expanded(child: CustomCurvedNavBar(
-              screens: [
-                RequestBlood(),
-                HomePage(),
-                DonateNow(),
-              ],
-             icon1: MaterialSymbolsIcons.Symbols.chat,
-              icon2: MaterialSymbolsIcons.Symbols.home,
-              icon3: MaterialSymbolsIcons.Symbols.person,
-            ),
+              Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: screenHeight * 0.045, // Adjusted based on screen height
+                ),
+                child: const CustomCurvedNavBar(
+                  screens: [
+                    Chatbot(
+                      screenName: HomePage(),
+                    ),
+                    HomePage(),
+                    ProfileView(),
+                  ],
+                  icon1: MaterialSymbolsIcons.Symbols.chat,
+                  icon2: MaterialSymbolsIcons.Symbols.home,
+                  icon3: MaterialSymbolsIcons.Symbols.person,
+                ),
+              ),
             ),
           ],
         ),

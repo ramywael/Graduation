@@ -9,7 +9,7 @@ class BookingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Booking Screen",
+          "Schedule your donation",
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
