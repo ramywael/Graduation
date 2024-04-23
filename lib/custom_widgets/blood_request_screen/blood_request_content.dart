@@ -1,79 +1,26 @@
 import 'package:flutter/material.dart';
 
 class BloodRequestContent extends StatelessWidget {
-  const BloodRequestContent({super.key});
+  const BloodRequestContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
           'Blood',
           style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w900,
-              fontFamily: 'Roboto-Regular'
-          ),
-        ),
-        const SizedBox(height: 20,),
-        Container(
-          height: 100,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey[200]!,
-                offset: const Offset(1, 3),
-                blurRadius: 6,
-                spreadRadius: 3,
-              ),
-            ],
-          ),
-          child: const Row(
-            children: [
-              Spacer(
-                flex: 1,
-              ),
-              Text(
-                '3',
-                style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 30,
-                    fontFamily: 'Roboto-Regular',
-                    color: Colors.black
-                ),
-              ),
-              Spacer(
-                flex: 7,
-              ),
-              Text(
-                'Urgent Request',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: 'Roboto-Regular',
-                ),
-              ),
-              Spacer(
-                flex: 1,
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 20,),
-        const Text(
-          'Attached',
-          style: TextStyle(
-            fontSize: 25,
+            fontSize: 26,
             fontWeight: FontWeight.w900,
             fontFamily: 'Roboto-Regular',
           ),
         ),
-        const SizedBox(height: 20,),
+        SizedBox(height: screenWidth * 0.02),
         Container(
-          height: 120,
+          height: screenWidth * 0.2,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(30),
@@ -88,26 +35,71 @@ class BloodRequestContent extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const Spacer(
-                flex: 2,
+              const Spacer(flex: 1),
+              Text(
+                '3',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: screenWidth * 0.06,
+                  fontFamily: 'Roboto-Regular',
+                  color: Colors.black,
+                ),
               ),
+              const Spacer(flex: 7),
+              Text(
+                'Urgent Request',
+                style: TextStyle(
+                  fontSize: screenWidth * 0.018,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Roboto-Regular',
+                ),
+              ),
+              const Spacer(flex: 1),
+            ],
+          ),
+        ),
+        SizedBox(height: screenWidth * 0.02),
+        const Text(
+          'Attached',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.w900,
+            fontFamily: 'Roboto-Regular',
+          ),
+        ),
+        SizedBox(height: screenWidth * 0.02),
+        Container(
+          height: screenWidth * 0.24,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[200]!,
+                offset: const Offset(1, 3),
+                blurRadius: 6,
+                spreadRadius: 3,
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              const Spacer(flex: 2),
               const Icon(
                 Icons.download,
                 size: 50,
                 color: Color(0xff81201a),
               ),
-              const Spacer(
-                flex: 7,
-              ),
+              const Spacer(flex: 7),
               Container(
-                width: 100,
-                height: 40,
+                width: screenWidth * 0.2,
+                height: screenWidth * 0.06,
                 decoration: BoxDecoration(
                   color: const Color(0xff81201a),
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: () {},
                   child: const Text(
                     'Download',
                     style: TextStyle(
@@ -119,13 +111,11 @@ class BloodRequestContent extends StatelessWidget {
                   ),
                 ),
               ),
-              const Spacer(
-                flex: 2,
-              ),
+              const Spacer(flex: 2),
             ],
           ),
         ),
-        const SizedBox(height: 20,),
+        SizedBox(height: screenWidth * 0.02),
         const Text(
           'Time',
           style: TextStyle(
@@ -134,9 +124,9 @@ class BloodRequestContent extends StatelessWidget {
             fontFamily: 'Roboto-Regular',
           ),
         ),
-        const SizedBox(height: 20,),
+        SizedBox(height: screenWidth * 0.02),
         Container(
-          height: 90,
+          height: screenWidth * 0.18,
           width: double.infinity,
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
@@ -151,29 +141,29 @@ class BloodRequestContent extends StatelessWidget {
               ),
             ],
           ),
-          child: const Padding(
-            padding: EdgeInsets.only(left: 35),
+          child: Padding(
+            padding: EdgeInsets.only(left: screenWidth * 0.1),
             child: Text(
               '10/15/2022',
               style: TextStyle(
                 fontWeight: FontWeight.w900,
-                fontSize: 28,
+                fontSize: screenWidth * 0.04,
                 fontFamily: 'Roboto-Regular',
               ),
             ),
           ),
         ),
-        const SizedBox(height: 55,),
+        SizedBox(height: screenWidth * 0.055),
         Center(
           child: Container(
-            width: 160,
-            height: 60,
+            width: screenWidth * 0.4,
+            height: screenWidth * 0.12,
             decoration: BoxDecoration(
               color: const Color(0xff81201a),
               borderRadius: BorderRadius.circular(45),
             ),
             child: TextButton(
-              onPressed: (){},
+              onPressed: () {},
               child: const Text(
                 'Submit',
                 style: TextStyle(
@@ -190,3 +180,4 @@ class BloodRequestContent extends StatelessWidget {
     );
   }
 }
+

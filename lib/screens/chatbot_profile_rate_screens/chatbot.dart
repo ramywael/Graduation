@@ -7,7 +7,7 @@ import '../../custom_widgets/chatbot/user_text.dart';
 
 class Chatbot extends StatelessWidget {
   final Widget screenName;
-  const Chatbot({super.key, required this.screenName});
+  const Chatbot({Key? key, required this.screenName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,13 @@ class Chatbot extends StatelessWidget {
             scrolledUnderElevation: 0,
             toolbarHeight: 100,
             backgroundColor: Colors.transparent,
-            leading:  IconButton(
+            leading: IconButton(
               onPressed: () {
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => screenName,));
-              }, icon: const Icon(
-              Icons.arrow_back_ios_new_outlined,
+              },
+              icon: const Icon(Icons.arrow_back_ios_new_outlined),
             ),
-            ),
-            title:  const Row(
+            title: const Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Stack(
@@ -64,16 +63,15 @@ class Chatbot extends StatelessWidget {
                         fontFamily: 'Roboto',
                         fontSize: 19,
                         fontWeight: FontWeight.w900,
-
                       ),
                     ),
                     SizedBox(height: 3,),
                     Text(
                       'Connect Now',
                       style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize:16,
-                          fontWeight: FontWeight.w500
+                        fontFamily: 'Roboto',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
                       ),
                     )
                   ],
@@ -92,50 +90,57 @@ class Chatbot extends StatelessWidget {
           ),
         ),
       ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                  opacity: 0.4,
-                  image: AssetImage(
-                    'assets/images/onBoarding1.png',
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Stack(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    opacity: 0.4,
+                    image: AssetImage(
+                      'assets/images/onBoarding1.png',
+                    ),
+                    fit: BoxFit.cover,
                   ),
-                  fit: BoxFit.cover,
-                )
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20,right: 20,top: 35),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ChatbotText(),
-                  SizedBox(height: 35,),
-                  UserText(),
-                  SizedBox(height: 35,),
-                  ChatbotText(),
-                  SizedBox(height: 35,),
-                  UserText(),
-                  SizedBox(height: 35,),
-                  ChatbotText(),
-                  SizedBox(height: 35,),
-                  UserText(),
-                  SizedBox(height: 35,),
-                  ChatbotText(),
-                  SizedBox(height: 35,),
-                  UserText(),
-                  SizedBox(height: 35,),
-                ],
+                ),
               ),
-            ),
-          ),
-        ],
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width > 600 ? 40 : 20,
+                  vertical: MediaQuery.of(context).size.width > 600 ? 70 : 35,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const ChatbotText(),
+                      SizedBox(height: MediaQuery.of(context).size.width > 600 ? 70 : 35,),
+                      const UserText(),
+                      SizedBox(height: MediaQuery.of(context).size.width > 600 ? 70 : 35,),
+                      const ChatbotText(),
+                      SizedBox(height: MediaQuery.of(context).size.width > 600 ? 70 : 35,),
+                      const UserText(),
+                      SizedBox(height: MediaQuery.of(context).size.width > 600 ? 70 : 35,),
+                      const ChatbotText(),
+                      SizedBox(height: MediaQuery.of(context).size.width > 600 ? 70 : 35,),
+                      const UserText(),
+                      SizedBox(height: MediaQuery.of(context).size.width > 600 ? 70 : 35,),
+                      const ChatbotText(),
+                      SizedBox(height: MediaQuery.of(context).size.width > 600 ? 70 : 35,),
+                      const UserText(),
+                      SizedBox(height: MediaQuery.of(context).size.width > 600 ? 70 : 35,),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
       bottomNavigationBar: const ClipRRect(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40),
-            topRight: Radius.circular(40)
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
         ),
         child: BottomAppBar(
           elevation: 0,
@@ -147,3 +152,5 @@ class Chatbot extends StatelessWidget {
     );
   }
 }
+
+
