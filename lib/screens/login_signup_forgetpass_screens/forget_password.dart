@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../custom_widgets/login_and_signup_screens/custom_button.dart';
 import '../../custom_widgets/login_and_signup_screens/custom_text_form_field.dart';
@@ -29,10 +31,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: const Icon(
+          icon:  Icon(
             Icons.arrow_back,
             color: Colors.white,
-            size: 25,
+            size: MediaQuery.of(context).size.width * 0.07,
           ),
         ),
       ),
@@ -47,9 +49,9 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                   alignment: Alignment.center,
                   width: double.infinity,
                   color: const Color(0xff81201a),
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.25,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 30),
+                    padding:  EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.09),
                     child: Text(
                       'BloodConnect',
                       style: TextStyle(
@@ -67,7 +69,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 25, top: 5,bottom: 15),
+                      padding:  EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.025, top: MediaQuery.of(context).size.height*0.01,bottom: MediaQuery.of(context).size.height * 0.01),
                       child: Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -80,7 +82,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                     SizedBox(height: MediaQuery.of(context).size.height * 0.015),
                     CustomTextFormField(
                       controller: passwordController1,
                       inputType: TextInputType.visiblePassword,
@@ -104,7 +106,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 15),
+                     SizedBox(height: MediaQuery.of(context).size.height * 0.015),
                     CustomTextFormField(
                       controller: passwordController2,
                       inputType: TextInputType.visiblePassword,
@@ -129,7 +131,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       },
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20,horizontal: MediaQuery.of(context).size.width * 0.09),
+                      padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.025,horizontal: MediaQuery.of(context).size.width * 0.09),
                       child: Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
