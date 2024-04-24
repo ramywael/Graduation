@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1096950170961",
+    "project_id": "bloodchain-ace5f",
+    "storage_bucket": "bloodchain-ace5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096950170961:android:6bd56a1f6cb1e834bf7f70",
+        "android_client_info": {
+          "package_name": "com.example.grad"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZYIRFXT5nKonnLwj2f8a1r9DSmzgp6IE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
