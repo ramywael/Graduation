@@ -2,28 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 
 class SearchComponent extends StatelessWidget {
-  const SearchComponent({super.key});
-
-
+  final double screenWidth;
+  final double screenHeight;
+  const SearchComponent(
+      {super.key, required this.screenWidth, required this.screenHeight});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: EdgeInsets.symmetric(
+        horizontal: screenWidth * 0.05,
+        vertical: screenHeight * 0.015,
+      ),
       decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: kBoxShadow,
-          borderRadius: BorderRadius.circular(
-            20,
-          )),
-      child: const TextField(
+        color: Colors.white,
+        boxShadow: kBoxShadow,
+        borderRadius: BorderRadius.circular(
+          screenWidth * 0.05,
+
+        ),
+      ),
+      child:  TextField(
         decoration: InputDecoration(
           hintText: "Search by Blood Group",
           border: InputBorder.none,
           prefixIcon: Icon(
             Icons.search,
             color: Colors.black,
-            size: 25,
+            size: screenHeight * 0.03,
           ),
         ),
       ),
