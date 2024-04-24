@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/contents/contents_onBiarding_Model.dart';
-import 'package:grad/screens/home/user_home_page.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/login.dart';
 
 
@@ -31,6 +30,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: PageView.builder(
         itemCount: onBoardingList.length,
@@ -46,90 +47,90 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Image.asset(
                 onBoardingList[index].image,
-                height: 520,
-                width: 500,
+                height: screenHeight * 0.6,
               ),
               Text(
                 onBoardingList[index].title ?? "",
-                style: const TextStyle(
-                  fontSize: 40,
+                style: TextStyle(
+                  fontSize: screenWidth * 0.1,
                   fontWeight: FontWeight.bold,
                   color: kPrimaryColor,
                 ),
               ),
               Padding(
                 padding: onBoardingList[index].description != null
-                    ? const EdgeInsets.all(14.0)
+                    ? EdgeInsets.all(screenWidth * 0.04)
                     : const EdgeInsets.all(0),
                 child: Text(
                   textAlign: TextAlign.center,
                   onBoardingList[index].description ?? "",
-                  style: const TextStyle(
-                    fontSize: 14,
+                  style:  TextStyle(
+                    fontSize: screenWidth * 0.035,
                     color: Colors.black,
                   ),
                 ),
               ),
               Container(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 20,
+                margin:  EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.099,
                 ),
                 width: (onBoardingList[index].buttonText != null)
                     ? double.infinity
                     : 0,
-                height: (onBoardingList[index].buttonText != null) ? 50 : 0,
-                child: Padding(
-                  padding: onBoardingList[index].buttonText != null
-                      ? const EdgeInsets.all(2.0)
-                      : const EdgeInsets.all(0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF811F1A),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                height: (onBoardingList[index].buttonText != null) ? screenHeight* 0.055 : 0,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF811F1A),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(screenHeight * 0.045),
                     ),
-                    onPressed: () {
-                      if (currentIndex < onBoardingList.length - 1) {
-                        _pageController.nextPage(
-                          duration: const Duration(
-                            milliseconds: 500,
-                          ),
-                          curve: Curves.bounceOut,
-                        );
-                      } else {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginView(),
-                          ),
-                        );
-                      }
-                    },
-                    child: Text(
-                      onBoardingList[index].buttonText ?? "",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                      ),
+                  ),
+                  onPressed: () {
+                    if (currentIndex < onBoardingList.length - 1) {
+                      _pageController.nextPage(
+                        duration: const Duration(
+                          milliseconds: 500,
+                        ),
+                        curve: Curves.bounceOut,
+                      );
+                    } else {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginView(),
+                        ),
+                      );
+                    }
+                  },
+                  child: Text(
+                    onBoardingList[index].buttonText ?? "",
+                    style:  TextStyle(
+                      fontSize: screenWidth * 0.039,
+                      color: Colors.white,
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(14.0),
+                padding:  EdgeInsets.all(
+                  screenWidth * 0.06,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ...List.generate(
                       onBoardingList.length,
                       (index) => Container(
-                        width: currentIndex == index ? 20 : 8,
+                        width: currentIndex == index ? screenWidth*0.15 : screenWidth*0.09,
                         height: 8,
-                        margin: const EdgeInsets.all(4),
+                        margin:  EdgeInsets.all(
+                          screenWidth * 0.01,
+                        ),
                         //color: index == 0 ? const Color(0xFF811F1A) : const Color(0xFFD4D4D4),
                         decoration:  BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(
+                            screenWidth * 0.02,
+                          ),
                           color: currentIndex == index
                               ?  kPrimaryColor
                               : const  Color(0xFFD4D4D4),
