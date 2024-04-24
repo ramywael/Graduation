@@ -3,12 +3,14 @@ import 'package:grad/constants/constant.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class TableBasicsExample extends StatefulWidget {
-  const TableBasicsExample({Key? key}) : super(key: key);
+  final double screenWidth;
+  const TableBasicsExample({Key? key, required this.screenWidth}) : super(key: key);
   @override
   TableBasicsExampleState createState() => TableBasicsExampleState();
 }
 
 class TableBasicsExampleState extends State<TableBasicsExample> {
+
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime kFirstDay = DateTime.now();
   DateTime kLastDay = DateTime.now().add(const Duration(days: 365));
@@ -18,12 +20,12 @@ class TableBasicsExampleState extends State<TableBasicsExample> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(bottom: 15),
-      margin: const EdgeInsets.symmetric(horizontal: 20,),
+      padding:  EdgeInsets.symmetric(vertical: widget.screenWidth * 0.03, horizontal: widget.screenWidth * 0.05,),
+      margin:  EdgeInsets.symmetric(horizontal: widget.screenWidth * 0.05,),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: kBoxShadow,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(widget.screenWidth * 0.05),
       ),
       child: TableCalendar(
         daysOfWeekStyle: const DaysOfWeekStyle(

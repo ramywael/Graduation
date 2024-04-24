@@ -5,17 +5,18 @@ import 'package:grad/custom_widgets/table_calender.dart';
 import 'package:grad/screens/booking_donate_now/time_slot_container.dart';
 
 class BookingScreenBody extends StatelessWidget {
-  const BookingScreenBody({Key? key}) : super(key: key);
+  final double screenWidth;
+  const BookingScreenBody({Key? key, required this.screenWidth}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       children: [
-        TableBasicsExample(),
-        TimeSlotContainer(),
+         TableBasicsExample(screenWidth: screenWidth,),
+         TimeSlotContainer(screenWidth: screenWidth,),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20,),
-          child: CustomButton(text: "Confirm"),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth*0.045,),
+          child: const CustomButton(text: "Confirm"),
         )
       ],
     );

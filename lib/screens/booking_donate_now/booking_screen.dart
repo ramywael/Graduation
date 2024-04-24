@@ -6,17 +6,18 @@ class BookingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title:  Text(
           "Schedule your donation",
           style: TextStyle(
-            fontSize: 28,
+            fontSize: screenWidth * 0.07,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
-      body: const BookingScreenBody(),
+      body:  BookingScreenBody(screenWidth: screenWidth,),
     );
   }
 }

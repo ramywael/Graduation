@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grad/screens/onBoarding/onBoarding.dart';
+import 'package:grad/screens/booking_donate_now/booking_screen.dart';
 
 class DonationBlood extends StatelessWidget {
   const DonationBlood({super.key});
@@ -14,7 +14,7 @@ class DonationBlood extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home:  const BookingScreen(),
     );
   }
 }

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 
 class TimeSlotContainer extends StatefulWidget {
-  const TimeSlotContainer({Key? key}) : super(key: key);
+  final double screenWidth;
+  const TimeSlotContainer({Key? key, required this.screenWidth}) : super(key: key);
 
   @override
   State<TimeSlotContainer> createState() => _TimeSlotContainerState();
@@ -13,27 +14,27 @@ class _TimeSlotContainerState extends State<TimeSlotContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      margin: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 15,
+      padding: EdgeInsets.symmetric(vertical: widget.screenWidth * 0.03, horizontal: widget.screenWidth * 0.035,),
+      margin:  EdgeInsets.symmetric(
+        horizontal: widget.screenWidth * 0.05,
+        vertical: widget.screenWidth * 0.05,
       ),
       decoration: BoxDecoration(
         boxShadow: kBoxShadow,
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(widget.screenWidth * 0.05),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.all(12),
+           Padding(
+            padding: EdgeInsets.all(widget.screenWidth * 0.03),
             child: Text(
               "Select Time",
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: widget.screenWidth * 0.045,
               ),
             ),
           ),
@@ -54,17 +55,18 @@ class _TimeSlotContainerState extends State<TimeSlotContainer> {
                   });
                 },
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 5,
+                  padding:  EdgeInsets.symmetric(
+                    vertical: widget.screenWidth * 0.009,
                   ),
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 5),
+                  margin:  EdgeInsets.symmetric(
+                      horizontal: widget.screenWidth*0.019, vertical: widget.screenWidth*0.012,
+                  ),
                   decoration: BoxDecoration(
                     color: currentIndex == index
                         ? kPrimaryColor
                         : Colors.white,
                     boxShadow: kBoxShadow,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(widget.screenWidth * 0.04),
                   ),
                   child: Center(
                     child: Text(
@@ -74,7 +76,7 @@ class _TimeSlotContainerState extends State<TimeSlotContainer> {
                             ? Colors.white
                             : Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                        fontSize: widget.screenWidth * 0.035,
                       ),
                     ),
                   ),
