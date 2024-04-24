@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grad/custom_widgets/profile_components/custom_button.dart';
-import '../../constants/constant.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart'
-    as MaterialSymbolsIcons;
+import 'package:grad/custom_widgets/curved_navigation_bar.dart';
+import 'package:grad/screens/chatbot_profile_rate_screens/profile.dart';
+import 'package:grad/screens/home/user_home_page.dart';
+
+import '../../custom_widgets/user_notification/body_user_notification.dart';
 
 class UserNotifications extends StatelessWidget {
   const UserNotifications({Key? key}) : super(key: key);
@@ -11,44 +12,19 @@ class UserNotifications extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: ListView(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              boxShadow: kBoxShadow,
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(screenWidth * 0.05),
-            ),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Icon(
-                      MaterialSymbolsIcons.Symbols.heart_check_rounded,
-                      fill: 1,
-                      size: 30,
-                      color: kPrimaryColor,
-                    ),
-                    Text(
-                      "Your donation request has been accepted!",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: screenWidth * 0.048,
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: screenWidth * 0.08,
-                ),
-                // const CustomButton(text: "Details"),
-              ],
-            ),
-          ),
+      body: BodyUserNotification(screenWidth: screenWidth),
+      bottomNavigationBar: const CustomCurvedNavBar(
+        icon1: Icons.home,
+        icon2: Icons.notifications,
+        icon3: Icons.person,
+        screens: [
+          HomePage(),
+          UserNotifications(),
+          ProfileView(),
         ],
       ),
     );
   }
 }
+
+

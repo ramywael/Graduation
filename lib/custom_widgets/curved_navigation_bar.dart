@@ -49,7 +49,8 @@ class _CustomCurvedNavBarState extends State<CustomCurvedNavBar> {
     ];
 
     return CurvedNavigationBar(
-      height: screenWidth * 0.135, // Adjusted height
+     // height: screenWidth * 0.135, // Adjusted height
+      height: screenWidth * 0.14, // Adjusted height
       index: currentIndex,
       backgroundColor: kPrimaryColor,
       animationDuration: const Duration(milliseconds: 300),
