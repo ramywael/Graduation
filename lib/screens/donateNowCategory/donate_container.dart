@@ -46,9 +46,9 @@ class DonateContainer extends StatelessWidget {
               color: Colors.black,
               fontWeight: FontWeight.normal,
             ),
-            CustomButton(
-              text: "Donate Now",
-            )
+            // CustomButton(
+            //   text: "Donate Now",
+            // )
           ],
         ),
       ),

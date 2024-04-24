@@ -3,37 +3,43 @@ import 'package:grad/screens/booking_donate_now/booking_screen.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
+  final void Function()? onTap;
+  final Color color;
+  final double fontSize;
+  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry margin;
   const CustomButton({
-    super.key, required this.text,
+    super.key,
+    required this.text,
+    this.onTap,
+    required this.color,
+    required this.fontSize,
+    required this.padding,
+    required this.margin,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const BookingScreen(),)
-        );
-      },
+      onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding: padding,
+        margin: margin,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xff286E34),
+          color: color,
           borderRadius: BorderRadius.circular(20),
         ),
-        child:  Text(
+        child: Text(
           text,
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: fontSize,
           ),
         ),
       ),
     );
   }
 }
-
