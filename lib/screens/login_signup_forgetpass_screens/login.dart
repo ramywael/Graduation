@@ -43,20 +43,20 @@ class _LoginViewState extends State<LoginView> {
                       child: Container(
                         width: double.infinity,
                         color: const Color(0xff81201a),
-                        height: constraints.maxHeight * 0.235,
+                        height: constraints.maxHeight * 0.29,
                         child: Padding(
                           padding: EdgeInsets.only(left: constraints.maxWidth * 0.05, right: constraints.maxWidth * 0.05, top: constraints.maxHeight * 0.04),
-                          child: Column(
+                          child:  Column(
                             children: [
                               Text(
                                 "Welcome To BloodChain",
                                 style: TextStyle(
-                                  fontSize: 32,
+                                  fontSize: constraints.maxWidth * 0.08,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
                               ),
-                              Text(
+                              const Text(
                                 "Log in to Donate Blood and Save Lives!",
                                 style: TextStyle(
                                   fontSize: 17,
@@ -75,10 +75,10 @@ class _LoginViewState extends State<LoginView> {
                       padding: EdgeInsets.only(left: constraints.maxWidth * 0.1, top: constraints.maxHeight * 0.015),
                       child: Container(
                         alignment: Alignment.centerLeft,
-                        child: const Text(
+                        child:  Text(
                           "Login",
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: constraints.maxHeight * 0.045,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -140,7 +140,7 @@ class _LoginViewState extends State<LoginView> {
                       },
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 15),
+                      padding:  EdgeInsets.only(right: constraints.maxWidth * 0.01,),
                       child: Container(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -183,11 +183,11 @@ class _LoginViewState extends State<LoginView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                         Text(
                           'Don\'t Have An Account?',
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 18,
+                            fontSize: constraints.maxWidth * 0.039,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -199,11 +199,12 @@ class _LoginViewState extends State<LoginView> {
                               ),
                             );
                           },
-                          child: const Text(
+                          child:  Text(
                             'Register Now',
                             style: TextStyle(
-                              color: Color(0xff81201a),
-                              fontSize: 15,
+                              color: const Color(0xff81201a),
+                              fontWeight: FontWeight.bold,
+                              fontSize: constraints.maxWidth * 0.039,
                             ),
                           ),
                         ),
