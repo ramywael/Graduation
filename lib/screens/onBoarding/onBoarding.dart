@@ -1,8 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/contents/contents_onBiarding_Model.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/login.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,6 +19,13 @@ class _SplashScreenState extends State<SplashScreen> {
     _pageController = PageController(
       initialPage: 0,
     );
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print('===============>User is currently signed out!');
+      } else {
+        print('================>User is signed in!');
+      }
+    });
     super.initState();
   }
 
@@ -64,20 +71,22 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Text(
                   textAlign: TextAlign.center,
                   onBoardingList[index].description ?? "",
-                  style:  TextStyle(
+                  style: TextStyle(
                     fontSize: screenWidth * 0.035,
                     color: Colors.black,
                   ),
                 ),
               ),
               Container(
-                margin:  EdgeInsets.symmetric(
+                margin: EdgeInsets.symmetric(
                   horizontal: screenWidth * 0.099,
                 ),
                 width: (onBoardingList[index].buttonText != null)
                     ? double.infinity
                     : 0,
-                height: (onBoardingList[index].buttonText != null) ? screenHeight* 0.055 : 0,
+                height: (onBoardingList[index].buttonText != null)
+                    ? screenHeight * 0.055
+                    : 0,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF811F1A),
@@ -104,7 +113,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   },
                   child: Text(
                     onBoardingList[index].buttonText ?? "",
-                    style:  TextStyle(
+                    style: TextStyle(
                       fontSize: screenWidth * 0.039,
                       color: Colors.white,
                     ),
@@ -112,7 +121,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.all(
+                padding: EdgeInsets.all(
                   screenWidth * 0.06,
                 ),
                 child: Row(
@@ -121,19 +130,21 @@ class _SplashScreenState extends State<SplashScreen> {
                     ...List.generate(
                       onBoardingList.length,
                       (index) => Container(
-                        width: currentIndex == index ? screenWidth*0.15 : screenWidth*0.09,
+                        width: currentIndex == index
+                            ? screenWidth * 0.15
+                            : screenWidth * 0.09,
                         height: 8,
-                        margin:  EdgeInsets.all(
+                        margin: EdgeInsets.all(
                           screenWidth * 0.01,
                         ),
                         //color: index == 0 ? const Color(0xFF811F1A) : const Color(0xFFD4D4D4),
-                        decoration:  BoxDecoration(
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(
                             screenWidth * 0.02,
                           ),
                           color: currentIndex == index
-                              ?  kPrimaryColor
-                              : const  Color(0xFFD4D4D4),
+                              ? kPrimaryColor
+                              : const Color(0xFFD4D4D4),
                         ),
                       ),
                     ),

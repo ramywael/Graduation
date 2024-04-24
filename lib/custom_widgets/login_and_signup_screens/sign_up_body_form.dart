@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/wave_clipper.dart';
 import '../../constants/constant.dart';
@@ -16,21 +17,32 @@ class SignUpBody extends StatefulWidget {
 
 class _SignUpBodyState extends State<SignUpBody> {
 
-  var nameController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
-  var cityController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
 
-  var bloodTypeController = TextEditingController();
+  TextEditingController bloodTypeController = TextEditingController();
 
-  var emailController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
-  var passwordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-  var numberController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
 
   bool isPassword = true;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    nameController.dispose();
+    cityController.dispose();
+    bloodTypeController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    numberController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
