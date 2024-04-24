@@ -1,8 +1,9 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../custom_widgets/blood_request_screen/blood_request_content.dart';
+import 'package:grad/custom_widgets/curved_navigation_bar.dart';
+import 'package:grad/screens/chatbot_profile_rate_screens/profile.dart';
+import 'package:grad/screens/home/user_home_page.dart';
+import '../../custom_widgets/blood_request_screen/app_bar_title.dart';
+import '../../custom_widgets/blood_request_screen/blood_request_body.dart';
 
 class BloodRequest extends StatelessWidget {
   const BloodRequest({Key? key}) : super(key: key);
@@ -12,112 +13,21 @@ class BloodRequest extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0.0,
         backgroundColor: Colors.transparent,
         toolbarHeight: 100,
-        title: Row(
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                CupertinoIcons.chevron_back,
-                size: 30,
-              ),
-            ),
-            SizedBox(width: screenWidth * 0.02),
-            Expanded(
-              child: Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey[200]!,
-                      offset: const Offset(1, 3),
-                      blurRadius: 6,
-                      spreadRadius: 3,
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: screenWidth * 0.02),
-                      child: const Icon(
-                        Icons.bloodtype,
-                        color: Color(0xff81201a),
-                        size: 30,
-                      ),
-                    ),
-                    SizedBox(width: screenWidth * 0.02),
-                    const Text(
-                      'Request a Blood',
-                      style: TextStyle(
-                        fontSize: 25,
-                        color: Color(0xff81201a),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(width: screenWidth * 0.02),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.bloodtype_outlined,
-                size: 40,
-                color: Color(0xff81201a),
-              ),
-            ),
-          ],
-        ),
-        actions: const [],
+        title: TitleAppBarBloodRequest(screenWidth: screenWidth),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(screenWidth * 0.05),
-          child: const BloodRequestContent(),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(0, -2),
-              blurRadius: 6,
-            ),
-          ],
-        ),
-        child: CurvedNavigationBar(
-          height: 70,
-          buttonBackgroundColor: Colors.white,
-          onTap: (index) {},
-          items: const [
-            Icon(
-              Icons.home,
-              size: 35,
-              color: Colors.black,
-            ),
-            Icon(
-              Icons.bloodtype,
-              size: 35,
-              color: Colors.black,
-            ),
-            Icon(
-              Icons.person,
-              size: 35,
-              color: Colors.black,
-            )
-          ],
-          backgroundColor: const Color(0xff81201a),
-          color: Colors.white,
-          animationDuration: const Duration(milliseconds: 600),
-        ),
+      body: BloodRequestBody(screenWidth: screenWidth),
+      bottomNavigationBar: const CustomCurvedNavBar(
+        icon1: Icons.home,
+        icon2: Icons.bloodtype,
+        icon3: Icons.person,
+        screens: [
+          HomePage(),
+          BloodRequest(),
+          ProfileView(),
+        ],
       ),
     );
   }
