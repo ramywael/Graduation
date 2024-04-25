@@ -25,11 +25,11 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: MediaQuery.of(context).size.width * 0.065),
+      padding: EdgeInsets.symmetric(
+          vertical: 5, horizontal: MediaQuery.of(context).size.width * 0.065),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: Container(
-          height: 50,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(30),
@@ -47,18 +47,28 @@ class CustomTextFormField extends StatelessWidget {
             controller: controller,
             keyboardType: inputType,
             obscureText: isPassword,
-            style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.04), // Set a base font size
+            style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width *
+                    0.04), // Set a base font size
             decoration: InputDecoration(
+              errorStyle: const TextStyle(
+                fontSize: 0.01,
+              ),
               border: InputBorder.none,
               prefixIcon: prefixIcon,
               suffixIcon: suffixIcon,
-              labelText: labelName,
+              labelText: validator != null && validator!(controller.text) != null
+                      ? validator!(controller.text)
+                      : labelName,
               labelStyle: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: MediaQuery.of(context).size.width * 0.04, // Set font size based on screen width
-                color: Colors.grey,
+                fontSize: MediaQuery.of(context).size.width *
+                    0.04, // Set font size based on screen width
+                color: validator!= null && validator!(controller.text)!=null ? Colors.red :Colors.grey,
               ),
-              contentPadding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03),
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.06,
+              ),
             ),
             validator: validator,
           ),

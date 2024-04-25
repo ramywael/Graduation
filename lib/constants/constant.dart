@@ -38,3 +38,37 @@ List <int> hoursOfWork =[
   18,
   20,
 ];
+
+
+String? validatePassword(String value){
+
+  if (value.isEmpty) {
+    return "Password must not be empty";
+  }
+
+  // Check for minimum length
+  if (value.length < 8) {
+    return "Password must be at least 8 characters long";
+  }
+
+  // Check for uppercase letters
+  if (!value.contains(RegExp(r'[A-Z]'))) {
+    return "Password must contain at least one uppercase letter";
+  }
+
+  // Check for lowercase letters
+  if (!value.contains(RegExp(r'[a-z]'))) {
+    return "Password must contain at least one lowercase letter";
+  }
+
+  // Check for numbers
+  if (!value.contains(RegExp(r'[0-9]'))) {
+    return "Password must contain at least one number";
+  }
+
+  // Check for special characters
+  if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+    return "Password must contain at least one special character";
+  }
+  return null;
+}

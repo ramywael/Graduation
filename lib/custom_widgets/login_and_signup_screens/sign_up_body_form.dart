@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:grad/custom_widgets/login_and_signup_screens/register_button.dart';
+import 'package:grad/custom_widgets/login_and_signup_screens/row_fields_city_bloodtype_signup.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/wave_clipper.dart';
 import '../../constants/constant.dart';
 import '../../screens/home/user_home_page.dart';
@@ -46,11 +48,11 @@ class _SignUpBodyState extends State<SignUpBody> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    double cityAndBloodTypeWidth = screenWidth * 0.045;
     return Form(
       key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -93,7 +95,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                       Icons.account_box,
                       color: Color(0xff81201a),
                     ),
-                    labelName: "Full Name",
+                    labelName: "User Name",
                     validator: (value) {
                       if (value!.isEmpty && !value.contains(" ")) {
                         return "Name must not be empty";
@@ -102,122 +104,18 @@ class _SignUpBodyState extends State<SignUpBody> {
                     },
                   ),
                   SizedBox(height: screenHeight * 0.01),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: screenWidth * 0.055),
-                    child: Row(
-                      children: [
-                        Card(
-                          shape: const CircleBorder(eccentricity: 1),
-                          child: Container(
-                            height: screenWidth *
-                                0.12, // Adjusted based on screen width
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(screenWidth *
-                                  0.06), // Adjusted based on screen width
-                              boxShadow: kBoxShadow,
-                            ),
-                            child: SizedBox(
-                              width: screenWidth *
-                                  0.35, // Adjusted based on screen width
-                              child: TextFormField(
-                                controller: cityController,
-                                keyboardType: TextInputType.name,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      screenWidth * 0.05,
-                                    ), // Adjusted based on screen width
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  prefixIcon: const Icon(
-                                    Icons.add_location_alt_sharp,
-                                    color: Color(0xff81201a),
-                                  ),
-                                  label: Text(
-                                    "City",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: screenWidth *
-                                          0.045, // Adjusted based on screen width
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                                validator: (value) {
-                                  if (value!.isEmpty && !value.contains(" ")) {
-                                    return "Write your City";
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: screenWidth * 0.065),
-                        Card(
-                          shape: const CircleBorder(eccentricity: 1),
-                          child: Container(
-                            height: screenWidth *
-                                0.12, // Adjusted based on screen width
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(
-                                screenWidth * 0.06,
-                              ), // Adjusted based on screen width
-                              boxShadow: kBoxShadow,
-                            ),
-                            child: SizedBox(
-                              width: screenWidth *
-                                  0.4, // Adjusted based on screen width
-                              child: TextFormField(
-                                controller: bloodTypeController,
-                                keyboardType: TextInputType.name,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          screenWidth *
-                                              0.05), // Adjusted based on screen width
-                                      borderSide: BorderSide.none),
-                                  prefixIcon: const Icon(
-                                    Icons.bloodtype,
-                                    color: Color(0xff81201a),
-                                  ),
-                                  label: Text(
-                                    "Blood Type",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: screenWidth *
-                                            0.045, // Adjusted based on screen width
-                                        color: Colors.grey),
-                                  ),
-                                ),
-                                validator: (value) {
-                                  if (value!.isEmpty &&
-                                      !value.contains(" ") &&
-                                      !validBloodTypes
-                                          .contains(value.toUpperCase())) {
-                                    return "Please Enter a valid Blood Type";
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  RowCityBloodType(screenWidth: screenWidth, cityController: cityController, cityAndBloodTypeWidth: cityAndBloodTypeWidth, bloodTypeController: bloodTypeController),
                   CustomTextFormField(
                     controller: emailController,
                     inputType: TextInputType.emailAddress,
                     prefixIcon: const Icon(Icons.mark_email_read,
-                        color: Color(0xff81201a)),
+                        color: kPrimaryColor),
                     labelName: "E-mail",
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "E-mail must not be empty";
+                        return "Email Can't Be Empty";
+                      } else if (!EmailValidator.validate(value)) {
+                        return "Enter Valid Email";
                       }
                       return null;
                     },
@@ -230,7 +128,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                     inputType: TextInputType.visiblePassword,
                     isPassword: isPassword,
                     prefixIcon:
-                        const Icon(Icons.lock, color: Color(0xff81201a)),
+                        const Icon(Icons.lock, color: kPrimaryColor),
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -239,49 +137,31 @@ class _SignUpBodyState extends State<SignUpBody> {
                       },
                       icon: Icon(
                         isPassword ? Icons.visibility_off : Icons.visibility,
-                        color: const Color(0xff81201a),
+                        color:  kPrimaryColor,
                       ),
                     ),
                     labelName: "Password",
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Password must not be empty";
-                      }
-                      return null;
+                    validator: (password) {
+                      return validatePassword(password!);
                     },
                   ),
                   CustomTextFormField(
                     controller: numberController,
                     inputType: TextInputType.phone,
                     prefixIcon:
-                        const Icon(Icons.phone, color: Color(0xff81201a)),
+                        const Icon(Icons.phone, color: kPrimaryColor),
                     labelName: "Number",
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Number must not be empty";
-                      }
+                      }else if(value.length >11)
+                        {
+                          return "Number must be 11 digits";
+                        }
                       return null;
                     },
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: screenWidth * 0.09,
-                        vertical: screenHeight * 0.015),
-                    child: CustomButton(
-                      buttonText: "Register",
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HomePage(),
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ),
+                  RegisterButton(screenWidth: screenWidth, screenHeight: screenHeight, formKey: formKey),
                 ],
               ),
             ),
@@ -291,3 +171,6 @@ class _SignUpBodyState extends State<SignUpBody> {
     );
   }
 }
+
+
+
