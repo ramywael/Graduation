@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grad/constants/constant.dart';
 //
 // class CustomButton extends StatelessWidget {
 //   const CustomButton({super.key, required this.buttonText, required this.onPressed});
@@ -46,10 +47,9 @@ class CustomButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
       child: SizedBox(
         width: double.infinity,
-        height: screenHeight * 0.075, // Adjusted height
         child: MaterialButton(
           onPressed: onPressed,
-          color: const Color(0xff81201a),
+          color: kPrimaryColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(screenWidth * 0.08)), // Adjusted border radius
           child: Text(
             buttonText,

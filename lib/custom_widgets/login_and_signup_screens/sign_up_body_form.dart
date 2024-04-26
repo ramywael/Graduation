@@ -1,12 +1,10 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+
 import 'package:grad/custom_widgets/login_and_signup_screens/register_button.dart';
-import 'package:grad/custom_widgets/login_and_signup_screens/row_fields_city_bloodtype_signup.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/wave_clipper.dart';
 import '../../constants/constant.dart';
-import '../../screens/home/user_home_page.dart';
 import 'Sign_up_clipper_text.dart';
-import 'custom_button.dart';
 import 'custom_text_form_field.dart';
 
 class SignUpBody extends StatefulWidget {
@@ -89,13 +87,14 @@ class _SignUpBodyState extends State<SignUpBody> {
               child: Column(
                 children: [
                   CustomTextFormField(
+                    screenWidth: screenWidth,
                     controller: nameController,
                     inputType: TextInputType.name,
                     prefixIcon: const Icon(
                       Icons.account_box,
                       color: Color(0xff81201a),
                     ),
-                    labelName: "User Name",
+                    hintText: "User Name",
                     validator: (value) {
                       if (value!.isEmpty && !value.contains(" ")) {
                         return "Name must not be empty";
@@ -104,13 +103,56 @@ class _SignUpBodyState extends State<SignUpBody> {
                     },
                   ),
                   SizedBox(height: screenHeight * 0.01),
-                  RowCityBloodType(screenWidth: screenWidth, cityController: cityController, cityAndBloodTypeWidth: cityAndBloodTypeWidth, bloodTypeController: bloodTypeController),
+                  //RowCityBloodType(screenWidth: screenWidth, cityController: cityController, cityAndBloodTypeWidth: cityAndBloodTypeWidth, bloodTypeController: bloodTypeController),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: CustomTextFormField(
+                          errorText: "Invalid Data",
+                          screenWidth: screenWidth,
+                          controller: cityController,
+                          inputType: TextInputType.name,
+                          prefixIcon: const Icon(
+                            Icons.location_city,
+                            color: kPrimaryColor,
+                          ),
+                          hintText: "City",
+                          validator: (value) {
+                            if (value!.isEmpty && !value.contains(" ")) {
+                              return "Invalid Data";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: CustomTextFormField(
+                          errorText: "Invalid Data",
+                          screenWidth: screenWidth,
+                          controller: bloodTypeController,
+                          inputType: TextInputType.name,
+                          prefixIcon: const Icon(
+                            Icons.bloodtype,
+                            color: kPrimaryColor,
+                          ),
+                          hintText: "Blood Type",
+                          validator: (value) {
+                            if (value!.isEmpty && !value.contains(" ")) {
+                              return "Ex, A+  B-  AB+  O-  etc.";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                   CustomTextFormField(
+                    screenWidth: screenWidth,
                     controller: emailController,
                     inputType: TextInputType.emailAddress,
-                    prefixIcon: const Icon(Icons.mark_email_read,
-                        color: kPrimaryColor),
-                    labelName: "E-mail",
+                    prefixIcon:
+                        const Icon(Icons.mark_email_read, color: kPrimaryColor),
+                    hintText: "E-mail",
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Email Can't Be Empty";
@@ -121,14 +163,14 @@ class _SignUpBodyState extends State<SignUpBody> {
                     },
                   ),
                   CustomTextFormField(
+                    screenWidth: screenWidth,
                     controller: passwordController,
                     onSaved: (value) {
                       passwordController.text = value!;
                     },
                     inputType: TextInputType.visiblePassword,
                     isPassword: isPassword,
-                    prefixIcon:
-                        const Icon(Icons.lock, color: kPrimaryColor),
+                    prefixIcon: const Icon(Icons.lock, color: kPrimaryColor),
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -137,31 +179,33 @@ class _SignUpBodyState extends State<SignUpBody> {
                       },
                       icon: Icon(
                         isPassword ? Icons.visibility_off : Icons.visibility,
-                        color:  kPrimaryColor,
+                        color: kPrimaryColor,
                       ),
                     ),
-                    labelName: "Password",
+                    hintText: "Password",
                     validator: (password) {
                       return validatePassword(password!);
                     },
                   ),
                   CustomTextFormField(
+                    screenWidth: screenWidth,
                     controller: numberController,
                     inputType: TextInputType.phone,
-                    prefixIcon:
-                        const Icon(Icons.phone, color: kPrimaryColor),
-                    labelName: "Number",
+                    prefixIcon: const Icon(Icons.phone, color: kPrimaryColor),
+                    hintText: "Number",
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Number must not be empty";
-                      }else if(value.length >11)
-                        {
-                          return "Number must be 11 digits";
-                        }
+                      } else if (value.length > 11) {
+                        return "Number must be 11 digits";
+                      }
                       return null;
                     },
                   ),
-                  RegisterButton(screenWidth: screenWidth, screenHeight: screenHeight, formKey: formKey),
+                  RegisterButton(
+                      screenWidth: screenWidth,
+                      screenHeight: screenHeight,
+                      formKey: formKey),
                 ],
               ),
             ),
@@ -171,6 +215,3 @@ class _SignUpBodyState extends State<SignUpBody> {
     );
   }
 }
-
-
-

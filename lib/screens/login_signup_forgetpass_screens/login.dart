@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:grad/constants/constant.dart';
+import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/signup.dart';
-import '../../custom_widgets/login_and_signup_screens/custom_button.dart';
 import '../../custom_widgets/login_and_signup_screens/custom_text_form_field.dart';
 import '../../custom_widgets/login_and_signup_screens/wave_clipper.dart';
 import 'forget_password.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
 
@@ -25,10 +25,6 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xff81201a),
-        elevation: 0,
-      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
@@ -42,11 +38,16 @@ class _LoginViewState extends State<LoginView> {
                       clipper: WaveClipper(),
                       child: Container(
                         width: double.infinity,
-                        color: const Color(0xff81201a),
-                        height: constraints.maxHeight * 0.29,
+                        color: kPrimaryColor,
+                        //height: constraints.maxHeight * 0.21,
                         child: Padding(
-                          padding: EdgeInsets.only(left: constraints.maxWidth * 0.05, right: constraints.maxWidth * 0.05, top: constraints.maxHeight * 0.04),
-                          child:  Column(
+                          padding: EdgeInsets.only(
+                            left: constraints.maxWidth * 0.05,
+                            right: constraints.maxWidth * 0.05,
+                            top: constraints.maxHeight * 0.15,
+                            bottom: constraints.maxHeight * 0.2,
+                          ),
+                          child: Column(
                             children: [
                               Text(
                                 "Welcome To BloodChain",
@@ -69,13 +70,15 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                     SizedBox(
-                      height: constraints.maxHeight * 0.02,
+                      height: constraints.maxHeight * 0.01,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: constraints.maxWidth * 0.1, top: constraints.maxHeight * 0.015),
+                      padding: EdgeInsets.only(
+                          left: constraints.maxWidth * 0.1,
+                          top: constraints.maxHeight * 0.01),
                       child: Container(
                         alignment: Alignment.centerLeft,
-                        child:  Text(
+                        child: Text(
                           "Login",
                           style: TextStyle(
                             fontSize: constraints.maxHeight * 0.045,
@@ -89,6 +92,7 @@ class _LoginViewState extends State<LoginView> {
                       height: constraints.maxHeight * 0.02,
                     ),
                     CustomTextFormField(
+                      screenWidth: constraints.maxWidth,
                       onSaved: (p0) {
                         emailController.text = p0!;
                       },
@@ -98,7 +102,7 @@ class _LoginViewState extends State<LoginView> {
                         Icons.mark_email_read,
                         color: Color(0xff81201a),
                       ),
-                      labelName: "E-mail Address",
+                      hintText: "E-mail Address",
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
                           return "Email must not be empty";
@@ -110,6 +114,7 @@ class _LoginViewState extends State<LoginView> {
                       height: constraints.maxHeight * 0.015,
                     ),
                     CustomTextFormField(
+                      screenWidth: constraints.maxWidth,
                       onSaved: (value) {
                         passwordController.text = value!;
                       },
@@ -131,7 +136,7 @@ class _LoginViewState extends State<LoginView> {
                           color: const Color(0xff81201a),
                         ),
                       ),
-                      labelName: "Password",
+                      hintText: "Password",
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Password must not be empty";
@@ -140,15 +145,24 @@ class _LoginViewState extends State<LoginView> {
                       },
                     ),
                     Padding(
-                      padding:  EdgeInsets.only(right: constraints.maxWidth * 0.01,),
+                      padding: EdgeInsets.only(
+                        right: constraints.maxWidth * 0.01,
+                      ),
                       child: Container(
                         alignment: Alignment.centerRight,
                         child: TextButton(
                           onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                                  return const ForgetPasswordView();
-                                }));
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return ForgetPasswordView(
+                                    screenWidth: constraints.maxWidth,
+                                    screenHeight: constraints.maxHeight,
+                                  );
+                                },
+                              ),
+                            );
                           },
                           child: const Text(
                             "Forget Password?",
@@ -162,28 +176,34 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                     SizedBox(
-                      height: constraints.maxHeight * 0.05,
+                      height: constraints.maxHeight * 0.01,
                     ),
                     CustomButton(
-                      buttonText: "Login",
-                      onPressed: () {
+                      text: 'Login',
+                      fontSize: constraints.maxWidth * 0.05,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: constraints.maxWidth * 0.1,
+                        vertical: constraints.maxHeight * 0.01,
+                      ),
+                      onTap: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => const HomePage(),
-                            ),
-                          );
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ));
                         }
                       },
-                    ),
-                    SizedBox(
-                      height: constraints.maxHeight * 0.02,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: constraints.maxWidth * 0.1,
+                        vertical: constraints.maxHeight * 0.01,
+                      ),
+                      color: kPrimaryColor,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                         Text(
+                        Text(
                           'Don\'t Have An Account?',
                           style: TextStyle(
                             color: Colors.black,
@@ -199,7 +219,7 @@ class _LoginViewState extends State<LoginView> {
                               ),
                             );
                           },
-                          child:  Text(
+                          child: Text(
                             'Register Now',
                             style: TextStyle(
                               color: const Color(0xff81201a),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:grad/constants/constant.dart';
 
 import '../../custom_widgets/login_and_signup_screens/custom_button.dart';
 import '../../custom_widgets/login_and_signup_screens/custom_text_form_field.dart';
@@ -9,7 +10,9 @@ import '../../custom_widgets/login_and_signup_screens/wave_clipper.dart';
 import 'login.dart';
 
 class ForgetPasswordView extends StatefulWidget {
-  const ForgetPasswordView({Key? key}) : super(key: key);
+  final double screenWidth;
+  final double screenHeight;
+  const ForgetPasswordView({Key? key, required this.screenWidth, required this.screenHeight}) : super(key: key);
 
   @override
   State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
@@ -22,22 +25,11 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   bool isPassword1 = true;
   bool isPassword2 = true;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xff81201a),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon:  Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-            size: MediaQuery.of(context).size.width * 0.07,
-          ),
-        ),
-      ),
+
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
@@ -48,14 +40,18 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 child: Container(
                   alignment: Alignment.center,
                   width: double.infinity,
-                  color: const Color(0xff81201a),
-                  height: MediaQuery.of(context).size.height * 0.25,
+                  color:  kPrimaryColor,
                   child: Padding(
-                    padding:  EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.09),
+                    padding:  EdgeInsets.only(
+                      left: widget.screenWidth * 0.05,
+                      right: widget.screenWidth * 0.05,
+                      top: widget.screenHeight * 0.15,
+                      bottom: widget.screenHeight * 0.2,
+                    ),
                     child: Text(
                       'BloodConnect',
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.1,
+                        fontSize: widget.screenWidth* 0.1,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -64,26 +60,27 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.001),
+                padding: EdgeInsets.symmetric(horizontal: widget.screenWidth * 0.001),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding:  EdgeInsets.only(left: MediaQuery.of(context).size.height * 0.025, top: MediaQuery.of(context).size.height*0.01,bottom: MediaQuery.of(context).size.height * 0.01),
+                      padding:  EdgeInsets.only(left: widget.screenWidth * 0.025, top: widget.screenHeight*0.01,bottom: widget.screenHeight * 0.01),
                       child: Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Creating New Password",
                           style: TextStyle(
-                            fontSize:  MediaQuery.of(context).size.width * 0.06,
+                            fontSize:  widget.screenWidth * 0.06,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
                         ),
                       ),
                     ),
-                     SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+                     SizedBox(height: widget.screenHeight* 0.015),
                     CustomTextFormField(
+                      screenWidth: widget.screenWidth,
                       controller: passwordController1,
                       inputType: TextInputType.visiblePassword,
                       isPassword: isPassword1,
@@ -95,10 +92,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         },
                         icon: Icon(
                           isPassword1 ? Icons.visibility_off : Icons.visibility,
-                          color: const Color(0xff81201a),
+                          color: kPrimaryColor,
                         ),
                       ),
-                      labelName: "Enter new password",
+                      hintText: "Enter new password",
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Password must not be empty";
@@ -106,8 +103,9 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         return null;
                       },
                     ),
-                     SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+                     SizedBox(height: widget.screenHeight * 0.015),
                     CustomTextFormField(
+                      screenWidth: widget.screenWidth,
                       controller: passwordController2,
                       inputType: TextInputType.visiblePassword,
                       isPassword: isPassword2,
@@ -119,10 +117,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         },
                         icon: Icon(
                           isPassword2 ? Icons.visibility_off : Icons.visibility,
-                          color: const Color(0xff81201a),
+                          color: kPrimaryColor,
                         ),
                       ),
-                      labelName: "Re-enter new password",
+                      hintText: "Re-enter new password",
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Password must not be empty";
@@ -131,19 +129,18 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       },
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.025,horizontal: MediaQuery.of(context).size.width * 0.09),
+                      padding: EdgeInsets.symmetric(vertical: widget.screenHeight * 0.025,horizontal: widget.screenWidth* 0.09),
                       child: Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Password Strength:  Strong",
                           style: TextStyle(
-                            fontSize:  MediaQuery.of(context).size.width * 0.045,
+                            fontSize:  widget.screenWidth * 0.045,
                             color: Colors.black,
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height:  MediaQuery.of(context).size.height * 0.045),
                     CustomButton(
                       buttonText: "Submit",
                       onPressed: () {
@@ -151,7 +148,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                           if (kDebugMode) {
                             print(passwordController1.text);
                             print(passwordController2.text);
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(builder: (context) => const LoginView()),
                             );

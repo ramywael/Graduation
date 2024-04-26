@@ -43,10 +43,10 @@ class RowCityBloodType extends StatelessWidget {
             cityAndBloodTypeWidth: cityAndBloodTypeWidth,
             validator: (value) {
               if (value!.isEmpty &&
-                  !value.contains(" ") &&
                   !bloodGroups.contains(value.toUpperCase())) {
                 return "Invalid Data";
               }
+              debugPrint(bloodTypeController.text);
               return null;
             },
             icon: Icons.bloodtype,
