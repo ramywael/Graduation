@@ -12,8 +12,5 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(BlocProvider(create: (BuildContext context) {
-    return InternetCubit();
-  },
-  child: const DonationBlood()));
+  runApp(const DonationBlood());
 }

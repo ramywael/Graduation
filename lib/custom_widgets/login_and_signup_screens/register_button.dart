@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'custom_button.dart';
+import 'custom_button_connection.dart';
 
 class RegisterButton extends StatelessWidget {
   const RegisterButton({
@@ -20,10 +20,10 @@ class RegisterButton extends StatelessWidget {
         horizontal: screenWidth * 0.09,
         vertical: screenHeight * 0.015,
       ),
-      child: CustomButton(
-        buttonText: "Register",
+      child: CustomButtonConnection(
+        buttonText: 'Register',
         onPressed: onPressed,
-      ),
+      )
     );
   }
 }

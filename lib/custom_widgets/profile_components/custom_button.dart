@@ -6,16 +6,16 @@ class CustomButton extends StatelessWidget {
   final void Function()? onTap;
   final Color color;
   final double fontSize;
-  final EdgeInsetsGeometry padding;
-  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
   const CustomButton({
     super.key,
     required this.text,
     required this.onTap,
     required this.color,
     required this.fontSize,
-    required this.padding,
-    required this.margin,
+     this.padding,
+     this.margin,
   });
 
   @override

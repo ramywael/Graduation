@@ -3,8 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:grad/constants/constant.dart';
+import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 
-import '../../custom_widgets/login_and_signup_screens/custom_button.dart';
+import '../../custom_widgets/login_and_signup_screens/custom_button_connection.dart';
 import '../../custom_widgets/login_and_signup_screens/custom_text_form_field.dart';
 import '../../custom_widgets/login_and_signup_screens/wave_clipper.dart';
 import 'login.dart';
@@ -12,7 +13,9 @@ import 'login.dart';
 class ForgetPasswordView extends StatefulWidget {
   final double screenWidth;
   final double screenHeight;
-  const ForgetPasswordView({Key? key, required this.screenWidth, required this.screenHeight}) : super(key: key);
+  const ForgetPasswordView(
+      {Key? key, required this.screenWidth, required this.screenHeight})
+      : super(key: key);
 
   @override
   State<ForgetPasswordView> createState() => _ForgetPasswordViewState();
@@ -25,11 +28,9 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   bool isPassword1 = true;
   bool isPassword2 = true;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
@@ -40,9 +41,9 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 child: Container(
                   alignment: Alignment.center,
                   width: double.infinity,
-                  color:  kPrimaryColor,
+                  color: kPrimaryColor,
                   child: Padding(
-                    padding:  EdgeInsets.only(
+                    padding: EdgeInsets.only(
                       left: widget.screenWidth * 0.05,
                       right: widget.screenWidth * 0.05,
                       top: widget.screenHeight * 0.15,
@@ -51,7 +52,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                     child: Text(
                       'BloodConnect',
                       style: TextStyle(
-                        fontSize: widget.screenWidth* 0.1,
+                        fontSize: widget.screenWidth * 0.1,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -60,25 +61,29 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: widget.screenWidth * 0.001),
+                padding: EdgeInsets.symmetric(
+                    horizontal: widget.screenWidth * 0.001),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding:  EdgeInsets.only(left: widget.screenWidth * 0.025, top: widget.screenHeight*0.01,bottom: widget.screenHeight * 0.01),
+                      padding: EdgeInsets.only(
+                          left: widget.screenWidth * 0.025,
+                          top: widget.screenHeight * 0.01,
+                          bottom: widget.screenHeight * 0.01),
                       child: Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Creating New Password",
                           style: TextStyle(
-                            fontSize:  widget.screenWidth * 0.06,
+                            fontSize: widget.screenWidth * 0.06,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
                         ),
                       ),
                     ),
-                     SizedBox(height: widget.screenHeight* 0.015),
+                    SizedBox(height: widget.screenHeight * 0.015),
                     CustomTextFormField(
                       screenWidth: widget.screenWidth,
                       controller: passwordController1,
@@ -103,7 +108,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         return null;
                       },
                     ),
-                     SizedBox(height: widget.screenHeight * 0.015),
+                    SizedBox(height: widget.screenHeight * 0.015),
                     CustomTextFormField(
                       screenWidth: widget.screenWidth,
                       controller: passwordController2,
@@ -129,32 +134,32 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       },
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: widget.screenHeight * 0.025,horizontal: widget.screenWidth* 0.09),
+                      padding: EdgeInsets.symmetric(
+                          vertical: widget.screenHeight * 0.025,
+                          horizontal: widget.screenWidth * 0.09),
                       child: Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Password Strength:  Strong",
                           style: TextStyle(
-                            fontSize:  widget.screenWidth * 0.045,
+                            fontSize: widget.screenWidth * 0.045,
                             color: Colors.black,
                           ),
                         ),
                       ),
                     ),
-                    CustomButton(
-                      buttonText: "Submit",
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          if (kDebugMode) {
-                            print(passwordController1.text);
-                            print(passwordController2.text);
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(builder: (context) => const LoginView()),
-                            );
-                          }
+                    CustomButtonConnection(buttonText: 'Submit', onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        if (kDebugMode) {
+                          print(passwordController1.text);
+                          print(passwordController2.text);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LoginView()),
+                          );
                         }
-                      },
+                      }
+                    },
                     ),
                   ],
                 ),
@@ -166,4 +171,3 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
     );
   }
 }
-

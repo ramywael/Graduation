@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 const Color kPrimaryColor = Color(0xFF811F1A);
 const Color kSecondaryColor = Color(0xFF286E34);
@@ -70,4 +71,25 @@ String? validatePassword(String value){
     return "Password must contain at least one special character";
   }
   return null;
+}
+
+void showScaffoldMessenger({ required BuildContext context, required String message, required Color color}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+     SnackBar(
+      content: Text(message),
+      backgroundColor: color,
+    ),
+  );
+}
+
+hasConnection(context) async{
+  bool isOnline=await InternetConnectionChecker().hasConnection;
+  if(isOnline==false){
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("No Internet Connection"),
+        duration: Duration(seconds: 4),
+      ),
+    );
+  }
 }

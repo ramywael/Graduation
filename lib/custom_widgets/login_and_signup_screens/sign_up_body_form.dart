@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -207,28 +206,31 @@ class _SignUpBodyState extends State<SignUpBody> {
                   BlocListener<SignUpCubit, SignUpState>(
                     listener: (BuildContext context, state) {
                       if (state is SignUpSuccess) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("You Registered Successfully"),
-                            backgroundColor: Colors.green,
-                          ),
+                        showScaffoldMessenger(
+                            context: context,
+                            message: "Signed Up Successfully",
+                            color: Colors.green,
                         );
                       } else if (state is SignUpFailure) {
                         if (state.errMessage.contains("email-already-in-use")) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("This Email is already in use"),
-                              backgroundColor: kPrimaryColor,
-                            ),
+                          showScaffoldMessenger(
+                            context: context,
+                            message: "This email is already in use",
+                            color: kPrimaryColor,
                           );
                         }
+                      }else if (state is SignUpFailure){
+                        showScaffoldMessenger(
+                          context: context,
+                          message: "Failed to Sign Up",
+                          color: Colors.red,
+                        );
                       }
                     },
                     child: RegisterButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                          BlocProvider.of<InternetCubit>(context).hasConnection(context);
                           BlocProvider.of<SignUpCubit>(context).signupUser(
                               context,
                               emailController.text,
@@ -248,4 +250,5 @@ class _SignUpBodyState extends State<SignUpBody> {
       ),
     );
   }
+
 }

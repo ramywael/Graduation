@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../constants/constant.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -13,8 +15,9 @@ class SignUpCubit extends Cubit<SignUpState> {
     // here we will write the logic to signup the user
     // if the user is successfully signed up then we will emit SignupcubitSuccess()
     // if the user is not successfully signed up then we will emit SignupcubitFailure()
-    emit(SignUpInitial());
+    emit(SignUpLoading());
     try {
+      hasConnection(context);
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
