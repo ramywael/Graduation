@@ -89,6 +89,7 @@ hasConnection(context) async{
       const SnackBar(
         content: Text("No Internet Connection"),
         duration: Duration(seconds: 4),
+        backgroundColor: Colors.yellow,
       ),
     );
   }

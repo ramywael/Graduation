@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
-import 'package:grad/cubits/internet_connection/internet_cubit.dart';
 import 'package:grad/cubits/sign_up_cubit/sign_up_cubit.dart';
 //
 // class CustomButton extends StatelessWidget {
@@ -37,10 +36,11 @@ import 'package:grad/cubits/sign_up_cubit/sign_up_cubit.dart';
 
 class CustomButtonConnection extends StatelessWidget {
   const CustomButtonConnection(
-      {super.key, required this.buttonText, required this.onPressed});
+      {super.key, required this.buttonText, required this.onPressed,this.isLoading=false});
 
   final String buttonText;
   final void Function()? onPressed;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -56,29 +56,21 @@ class CustomButtonConnection extends StatelessWidget {
           color: kPrimaryColor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(
-                  screenWidth * 0.08)), // Adjusted border radius
-          child: BlocBuilder<SignUpCubit, SignUpState>(
-            builder: (context, state) {
-              if (state is SignUpLoading) {
-                return SizedBox(
-                  height: screenHeight * 0.02,
-                  width: screenWidth * 0.08,
-                  child: const CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                );
-              } else {
-                return Text(
-                  buttonText,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: screenWidth * 0.05, // Adjusted font size
-                    color: Colors.white,
-                  ),
-                );
-              }
-            },
-          ),
+                  screenWidth * 0.08,
+              ),
+          ), // Adjusted border radius
+          child: isLoading == true ?  SizedBox(
+            height: screenHeight * 0.02,
+            width: screenWidth * 0.08,
+            child: const CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          ) : Text(buttonText,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: screenWidth * 0.05, // Adjusted font size
+              color: Colors.white,
+            ),),
         ),
       ),
     );
