@@ -12,6 +12,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   int currentIndex = 0;
   late PageController _pageController;
   @override
@@ -26,6 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
         debugPrint('================>User is signed in!');
       }
     });
+
+
     super.initState();
   }
 

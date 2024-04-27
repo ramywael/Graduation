@@ -1,6 +1,9 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grad/cubits/internet_connection/internet_cubit.dart';
+import 'package:grad/cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/register_button.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/wave_clipper.dart';
 import '../../constants/constant.dart';
@@ -46,7 +49,6 @@ class _SignUpBodyState extends State<SignUpBody> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double cityAndBloodTypeWidth = screenWidth * 0.045;
     return Form(
       key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -202,10 +204,42 @@ class _SignUpBodyState extends State<SignUpBody> {
                       return null;
                     },
                   ),
-                  RegisterButton(
+                  BlocListener<SignUpCubit, SignUpState>(
+                    listener: (BuildContext context, state) {
+                      if (state is SignUpSuccess) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("You Registered Successfully"),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      } else if (state is SignUpFailure) {
+                        if (state.errMessage.contains("email-already-in-use")) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("This Email is already in use"),
+                              backgroundColor: kPrimaryColor,
+                            ),
+                          );
+                        }
+                      }
+                    },
+                    child: RegisterButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
+                          BlocProvider.of<InternetCubit>(context).hasConnection(context);
+                          BlocProvider.of<SignUpCubit>(context).signupUser(
+                              context,
+                              emailController.text,
+                              passwordController.text,
+                          );
+                        }
+                      },
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
-                      formKey: formKey),
+                    ),
+                  ),
                 ],
               ),
             ),

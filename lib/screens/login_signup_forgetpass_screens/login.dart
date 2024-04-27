@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/signup.dart';
+import '../../cubits/sign_up_cubit/sign_up_cubit.dart';
 import '../../custom_widgets/login_and_signup_screens/custom_text_form_field.dart';
 import '../../custom_widgets/login_and_signup_screens/wave_clipper.dart';
 import 'forget_password.dart';
@@ -215,7 +217,9 @@ class _LoginViewState extends State<LoginView> {
                           onPressed: () {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => const SignupView(),
+                                builder: (context) =>
+                                    BlocProvider(create: (BuildContext context) => SignUpCubit(),
+                                    child: const SignupView()),
                               ),
                             );
                           },

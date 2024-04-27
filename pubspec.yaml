@@ -43,6 +43,7 @@ dependencies:
   firebase_auth: ^4.19.4
   email_validator: ^2.1.17
   flutter_bloc: ^8.1.5
+  internet_connection_checker: ^1.0.0+1
 
 
 dev_dependencies:
