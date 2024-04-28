@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
+import 'package:grad/cubits/log_in_cubit/login_cubit.dart';
+import 'package:grad/custom_widgets/login_and_signup_screens/custom_button_connection.dart';
 import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/signup.dart';
@@ -34,6 +36,7 @@ class _LoginViewState extends State<LoginView> {
               constraints: BoxConstraints(minHeight: constraints.maxHeight),
               child: Form(
                 key: _formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
                     ClipPath(
@@ -180,27 +183,22 @@ class _LoginViewState extends State<LoginView> {
                     SizedBox(
                       height: constraints.maxHeight * 0.01,
                     ),
-                    CustomButton(
-                      text: 'Login',
-                      fontSize: constraints.maxWidth * 0.05,
-                      margin: EdgeInsets.symmetric(
-                        horizontal: constraints.maxWidth * 0.1,
-                        vertical: constraints.maxHeight * 0.01,
+                    BlocBuilder<LoginCubit, LoginState>(
+                      builder: (context, state) => CustomButtonConnection(
+                        isLoading: state is LoginLoading,
+                        buttonText: "Login",
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            BlocProvider.of<LoginCubit>(context).login(
+                                emailAddress: emailController.text,
+                                password: passwordController.text,
+                                context: context,
+                            );
+
+                          }
+                        },
                       ),
-                      onTap: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                            builder: (context) => const HomePage(),
-                          ));
-                        }
-                      },
-                      padding: EdgeInsets.symmetric(
-                        horizontal: constraints.maxWidth * 0.1,
-                        vertical: constraints.maxHeight * 0.01,
-                      ),
-                      color: kPrimaryColor,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -217,8 +215,9 @@ class _LoginViewState extends State<LoginView> {
                           onPressed: () {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    BlocProvider(create: (BuildContext context) => SignUpCubit(),
+                                builder: (context) => BlocProvider(
+                                    create: (BuildContext context) =>
+                                        SignUpCubit(),
                                     child: const SignupView()),
                               ),
                             );

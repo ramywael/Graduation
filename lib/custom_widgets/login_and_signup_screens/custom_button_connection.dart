@@ -36,7 +36,10 @@ import 'package:grad/cubits/sign_up_cubit/sign_up_cubit.dart';
 
 class CustomButtonConnection extends StatelessWidget {
   const CustomButtonConnection(
-      {super.key, required this.buttonText, required this.onPressed,this.isLoading=false});
+      {super.key,
+      required this.buttonText,
+      required this.onPressed,
+      this.isLoading = false});
 
   final String buttonText;
   final void Function()? onPressed;
@@ -48,29 +51,34 @@ class CustomButtonConnection extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05,),
       child: SizedBox(
+        height: screenHeight * 0.06,
         width: double.infinity,
         child: MaterialButton(
           onPressed: onPressed,
           color: kPrimaryColor,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                  screenWidth * 0.08,
-              ),
-          ), // Adjusted border radius
-          child: isLoading == true ?  SizedBox(
-            height: screenHeight * 0.02,
-            width: screenWidth * 0.08,
-            child: const CircularProgressIndicator(
-              color: Colors.white,
+            borderRadius: BorderRadius.circular(
+              screenWidth * 0.08,
             ),
-          ) : Text(buttonText,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: screenWidth * 0.05, // Adjusted font size
-              color: Colors.white,
-            ),),
+          ), // Adjusted border radius
+          child: isLoading == true
+              ? SizedBox(
+                  height: screenHeight * 0.04,
+                  width: screenWidth * 0.08,
+                  child: const CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                )
+              : Text(
+                  buttonText,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenWidth * 0.05, // Adjusted font size
+                    color: Colors.white,
+                  ),
+                ),
         ),
       ),
     );

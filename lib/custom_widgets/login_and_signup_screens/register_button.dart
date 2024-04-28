@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grad/constants/constant.dart';
 import 'package:grad/cubits/sign_up_cubit/sign_up_cubit.dart';
+import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'custom_button_connection.dart';
 
 class RegisterButton extends StatelessWidget {
@@ -18,19 +20,30 @@ class RegisterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: screenWidth * 0.09,
-        vertical: screenHeight * 0.015,
-      ),
-      child: BlocBuilder<SignUpCubit,SignUpState>(
-        builder: (context, state) {
-          return CustomButtonConnection(
-            isLoading: state is SignUpLoading,
-            buttonText: 'Register',
-            onPressed: onPressed,
-          );
-        },
-      )
-    );
+        padding: EdgeInsets.symmetric(
+          horizontal: screenWidth * 0.09,
+          vertical: screenHeight * 0.015,
+        ),
+        child: BlocBuilder<SignUpCubit, SignUpState>(
+          builder: (context, state) {
+            return CustomButtonConnection(
+              isLoading: state is SignUpLoading,
+              buttonText: "Register",
+              onPressed: onPressed,
+            );
+            // return CustomButton(
+            //   text: "Register",
+            //   onTap: onPressed,
+            //   color: kPrimaryColor,
+            //   fontSize: screenWidth * 0.06,
+            //   screenWidth: screenWidth,
+            //   screenHeight: screenHeight,
+            //   padding: EdgeInsets.symmetric(
+            //     vertical: screenHeight * 0.01,
+            //   ),
+            //   isLoading: state is SignUpLoading,
+            // );
+          },
+        ));
   }
 }

@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/contents/contents_onBiarding_Model.dart';
+import 'package:grad/cubits/log_in_cubit/login_cubit.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/login.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -109,7 +111,10 @@ class _SplashScreenState extends State<SplashScreen> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LoginView(),
+                          builder: (context) => BlocProvider(create: (BuildContext context) {
+                            return LoginCubit();
+                          },
+                          child: const LoginView()),
                         ),
                       );
                     }

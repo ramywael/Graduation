@@ -8,14 +8,18 @@ class CustomButton extends StatelessWidget {
   final double fontSize;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
+  final bool isLoading;
+  final double? screenWidth;
+  final double? screenHeight;
   const CustomButton({
     super.key,
     required this.text,
     required this.onTap,
     required this.color,
     required this.fontSize,
-     this.padding,
-     this.margin,
+    this.padding,
+    this.margin,
+    this.isLoading = false, this.screenWidth, this.screenHeight,
   });
 
   @override
@@ -28,9 +32,14 @@ class CustomButton extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(screenWidth! * 0.08),
         ),
-        child: Text(
+        child: isLoading == true ? SizedBox(
+          height: screenHeight! * 0.06,
+          child: const CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        ) :Text(
           text,
           textAlign: TextAlign.center,
           style: TextStyle(

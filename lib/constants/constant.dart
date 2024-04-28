@@ -29,7 +29,7 @@ enum UrgencyLevel {
   Critical,
 }
 
-List <int> hoursOfWork =[
+List<int> hoursOfWork = [
   8,
   10,
   12,
@@ -39,9 +39,7 @@ List <int> hoursOfWork =[
   20,
 ];
 
-
-String? validatePassword(String value){
-
+String? validatePassword(String value) {
   if (value.isEmpty) {
     return "Password must not be empty";
   }
@@ -73,24 +71,25 @@ String? validatePassword(String value){
   return null;
 }
 
-void showScaffoldMessenger({ required BuildContext context, required String message, required Color color}) {
+void showScaffoldMessenger(
+    {required BuildContext context,
+    required String message,
+    required Color color}) {
   ScaffoldMessenger.of(context).showSnackBar(
-     SnackBar(
+    SnackBar(
       content: Text(message),
       backgroundColor: color,
     ),
   );
 }
 
-hasConnection(context) async{
-  bool isOnline=await InternetConnectionChecker().hasConnection;
-  if(isOnline==false){
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("No Internet Connection"),
-        duration: Duration(seconds: 4),
-        backgroundColor: Colors.yellow,
-      ),
-    );
+hasConnection(context) async {
+  bool isOnline = await InternetConnectionChecker().hasConnection;
+  if (isOnline == false) {
+    showScaffoldMessenger(
+        context: context,
+        message: "No Internet Connection",
+        color: Colors.yellow[400]!
+      ,);
   }
 }
