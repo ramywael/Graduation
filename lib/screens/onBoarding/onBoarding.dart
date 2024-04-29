@@ -111,10 +111,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BlocProvider(create: (BuildContext context) {
-                            return LoginCubit();
-                          },
-                          child: const LoginView()),
+                          builder: (context) => const LoginView(),
                         ),
                       );
                     }

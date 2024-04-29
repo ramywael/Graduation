@@ -207,7 +207,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                       if (state is SignUpSuccess) {
                         showScaffoldMessenger(
                             context: context,
-                            message: "Signed Up Successfully",
+                            message: "Created Email Successfully !",
                             color: Colors.green,
                         );
                       } else if (state is SignUpFailure) {

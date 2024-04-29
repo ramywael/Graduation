@@ -20,14 +20,16 @@ class LoginCubit extends Cubit<LoginState> {
           email: emailAddress,
           password: password
       );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return const HomePage();
-          },
-        ),
-      );
+      FirebaseAuth.instance.currentUser!.emailVerified;
+      if(credential.user!.emailVerified){
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
+      }else{
+        showScaffoldMessenger(context: context, message: "Please verify your email", color: kPrimaryColor);
+      }
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
