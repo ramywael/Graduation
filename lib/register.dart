@@ -14,9 +14,12 @@ class DonationBlood extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: (FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser!.emailVerified)
-          ? const HomePage()
-          : const SplashScreen(),
+      // home: (FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser!.emailVerified)
+      //     ? const HomePage()
+      //     : const SplashScreen(),                /// This is the original code
+
+
+      home: const SplashScreen(),
     );
   }
 }

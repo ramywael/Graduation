@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/register_button.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/wave_clipper.dart';
+import 'package:grad/models/users/user_model.dart';
 import '../../constants/constant.dart';
 import 'Sign_up_clipper_text.dart';
 import 'custom_text_form_field.dart';
@@ -206,9 +207,9 @@ class _SignUpBodyState extends State<SignUpBody> {
                     listener: (BuildContext context, state) {
                       if (state is SignUpSuccess) {
                         showScaffoldMessenger(
-                            context: context,
-                            message: "Created Email Successfully !",
-                            color: Colors.green,
+                          context: context,
+                          message: "Created Email Successfully !",
+                          color: Colors.green,
                         );
                       } else if (state is SignUpFailure) {
                         if (state.errMessage.contains("email-already-in-use")) {
@@ -218,7 +219,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                             color: kPrimaryColor,
                           );
                         }
-                      }else if (state is SignUpFailure){
+                      } else if (state is SignUpFailure) {
                         showScaffoldMessenger(
                           context: context,
                           message: "Failed to Sign Up",
@@ -231,9 +232,19 @@ class _SignUpBodyState extends State<SignUpBody> {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
                           BlocProvider.of<SignUpCubit>(context).signupUser(
-                              context,
-                              emailController.text,
-                              passwordController.text,
+                            context,
+                            emailController.text,
+                            passwordController.text,
+                          );
+                          BlocProvider.of<SignUpCubit>(context).addUser(
+                            UserModel(
+                            password: passwordController.text,
+                            location: cityController.text,
+                            bloodType: bloodTypeController.text,
+                            email: emailController.text,
+                            name: nameController.text,
+                            photoUrl: numberController.text,
+                          ),
                           );
                         }
                       },
@@ -249,5 +260,4 @@ class _SignUpBodyState extends State<SignUpBody> {
       ),
     );
   }
-
 }
