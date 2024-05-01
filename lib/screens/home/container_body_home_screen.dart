@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
+import 'package:grad/cubits/find_blood_donor/find_blood_donor_cubit.dart';
 import 'package:grad/custom_widgets/category_home_screen.dart';
 import 'package:grad/custom_widgets/curved_navigation_bar.dart';
 import 'package:grad/custom_widgets/text.dart';
@@ -26,11 +28,13 @@ class ContainerHomeScreen extends StatelessWidget {
 
     return Expanded(
       child: Container(
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
           color: const Color(0xffF0F0F0),
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(screenWidth * 0.03), // Adjusted based on screen width
-            topRight: Radius.circular(screenWidth * 0.03), // Adjusted based on screen width
+            topLeft: Radius.circular(
+                screenWidth * 0.03), // Adjusted based on screen width
+            topRight: Radius.circular(
+                screenWidth * 0.03), // Adjusted based on screen width
           ),
         ),
         child: Column(
@@ -43,20 +47,25 @@ class ContainerHomeScreen extends StatelessWidget {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(screenWidth * 0.01), // Adjusted based on screen width
+                  borderRadius: BorderRadius.circular(
+                      screenWidth * 0.01), // Adjusted based on screen width
                   border: Border.all(
                     color: kPrimaryColor,
-                    width: screenWidth * 0.004, // Adjusted based on screen width
+                    width:
+                        screenWidth * 0.004, // Adjusted based on screen width
                   ),
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    vertical: screenHeight * 0.005, // Adjusted based on screen height
-                    horizontal: screenWidth * 0.02, // Adjusted based on screen width
+                    vertical:
+                        screenHeight * 0.005, // Adjusted based on screen height
+                    horizontal:
+                        screenWidth * 0.02, // Adjusted based on screen width
                   ),
                   child: CustomTextWidget(
                     text: "Be Today's Hero",
-                    fontSize: screenWidth * 0.065, // Adjusted based on screen width
+                    fontSize:
+                        screenWidth * 0.065, // Adjusted based on screen width
                     fontFamily: "Pacifico",
                   ),
                 ),
@@ -75,15 +84,19 @@ class ContainerHomeScreen extends StatelessWidget {
                 text: "Find a Blood Donor",
                 icon: MaterialSymbolsIcons.Symbols.warehouse_rounded,
                 onTap: () {
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const ChooseDonor(),
+                      builder: (context) => BlocProvider(
+                          create: (BuildContext context) {
+                            return FindBloodDonorCubit();
+                          },
+                          child: const ChooseDonor()),
                     ),
                   );
                 },
               ),
             ),
-              Expanded(
+            Expanded(
               child: Padding(
                 padding: EdgeInsets.only(
                   top: screenHeight * 0.045, // Adjusted based on screen height

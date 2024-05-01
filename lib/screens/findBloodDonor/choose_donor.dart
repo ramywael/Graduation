@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:grad/constants/constant.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/custom_widgets/text.dart';
 import 'package:grad/screens/findBloodDonor/choose_donor_body.dart';
 
-class ChooseDonor extends StatelessWidget {
+import '../../cubits/find_blood_donor/find_blood_donor_cubit.dart';
+
+class ChooseDonor extends StatefulWidget {
   const ChooseDonor({Key? key}) : super(key: key);
 
+  @override
+  State<ChooseDonor> createState() => _ChooseDonorState();
+}
+
+class _ChooseDonorState extends State<ChooseDonor> {
+
+  @override
+  initState() {
+    BlocProvider.of<FindBloodDonorCubit>(context).getDonors();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -17,6 +30,8 @@ class ChooseDonor extends StatelessWidget {
     // Responsive padding
     final double verticalPadding = screenHeight * 0.005;
     final double horizontalPadding = screenWidth * 0.005;
+
+    final donorList = BlocProvider.of<FindBloodDonorCubit>(context).donorList;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -51,7 +66,7 @@ class ChooseDonor extends StatelessWidget {
           vertical: verticalPadding,
           horizontal: horizontalPadding,
         ),
-        child: const ChooseDonorsBody(),
+        child:ChooseDonorsBody(donorList:donorList,),
       ),
     );
   }

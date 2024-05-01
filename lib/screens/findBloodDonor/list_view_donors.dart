@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:grad/constants/constant.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grad/cubits/find_blood_donor/find_blood_donor_cubit.dart';
 
 class ListViewDonors extends StatelessWidget {
-  const ListViewDonors({Key? key}) : super(key: key);
+  final List donorList;
+  const ListViewDonors({Key? key, required this.donorList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,61 +21,81 @@ class ListViewDonors extends StatelessWidget {
 
     // Responsive icon size
     final iconSize = screenWidth * 0.12;
-
     return Expanded(
-      child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
-        itemCount: 3, // Adjust itemCount based on your data
-        itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.symmetric(vertical: verticalPadding * 0.65),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: kElevationToShadow[4],
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              trailing: const Icon(
-                Icons.arrow_forward,
-                color: Colors.red, // Adjust color as needed
+      child: BlocBuilder<FindBloodDonorCubit,FindBloodDonorState>(
+        builder: (context, state) {
+          if (state is FindBloodDonorLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }else if (state is FindBloodDonorFailure) {
+            return const Center(
+              child: Text("Failed to load donors"),
+            );
+          }else {
+            return ListView.builder(
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding,
+                vertical: verticalPadding,
               ),
-              title: Text(
-                "John Doe",
-                style: TextStyle(
-                  fontSize: titleFontSize,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              subtitle: Text(
-                "New York",
-                style: TextStyle(
-                  fontSize: subtitleFontSize,
-                ),
-              ),
-              leading: SizedBox(
-                width: iconSize,
-                height: iconSize,
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.bloodtype,
-                      size: iconSize * 0.5,
+              itemCount: donorList.length,
+              // Adjust itemCount based on your data
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.symmetric(
+                      vertical: verticalPadding * 0.65),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: kElevationToShadow[4],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ListTile(
+                    contentPadding:
+                     EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding/0.91),
+                    trailing: const Icon(
+                      Icons.arrow_forward,
                       color: Colors.red, // Adjust color as needed
                     ),
-                    Text(
-                      "A+",
+                    title: Text(
+                      donorList[index]["Name"],
+                      style: TextStyle(
+                        fontSize: titleFontSize,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      donorList[index]["location"],
                       style: TextStyle(
                         fontSize: subtitleFontSize,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red, // Adjust color as needed
                       ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          );
+                    ),
+                    leading: SizedBox(
+                      width: iconSize,
+                      height: iconSize,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.bloodtype,
+                            size: iconSize * 0.5,
+                            color: Colors.red, // Adjust color as needed
+                          ),
+                          Text(
+                            donorList[index]["BloodType"],
+                            style: TextStyle(
+                              fontSize: subtitleFontSize,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red, // Adjust color as needed
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }
         },
       ),
     );

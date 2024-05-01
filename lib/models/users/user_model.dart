@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   UserModel({
     this.uid,
@@ -26,5 +28,16 @@ class UserModel {
       'BloodType': bloodType,
       'Password': password,
     };
+   }
+
+   factory UserModel.fromJson(doc){
+     return UserModel(
+       email: doc['Email'],
+       name: doc['Name'],
+       photoUrl: doc['PhotoUrl'],
+       location: doc['location'],
+       bloodType: doc['BloodType'],
+       password: doc['Password'],
+     );
    }
 }

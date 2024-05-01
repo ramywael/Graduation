@@ -3,7 +3,8 @@ import 'package:grad/custom_widgets/text.dart';
 import 'package:grad/screens/findBloodDonor/list_view_donors.dart';
 
 class ChooseDonorsBody extends StatelessWidget {
-  const ChooseDonorsBody({Key? key}) : super(key: key);
+  final List donorList;
+  const ChooseDonorsBody({Key? key, required this.donorList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,7 @@ class ChooseDonorsBody extends StatelessWidget {
           padding: EdgeInsets.only(top: topPadding, left: leftPadding),
           child: CustomTextWidget(text: "Choose Donor", fontSize: titleFontSize),
         ),
-        const Expanded(
-          child: ListViewDonors(),
-        ),
+         ListViewDonors(donorList: donorList,),
       ],
     );
   }
