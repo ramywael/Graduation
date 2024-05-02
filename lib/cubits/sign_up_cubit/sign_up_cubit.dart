@@ -8,7 +8,6 @@ import '../../constants/constant.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
   SignUpCubit() : super(SignUpInitial());
 
   void signupUser(context, String email, String password) async {
@@ -23,6 +22,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         email: email,
         password: password,
       );
+
       FirebaseAuth.instance.currentUser!.sendEmailVerification();
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
@@ -40,10 +40,20 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-  Future<void> addUser(UserModel user) {
+  Future<void> addUser(UserModel user) async {
     // Call the user's CollectionReference to add a new user
-    return users.add(user.toJson())
-        .then((value) => debugPrint("User Added"))
-        .catchError((error) => debugPrint("Failed to add user: $error"));
+    // return users.add(user.toJson(users.doc()))
+    //     .then((value) => debugPrint("*********************User Added"))
+    //     .catchError((error) => debugPrint("*****************Failed to add user: $error"));
+    try {
+      await FirebaseFirestore.instance
+          .collection(kUserCollectionName)
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .set(user.toJson());
+      debugPrint("*********************User Added");
+    } catch (error) {
+      debugPrint("*****************Failed to add user: $error");
+    }
+
   }
 }

@@ -12,6 +12,8 @@ final List<BoxShadow> kBoxShadow = [
   )
 ];
 
+String kUserCollectionName = "users";
+
 List<String> bloodGroups = [
   "A+",
   "A-",

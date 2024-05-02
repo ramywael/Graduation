@@ -27,10 +27,11 @@ class LoginCubit extends Cubit<LoginState> {
             builder: (context) => const HomePage(),
           ),
         );
+        emit(LoginSuccess());
       }else{
         showScaffoldMessenger(context: context, message: "Please verify your email", color: kPrimaryColor);
+        emit(LoginFailure("Please verify your email"));
       }
-      emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         debugPrint(e.toString());

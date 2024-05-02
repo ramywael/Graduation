@@ -30,7 +30,10 @@ class ListViewDonors extends StatelessWidget {
             );
           }else if (state is FindBloodDonorFailure) {
             return const Center(
-              child: Text("Failed to load donors"),
+              child: Text("Failed to load donors",style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),),
             );
           }else {
             return ListView.builder(

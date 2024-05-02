@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class UserModel {
   UserModel({
@@ -21,6 +22,7 @@ class UserModel {
 
   Map<String,dynamic> toJson(){
     return {
+      "uid": FirebaseAuth.instance.currentUser!.uid,
       'Email': email,
       'Name': name,
       'PhotoUrl': photoUrl,

@@ -211,6 +211,16 @@ class _SignUpBodyState extends State<SignUpBody> {
                           message: "Created Email Successfully !",
                           color: Colors.green,
                         );
+                        BlocProvider.of<SignUpCubit>(context).addUser(
+                          UserModel(
+                            password: passwordController.text,
+                            location: cityController.text,
+                            bloodType: bloodTypeController.text,
+                            email: emailController.text,
+                            name: nameController.text,
+                            photoUrl: numberController.text,
+                          ),
+                        );
                       } else if (state is SignUpFailure) {
                         if (state.errMessage.contains("email-already-in-use")) {
                           showScaffoldMessenger(
@@ -235,16 +245,6 @@ class _SignUpBodyState extends State<SignUpBody> {
                             context,
                             emailController.text,
                             passwordController.text,
-                          );
-                          BlocProvider.of<SignUpCubit>(context).addUser(
-                            UserModel(
-                            password: passwordController.text,
-                            location: cityController.text,
-                            bloodType: bloodTypeController.text,
-                            email: emailController.text,
-                            name: nameController.text,
-                            photoUrl: numberController.text,
-                          ),
                           );
                         }
                       },
