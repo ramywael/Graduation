@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
 
 import '../../screens/home/user_home_page.dart';
+import '../profile/get_current_user_cubit.dart';
 
 part 'login_state.dart';
 
@@ -27,6 +28,7 @@ class LoginCubit extends Cubit<LoginState> {
             builder: (context) => const HomePage(),
           ),
         );
+        BlocProvider.of<GetCurrentUserCubit>(context).getCurrentUser();
         emit(LoginSuccess());
       }else{
         showScaffoldMessenger(context: context, message: "Please verify your email", color: kPrimaryColor);

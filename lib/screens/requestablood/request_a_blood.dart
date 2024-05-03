@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/custom_widgets/curved_navigation_bar.dart';
+import 'package:grad/custom_widgets/login_and_signup_screens/custom_button_connection.dart';
 import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/custom_widgets/requestablood/personal_details.dart';
 import 'package:grad/custom_widgets/text.dart';
@@ -21,6 +23,7 @@ class _RequestBloodState extends State<RequestBlood> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: PreferredSize(
@@ -60,8 +63,12 @@ class _RequestBloodState extends State<RequestBlood> {
             ),
           ),
           const PersonalDetailsContainer(),
-          CustomButton(
-            onTap: () {
+          SizedBox(
+            height: screenHeight * 0.15,
+          ),
+          CustomButtonConnection(
+            buttonText: "Continue",
+            onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -69,18 +76,30 @@ class _RequestBloodState extends State<RequestBlood> {
                 ),
               );
             },
-            text: "Continue",
-            color: kPrimaryColor,
-            fontSize: screenWidth * 0.05,
-            padding: EdgeInsets.symmetric(
-              vertical: screenWidth * 0.02,
-              horizontal: screenWidth * 0.05,
-            ),
-            margin: EdgeInsets.symmetric(
-              horizontal: screenWidth * 0.05,
-              vertical: screenWidth * 0.02,
-            ),
           ),
+          // CustomButton(
+          //   screenHeight: screenHeight,
+          //   screenWidth: screenWidth,
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => const BloodRequest(),
+          //       ),
+          //     );
+          //   },
+          //   text: "Continue",
+          //   color: kPrimaryColor,
+          //   fontSize: screenWidth * 0.05,
+          //   padding: EdgeInsets.symmetric(
+          //     vertical: screenWidth * 0.02,
+          //     horizontal: screenWidth * 0.05,
+          //   ),
+          //   margin: EdgeInsets.symmetric(
+          //     horizontal: screenWidth * 0.05,
+          //     vertical: screenWidth * 0.02,
+          //   ),
+          // ),
         ],
       ),
       bottomNavigationBar: const CustomCurvedNavBar(

@@ -19,11 +19,11 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  @override
-  void initState() {
-    BlocProvider.of<GetCurrentUserCubit>(context).getCurrentUser();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   BlocProvider.of<GetCurrentUserCubit>(context).getCurrentUser();
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

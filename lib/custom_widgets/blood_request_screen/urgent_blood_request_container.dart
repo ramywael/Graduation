@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 
-class UrgentRequestsBloodRequestContainer extends StatelessWidget {
+class UrgentRequestsBloodRequestContainer extends StatefulWidget {
   final double screenWidth;
   const UrgentRequestsBloodRequestContainer(
       {Key? key, required this.screenWidth})
       : super(key: key);
+
+  @override
+  State<UrgentRequestsBloodRequestContainer> createState() =>
+      _UrgentRequestsBloodRequestContainerState();
+}
+
+class _UrgentRequestsBloodRequestContainerState
+    extends State<UrgentRequestsBloodRequestContainer> {
+  int bloodBracketCount = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenWidth * 0.25,
+      height: widget.screenWidth * 0.25,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
@@ -24,20 +33,41 @@ class UrgentRequestsBloodRequestContainer extends StatelessWidget {
       child: Row(
         children: [
           const Spacer(flex: 1),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  if (bloodBracketCount > 0) {
+                    bloodBracketCount--;
+                  }
+                },
+                );
+              },
+              icon: const Icon(
+                Icons.remove,
+              )),
           Text(
-            '3',
+            '$bloodBracketCount',
             style: TextStyle(
               fontWeight: FontWeight.w900,
-              fontSize: screenWidth * 0.075,
+              fontSize: widget.screenWidth * 0.075,
               fontFamily: 'Roboto-Regular',
               color: Colors.black,
             ),
           ),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  bloodBracketCount++;
+                });
+              },
+              icon: const Icon(
+                Icons.add,
+              )),
           const Spacer(flex: 7),
           Text(
             'Urgent Request',
             style: TextStyle(
-              fontSize: screenWidth * 0.04,
+              fontSize: widget.screenWidth * 0.04,
               fontWeight: FontWeight.w400,
               fontFamily: 'Roboto-Regular',
             ),

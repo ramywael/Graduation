@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grad/cubits/profile/get_current_user_cubit.dart';
 import '../../constants/constant.dart';
 import '../text.dart';
 
@@ -14,6 +17,7 @@ class _PersonalDetailsContainerState extends State<PersonalDetailsContainer> {
 
   @override
   Widget build(BuildContext context) {
+    DocumentSnapshot name=BlocProvider.of<GetCurrentUserCubit>(context).userData;
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width * 0.04,
@@ -67,17 +71,17 @@ class _PersonalDetailsContainerState extends State<PersonalDetailsContainer> {
                 color: Colors.black,
               ),
             ),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomTextWidget(
+                const CustomTextWidget(
                   text: "Requester",
                   fontSize: 14,
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
                 CustomTextWidget(
-                  text: "Koller West",
+                  text: name["Name"],
                   fontSize: 14,
                   color: Colors.black,
                   fontWeight: FontWeight.normal,

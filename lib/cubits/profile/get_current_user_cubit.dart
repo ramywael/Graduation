@@ -8,13 +8,13 @@ part 'get_current_user_state.dart';
 
 class GetCurrentUserCubit extends Cubit<GetCurrentUserState> {
   GetCurrentUserCubit() : super(GetCurrentUserInitial());
-
+  late final DocumentSnapshot userData;
   void getCurrentUser() async {
      emit(GetCurrentUserLoading());
       try {
         final user = FirebaseAuth.instance.currentUser;
         if (user != null) {
-          final userData = await FirebaseFirestore.instance.collection(kUserCollectionName).doc(user.uid).get();
+           userData = await FirebaseFirestore.instance.collection(kUserCollectionName).doc(user.uid).get();
           emit(GetCurrentUserSuccess(userData));
         } else {
           emit(GetCurrentUserFailure());

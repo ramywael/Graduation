@@ -22,20 +22,23 @@ class ListViewDonors extends StatelessWidget {
     // Responsive icon size
     final iconSize = screenWidth * 0.12;
     return Expanded(
-      child: BlocBuilder<FindBloodDonorCubit,FindBloodDonorState>(
+      child: BlocBuilder<FindBloodDonorCubit, FindBloodDonorState>(
         builder: (context, state) {
           if (state is FindBloodDonorLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          }else if (state is FindBloodDonorFailure) {
+          } else if (state is FindBloodDonorFailure) {
             return const Center(
-              child: Text("Failed to load donors",style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),),
+              child: Text(
+                "Failed to load donors",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             );
-          }else {
+          } else if (state is FindBloodDonorSuccess) {
             return ListView.builder(
               padding: EdgeInsets.symmetric(
                 horizontal: horizontalPadding,
@@ -45,16 +48,17 @@ class ListViewDonors extends StatelessWidget {
               // Adjust itemCount based on your data
               itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.symmetric(
-                      vertical: verticalPadding * 0.65),
+                  margin:
+                      EdgeInsets.symmetric(vertical: verticalPadding * 0.65),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: kElevationToShadow[4],
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: ListTile(
-                    contentPadding:
-                     EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding/0.91),
+                    contentPadding: EdgeInsets.symmetric(
+                        horizontal: horizontalPadding,
+                        vertical: verticalPadding / 0.91),
                     trailing: const Icon(
                       Icons.arrow_forward,
                       color: Colors.red, // Adjust color as needed
@@ -97,6 +101,16 @@ class ListViewDonors extends StatelessWidget {
                   ),
                 );
               },
+            );
+          } else {
+            return const Center(
+              child: Text(
+                "No Eligible Donors",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             );
           }
         },

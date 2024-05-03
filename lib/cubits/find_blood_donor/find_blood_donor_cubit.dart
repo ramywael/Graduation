@@ -15,7 +15,7 @@ class FindBloodDonorCubit extends Cubit<FindBloodDonorState> {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(kUserCollectionName).where("uid", isNotEqualTo: FirebaseAuth.instance.currentUser!.uid).get();
     try {
      if(querySnapshot.docs.isEmpty){
-      emit(FindBloodDonorFailure());
+      emit(FindBloodDonorInitial());
      }else {
        donorList.clear();
        donorList.addAll(querySnapshot.docs);

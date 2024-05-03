@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/custom_widgets/blood_request_screen/time_blood_request_container.dart';
 import 'package:grad/custom_widgets/blood_request_screen/urgent_blood_request_container.dart';
+import 'package:grad/custom_widgets/login_and_signup_screens/custom_button_connection.dart';
 import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/screens/thanks_registration_loading_screens/thanks_for_using_app.dart';
 import 'attached_blood_request_container.dart';
@@ -17,7 +18,7 @@ class BloodRequestContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Blood',
+          'Blood Brackets',
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w900,
@@ -51,33 +52,23 @@ class BloodRequestContent extends StatelessWidget {
         SizedBox(height: screenWidth * 0.07),
         Center(
           child: Container(
-            width: screenWidth * 0.4,
-            height: screenWidth * 0.13,
-            decoration: BoxDecoration(
-              color: const Color(0xff81201a),
-              borderRadius: BorderRadius.circular(45),
-            ),
-            child: CustomButton(
-              text: "Submit",
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ThanksForUsingApp(),
-                  ),
-                );
-              },
-              color: kPrimaryColor,
-              fontSize: screenWidth * 0.055,
-              padding: EdgeInsets.symmetric(
-                horizontal: screenWidth * 0.02,
+              width: screenWidth * 0.4,
+              height: screenWidth * 0.13,
+              decoration: BoxDecoration(
+                color: const Color(0xff81201a),
+                borderRadius: BorderRadius.circular(45),
               ),
-              margin: EdgeInsets.symmetric(
-                horizontal: screenWidth * 0.05,
-                vertical: screenWidth * 0.02,
-              ),
-            ),
-          ),
+              child: CustomButtonConnection(
+                buttonText: "Submit",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ThanksForUsingApp(),
+                    ),
+                  );
+                },
+              )),
         ),
       ],
     );
