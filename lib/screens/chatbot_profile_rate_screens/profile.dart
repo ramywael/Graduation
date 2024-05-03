@@ -29,7 +29,7 @@ class _ProfileViewState extends State<ProfileView> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: const Color(0xff81201a),
+      backgroundColor: kPrimaryColor,
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 40,

@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 
-class TimeBloodRequestContainer extends StatefulWidget {
+class TimeBloodRequestContainer extends StatelessWidget {
   const TimeBloodRequestContainer({
     super.key,
-    required this.screenWidth,
+    required this.screenWidth, required this.onDateChanged, required this.selectedDate,
   });
 
   final double screenWidth;
+  final Function() onDateChanged;
 
-  @override
-  State<TimeBloodRequestContainer> createState() => _TimeBloodRequestContainerState();
-}
+   final DateTime selectedDate;
 
-class _TimeBloodRequestContainerState extends State<TimeBloodRequestContainer> {
-   DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.screenWidth * 0.25,
+      height: screenWidth * 0.25,
       width: double.infinity,
       alignment: Alignment.centerLeft,
       decoration: BoxDecoration(
@@ -38,38 +35,16 @@ class _TimeBloodRequestContainerState extends State<TimeBloodRequestContainer> {
           '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
           style: TextStyle(
             fontWeight: FontWeight.w900,
-            fontSize: widget.screenWidth * 0.06,
+            fontSize: screenWidth * 0.06,
             fontFamily: 'Roboto-Regular',
           ),
         ),
         trailing: IconButton(
-          onPressed: ()  async{
-           DateTime? newDate = await showDatePicker(
-             builder: (context, child) {
-                return Theme(
-                  data: ThemeData.light().copyWith(
-                    colorScheme: const ColorScheme.light(primary: kPrimaryColor),
-                    buttonTheme: const ButtonThemeData(
-                      textTheme: ButtonTextTheme.primary,
-                    ),
-                  ),
-                  child: child!,
-                );
-             },
-              context: context,
-              initialDate: selectedDate,
-              firstDate: selectedDate,
-              lastDate: selectedDate.add(const Duration(days: 365)),
-            );
-           if(newDate==null) return;
-           setState(() {
-             selectedDate=newDate;
-           });
-          },
+          onPressed: onDateChanged,
           icon: Icon(
             Icons.calendar_today,
             color: kPrimaryColor,
-            size: widget.screenWidth * 0.08,
+            size: screenWidth * 0.08,
           ),
         ),
       ),

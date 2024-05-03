@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 
-class UrgentRequestsBloodRequestContainer extends StatefulWidget {
+class UrgentRequestsBloodRequestContainer extends StatelessWidget {
   final double screenWidth;
+  final Function() onIncrement;
+  final int bloodBracketCount;
+  final Function() onDecrement;
   const UrgentRequestsBloodRequestContainer(
-      {Key? key, required this.screenWidth})
+      {Key? key, required this.screenWidth, required this.onIncrement, required this.onDecrement, required this.bloodBracketCount})
       : super(key: key);
 
   @override
-  State<UrgentRequestsBloodRequestContainer> createState() =>
-      _UrgentRequestsBloodRequestContainerState();
-}
-
-class _UrgentRequestsBloodRequestContainerState
-    extends State<UrgentRequestsBloodRequestContainer> {
-  int bloodBracketCount = 0;
-  @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.screenWidth * 0.25,
+      height: screenWidth * 0.25,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
@@ -34,14 +29,7 @@ class _UrgentRequestsBloodRequestContainerState
         children: [
           const Spacer(flex: 1),
           IconButton(
-              onPressed: () {
-                setState(() {
-                  if (bloodBracketCount > 0) {
-                    bloodBracketCount--;
-                  }
-                },
-                );
-              },
+              onPressed: onDecrement,
               icon: const Icon(
                 Icons.remove,
               )),
@@ -49,17 +37,13 @@ class _UrgentRequestsBloodRequestContainerState
             '$bloodBracketCount',
             style: TextStyle(
               fontWeight: FontWeight.w900,
-              fontSize: widget.screenWidth * 0.075,
+              fontSize: screenWidth * 0.075,
               fontFamily: 'Roboto-Regular',
               color: Colors.black,
             ),
           ),
           IconButton(
-              onPressed: () {
-                setState(() {
-                  bloodBracketCount++;
-                });
-              },
+              onPressed:onIncrement,
               icon: const Icon(
                 Icons.add,
               )),
@@ -67,7 +51,7 @@ class _UrgentRequestsBloodRequestContainerState
           Text(
             'Urgent Request',
             style: TextStyle(
-              fontSize: widget.screenWidth * 0.04,
+              fontSize: screenWidth * 0.04,
               fontWeight: FontWeight.w400,
               fontFamily: 'Roboto-Regular',
             ),
