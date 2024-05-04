@@ -5,15 +5,13 @@ import 'package:grad/cubits/profile/get_current_user_cubit.dart';
 import '../../constants/constant.dart';
 import '../text.dart';
 
-class PersonalDetailsContainer extends StatefulWidget {
-  const PersonalDetailsContainer({super.key});
+class PersonalDetailsContainer extends StatelessWidget {
+  final void Function(String?)? onChangedBloodType;
+  final void Function(UrgencyLevel?) onChangedUrgency;
+  final String value ;
+  final UrgencyLevel? selectedUrgency ;
+  const PersonalDetailsContainer({super.key, this.onChangedBloodType, required this.onChangedUrgency, required this.selectedUrgency,  required this.value});
 
-  @override
-  State<PersonalDetailsContainer> createState() => _PersonalDetailsContainerState();
-}
-class _PersonalDetailsContainerState extends State<PersonalDetailsContainer> {
-  String _value = "A+";
-  UrgencyLevel? selectedUrgency;
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +38,12 @@ class _PersonalDetailsContainerState extends State<PersonalDetailsContainer> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomTextWidget(
-                  text: "Blood Type : $_value",
+                  text: "Blood Type : $value",
                   fontSize: 24,
                   color: Colors.black,
                 ),
                 DropdownButton<String>(
-                  value: _value,
+                  value: value,
                   items: bloodGroups
                       .map<DropdownMenuItem<String>>((bloodType) {
                     return DropdownMenuItem<String>(
@@ -53,11 +51,7 @@ class _PersonalDetailsContainerState extends State<PersonalDetailsContainer> {
                       child: Text(bloodType),
                     );
                   }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      _value = value!;
-                    });
-                  },
+                  onChanged: onChangedBloodType,
                 ),
               ],
             ),
@@ -103,7 +97,7 @@ class _PersonalDetailsContainerState extends State<PersonalDetailsContainer> {
                 Padding(
                   padding: const EdgeInsets.only(right: 15),
                   child: CustomTextWidget(
-                    text: _value,
+                    text: value,
                     fontSize: 14,
                     color: Colors.black,
                     fontWeight: FontWeight.normal,
@@ -140,11 +134,7 @@ class _PersonalDetailsContainerState extends State<PersonalDetailsContainer> {
                             Text(urgencyLevel.toString().split(".").last),
                           );
                         }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedUrgency = value!;
-                      });
-                    },
+                    onChanged: onChangedUrgency,
                   ),
                 ),
                 Padding(

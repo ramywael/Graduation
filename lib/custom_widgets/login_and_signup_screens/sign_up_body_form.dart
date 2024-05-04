@@ -198,7 +198,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Number must not be empty";
-                      } else if (value.length > 11) {
+                      } else if (value.length < 12) {
                         return "Number must be 11 digits";
                       }
                       return null;

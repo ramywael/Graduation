@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:grad/constants/constant.dart';
 
 class AttachedBloodRequestContainer extends StatelessWidget {
   final double screenWidth;
-  const AttachedBloodRequestContainer({Key? key, required this.screenWidth}) : super(key: key);
+  final Function()? onUpload;
+  const AttachedBloodRequestContainer({Key? key, required this.screenWidth, this.onUpload}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +28,18 @@ class AttachedBloodRequestContainer extends StatelessWidget {
           const Icon(
             Icons.download,
             size: 50,
-            color: Color(0xff81201a),
+            color: kPrimaryColor,
           ),
           const Spacer(flex: 7),
           Container(
             width: screenWidth * 0.26,
             height: screenWidth * 0.12,
             decoration: BoxDecoration(
-              color: const Color(0xff81201a),
+              color: kPrimaryColor,
               borderRadius: BorderRadius.circular(50),
             ),
             child: TextButton(
-              onPressed: () {},
+              onPressed: onUpload,
               child: const Text(
                 'Upload',
                 style: TextStyle(

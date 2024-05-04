@@ -1,22 +1,31 @@
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grad/cubits/request_a_blood/request_blood_cubit.dart';
+import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/custom_widgets/blood_request_screen/time_blood_request_container.dart';
 import 'package:grad/custom_widgets/blood_request_screen/urgent_blood_request_container.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/custom_button_connection.dart';
-import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/screens/thanks_registration_loading_screens/thanks_for_using_app.dart';
+import 'package:image_picker/image_picker.dart';
 import 'attached_blood_request_container.dart';
 
 class BloodRequestContent extends StatefulWidget {
-  const BloodRequestContent({super.key});
+  final String bloodType;
+  final UrgencyLevel urgencyLevel;
+  const BloodRequestContent({super.key, required this.bloodType, required this.urgencyLevel});
 
   @override
   State<BloodRequestContent> createState() => _BloodRequestContentState();
 }
 
 class _BloodRequestContentState extends State<BloodRequestContent> {
+  File? file;
   int bloodBracketsCount = 0;
-   DateTime selectedDate = DateTime.now();
+  String? url;
+  DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -59,7 +68,25 @@ class _BloodRequestContentState extends State<BloodRequestContent> {
           ),
         ),
         SizedBox(height: screenWidth * 0.025),
-        AttachedBloodRequestContainer(screenWidth: screenWidth),
+        AttachedBloodRequestContainer(
+          screenWidth: screenWidth,
+          onUpload: () async {
+            final ImagePicker picker = ImagePicker();
+            final XFile? photo =
+                await picker.pickImage(source: ImageSource.camera);
+            if (photo != null) {
+              file = File(photo.path);
+              var imageName = basename(photo.path);
+              var reference = FirebaseStorage.instance
+                  .ref()
+                  .child('bloodRequest/$imageName');
+              await reference.putFile(file!);
+              url = await reference.getDownloadURL();
+            }
+            setState(() {});
+            debugPrint('************************File Uploaded');
+          },
+        ),
         SizedBox(height: screenWidth * 0.09),
         const Text(
           'Time',
@@ -78,7 +105,8 @@ class _BloodRequestContentState extends State<BloodRequestContent> {
               builder: (context, child) {
                 return Theme(
                   data: ThemeData.light().copyWith(
-                    colorScheme: const ColorScheme.light(primary: kPrimaryColor),
+                    colorScheme:
+                        const ColorScheme.light(primary: kPrimaryColor),
                     buttonTheme: const ButtonThemeData(
                       textTheme: ButtonTextTheme.primary,
                     ),
@@ -91,32 +119,47 @@ class _BloodRequestContentState extends State<BloodRequestContent> {
               firstDate: DateTime.now().subtract(const Duration(days: 0)),
               lastDate: selectedDate.add(const Duration(days: 365)),
             );
-            if(newDate==null) return;
+            if (newDate == null) return;
             setState(() {
-              selectedDate=newDate;
+              selectedDate = newDate;
             });
           },
         ),
         SizedBox(height: screenWidth * 0.07),
         Center(
           child: Container(
-              width: screenWidth * 0.4,
-              height: screenWidth * 0.13,
-              decoration: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.circular(45),
-              ),
-              child: CustomButtonConnection(
+            width: screenWidth * 0.4,
+            height: screenWidth * 0.13,
+            decoration: BoxDecoration(
+              color: kPrimaryColor,
+              borderRadius: BorderRadius.circular(45),
+            ),
+            child: BlocBuilder<RequestBloodCubit, RequestBloodState>(
+                builder: (context, state) {
+              return CustomButtonConnection(
+                isLoading: state is RequestBloodLoading,
                 buttonText: "Submit",
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ThanksForUsingApp(),
-                    ),
-                  );
+                  if (url != null && bloodBracketsCount != 0) {
+                    BlocProvider.of<RequestBloodCubit>(context).addRequestBlood(
+                      widget.bloodType,
+                      widget.urgencyLevel.toString().split('.').last,
+                      bloodBracketsCount,
+                      url!,
+                      selectedDate,
+                      context,
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Please upload the image'),
+                      ),
+                    );
+                  }
                 },
-              )),
+              );
+            }),
+          ),
         ),
       ],
     );

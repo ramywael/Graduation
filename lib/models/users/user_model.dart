@@ -32,14 +32,5 @@ class UserModel {
     };
    }
 
-   factory UserModel.fromJson(doc){
-     return UserModel(
-       email: doc['Email'],
-       name: doc['Name'],
-       photoUrl: doc['PhotoUrl'],
-       location: doc['location'],
-       bloodType: doc['BloodType'],
-       password: doc['Password'],
-     );
-   }
+
 }

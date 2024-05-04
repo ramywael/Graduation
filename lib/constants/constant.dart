@@ -11,7 +11,7 @@ final List<BoxShadow> kBoxShadow = [
     spreadRadius: 3,
   )
 ];
-
+String kBloodRequestCollectionName="BloodRequests";
 String kUserCollectionName = "users";
 
 List<String> bloodGroups = [
