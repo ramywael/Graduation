@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class UserModel {
   UserModel({
+    this.isDonor = false,
     this.uid,
     required this.password,
     required this.location,
@@ -19,6 +19,7 @@ class UserModel {
   final String location;
   final String bloodType;
   final String photoUrl;
+  final bool isDonor;
 
   Map<String,dynamic> toJson(){
     return {
@@ -29,6 +30,7 @@ class UserModel {
       'location': location,
       'BloodType': bloodType,
       'Password': password,
+      'IsDonor': isDonor,
     };
    }
 
