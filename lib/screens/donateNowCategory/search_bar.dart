@@ -19,10 +19,9 @@ class SearchComponent extends StatelessWidget {
         boxShadow: kBoxShadow,
         borderRadius: BorderRadius.circular(
           screenWidth * 0.05,
-
         ),
       ),
-      child:  TextField(
+      child: TextField(
         decoration: InputDecoration(
           hintText: "Search by Blood Group",
           border: InputBorder.none,
