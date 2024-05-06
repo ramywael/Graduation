@@ -9,11 +9,17 @@ import '../../screens/thanks_registration_loading_screens/thanks_for_using_app.d
 part 'request_blood_state.dart';
 
 class RequestBloodCubit extends Cubit<RequestBloodState> {
+
+
+
   RequestBloodCubit() : super(RequestBloodInitial());
+
   CollectionReference bloodRequest = FirebaseFirestore.instance
       .collection(kUserCollectionName)
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .collection(kBloodRequestCollectionName);
+
+
   void addRequestBlood(String bloodType, String urgencyLevel,
       int bloodBracketCount, String medicalImage, DateTime date,context) async {
     emit(RequestBloodLoading());
@@ -26,7 +32,7 @@ class RequestBloodCubit extends Cubit<RequestBloodState> {
         medicalImage: medicalImage,
         date: date,
       ).toJson());
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => const ThanksForUsingApp(),

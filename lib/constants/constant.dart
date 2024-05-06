@@ -11,7 +11,7 @@ final List<BoxShadow> kBoxShadow = [
     spreadRadius: 3,
   )
 ];
-String kBloodRequestCollectionName="BloodRequests";
+String kBloodRequestCollectionName = "BloodRequests";
 String kUserCollectionName = "users";
 
 List<String> bloodGroups = [
@@ -89,9 +89,9 @@ hasConnection(context) async {
   bool isOnline = await InternetConnectionChecker().hasConnection;
   if (isOnline == false) {
     showScaffoldMessenger(
-        context: context,
-        message: "No Internet Connection",
-        color: Colors.yellow[400]!
-      ,);
+      context: context,
+      message: "No Internet Connection",
+      color: Colors.yellow[400]!,
+    );
   }
 }

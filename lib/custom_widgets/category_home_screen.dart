@@ -14,6 +14,7 @@ class CustomCategoryHomeScreen extends StatelessWidget {
     required this.onTap,
   }
 );
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

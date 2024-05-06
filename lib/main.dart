@@ -15,7 +15,7 @@ void main() async {
   );
   runApp(BlocProvider(create: (BuildContext context) {
     return LoginCubit();
-  },
+    },
   child: BlocProvider(create: (BuildContext context) { return GetCurrentUserCubit(); },
   child: const DonationBlood())));
 }

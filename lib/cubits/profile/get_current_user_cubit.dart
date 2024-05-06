@@ -13,12 +13,8 @@ class GetCurrentUserCubit extends Cubit<GetCurrentUserState> {
      emit(GetCurrentUserLoading());
       try {
         final user = FirebaseAuth.instance.currentUser;
-        if (user != null) {
-           userData = await FirebaseFirestore.instance.collection(kUserCollectionName).doc(user.uid).get();
+           userData = await FirebaseFirestore.instance.collection(kUserCollectionName).doc(user!.uid).get();
           emit(GetCurrentUserSuccess(userData));
-        } else {
-          emit(GetCurrentUserFailure());
-        }
       } catch (e) {
         emit(GetCurrentUserFailure());
       }

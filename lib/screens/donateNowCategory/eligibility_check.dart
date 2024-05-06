@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/contents/donatenow/eligability_check_model.dart';
-import 'package:grad/screens/donateNowCategory/donate.dart';
-import 'package:grad/screens/home/user_home_page.dart';
+import 'package:grad/cubits/isEligable/check_eligibility_cubit.dart';
 
-class EligibilityCheck extends StatefulWidget {
-  const EligibilityCheck({Key? key}) : super(key: key);
+import '../../cubits/profile/get_current_user_cubit.dart';
 
-  @override
-  State<EligibilityCheck> createState() => _EligibilityCheckState();
-}
-
-class _EligibilityCheckState extends State<EligibilityCheck> {
-  List<String> userAnswers = [];
-  bool isEligible = true;
-  int currentQuestionIndex = 0;
+class EligibilityCheck extends StatelessWidget {
+  const EligibilityCheck({
+    Key? key,
+  }) : super(key: key);
 
   double getFontSize(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -50,12 +45,19 @@ class _EligibilityCheckState extends State<EligibilityCheck> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              questionsModel[currentQuestionIndex]["question"],
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: getFontSize(context),
-              ),
+            BlocBuilder<CheckEligibilityCubit, CheckEligibilityState>(
+              builder: (context, state) {
+                int currentQuestionIndex =
+                    BlocProvider.of<CheckEligibilityCubit>(context)
+                        .currentQuestionIndex;
+                return Text(
+                  questionsModel[currentQuestionIndex]["question"],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: getFontSize(context),
+                  ),
+                );
+              },
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.02,
@@ -65,21 +67,8 @@ class _EligibilityCheckState extends State<EligibilityCheck> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      userAnswers.add("yes");
-                      isEligible = false;
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          backgroundColor: kPrimaryColor,
-                          content: Text(
-                            "Sorry, you are not eligible to donate",
-                          ),
-                        ),
-                      );
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => HomePage(isDonated: isEligible),
-                      ));
-                    });
+                    BlocProvider.of<CheckEligibilityCubit>(context)
+                        .answerWithYes(context);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -95,7 +84,8 @@ class _EligibilityCheckState extends State<EligibilityCheck> {
                         "Yes",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: MediaQuery.of(context).size.width > 600 ? 20 : 16,
+                          fontSize:
+                              MediaQuery.of(context).size.width > 600 ? 20 : 16,
                         ),
                       ),
                     ),
@@ -103,23 +93,8 @@ class _EligibilityCheckState extends State<EligibilityCheck> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      userAnswers.add("no");
-                      currentQuestionIndex++;
-                      if (currentQuestionIndex == questionsModel.length - 1) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            backgroundColor: kSecondaryColor,
-                            content: Text(
-                              "You are eligible to donate",
-                            ),
-                          ),
-                        );
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const DonateNow(),
-                        ));
-                      }
-                    });
+                    BlocProvider.of<CheckEligibilityCubit>(context)
+                        .answerWithNo(context);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -131,11 +106,12 @@ class _EligibilityCheckState extends State<EligibilityCheck> {
                         vertical: MediaQuery.of(context).size.height * 0.013,
                         horizontal: getPadding(context),
                       ),
-                      child:  Text(
+                      child: Text(
                         "No",
                         style: TextStyle(
                           color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width > 600 ? 20 : 16,
+                          fontSize:
+                              MediaQuery.of(context).size.width > 600 ? 20 : 16,
                         ),
                       ),
                     ),

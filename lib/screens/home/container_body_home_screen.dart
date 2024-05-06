@@ -12,13 +12,14 @@ import 'package:grad/screens/home/user_home_page.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
     as MaterialSymbolsIcons;
 
+import '../../cubits/isEligable/check_eligibility_cubit.dart';
 import '../chatbot_profile_rate_screens/profile.dart';
 
 class ContainerHomeScreen extends StatelessWidget {
-  final bool isDonated;
+
   const ContainerHomeScreen({
     super.key,
-    required this.isDonated,
+
   });
 
   @override
@@ -71,9 +72,7 @@ class ContainerHomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            RowCategoriesHomeScreen(
-              isDonated: isDonated,
-            ),
+            const RowCategoriesHomeScreen(),
             Padding(
               padding: EdgeInsets.only(
                 bottom: screenHeight * 0.09, // Adjusted based on screen height
@@ -82,7 +81,7 @@ class ContainerHomeScreen extends StatelessWidget {
               ),
               child: CustomCategoryHomeScreen(
                 text: "Find a Blood Donor",
-                icon: MaterialSymbolsIcons.Symbols.warehouse_rounded,
+                icon: MaterialSymbolsIcons.Symbols.local_hospital,
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
