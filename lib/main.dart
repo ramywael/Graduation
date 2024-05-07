@@ -17,5 +17,7 @@ void main() async {
     return LoginCubit();
   },
   child: BlocProvider(create: (BuildContext context) { return GetCurrentUserCubit(); },
-  child: const DonationBlood())));
+  child: const DonationBlood())
+  )
+  );
 }

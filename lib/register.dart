@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/screens/home/user_home_page.dart';
+import 'package:grad/screens/login_signup_forgetpass_screens/forget_password.dart';
+import 'package:grad/screens/login_signup_forgetpass_screens/login.dart';
+import 'package:grad/screens/login_signup_forgetpass_screens/reset_password.dart';
 import 'package:grad/screens/onBoarding/onBoarding.dart';
 class DonationBlood extends StatelessWidget {
   const DonationBlood({super.key});
@@ -19,7 +22,10 @@ class DonationBlood extends StatelessWidget {
       //     : const SplashScreen(),                /// This is the original code
 
 
-      home: const SplashScreen(),
+      home: const LoginView(),
+      routes: {
+        ResetPasswordView.id : (context)=>  const ResetPasswordView(),
+      },
     );
   }
 }
