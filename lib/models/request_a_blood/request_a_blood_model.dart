@@ -5,10 +5,12 @@ class RequestBloodModel {
   final String medicalImage;
   final DateTime date;
   final bool isAccepted;
+  final String id;
 
   RequestBloodModel({
     this.isAccepted = false,
     required this.bloodNeeded,
+    required this.id,
     required this.urgencyLevel,
     required this.brackets,
     required this.medicalImage,
@@ -16,6 +18,7 @@ class RequestBloodModel {
   });
   toJson() {
     return {
+      "BloodRequestId": id,
       'BloodNeeded': bloodNeeded,
       'UrgencyLevel': urgencyLevel,
       'Brackets': brackets,
