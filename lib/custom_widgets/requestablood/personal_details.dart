@@ -94,14 +94,11 @@ class PersonalDetailsContainer extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: CustomTextWidget(
-                    text: value,
-                    fontSize: 14,
-                    color: Colors.black,
-                    fontWeight: FontWeight.normal,
-                  ),
+                CustomTextWidget(
+                  text: value,
+                  fontSize: 14,
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
                 ),
               ],
             ),

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class UserModel {
   UserModel({
+    this.hasDone = false,
     this.isDonor = false,
     this.uid,
     required this.password,
@@ -20,8 +21,9 @@ class UserModel {
   final String bloodType;
   final String photoUrl;
   final bool isDonor;
+  final bool hasDone;
 
-  Map<String,dynamic> toJson(){
+  Map<String, dynamic> toJson() {
     return {
       "uid": FirebaseAuth.instance.currentUser!.uid,
       'Email': email,
@@ -31,8 +33,7 @@ class UserModel {
       'BloodType': bloodType,
       'Password': password,
       'IsDonor': isDonor,
+      'hasDone': hasDone,
     };
-   }
-
-
+  }
 }

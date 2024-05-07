@@ -9,8 +9,6 @@ class CustomButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final bool isLoading;
-  final double? screenWidth;
-  final double? screenHeight;
   const CustomButton({
     super.key,
     required this.text,
@@ -19,11 +17,13 @@ class CustomButton extends StatelessWidget {
     required this.fontSize,
     this.padding,
     this.margin,
-    this.isLoading = false, this.screenWidth, this.screenHeight,
+    this.isLoading = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -32,10 +32,10 @@ class CustomButton extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(screenWidth! * 0.08),
+          borderRadius: BorderRadius.circular(screenWidth * 0.08),
         ),
         child: isLoading == true ? SizedBox(
-          height: screenHeight! * 0.06,
+          height: screenHeight * 0.06,
           child: const CircularProgressIndicator(
             color: Colors.white,
           ),

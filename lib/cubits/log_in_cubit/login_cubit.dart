@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
+import 'package:grad/cubits/isEligable/check_eligibility_cubit.dart';
 
 import '../../screens/home/user_home_page.dart';
 import '../profile/get_current_user_cubit.dart';
@@ -23,12 +24,12 @@ class LoginCubit extends Cubit<LoginState> {
       );
       FirebaseAuth.instance.currentUser!.emailVerified;
       if(credential.user!.emailVerified){
+       BlocProvider.of<GetCurrentUserCubit>(context).getCurrentUser();
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => const HomePage(),
           ),
         );
-        BlocProvider.of<GetCurrentUserCubit>(context).getCurrentUser();
         emit(LoginSuccess());
       }else{
         showScaffoldMessenger(context: context, message: "Please verify your email", color: kPrimaryColor);
