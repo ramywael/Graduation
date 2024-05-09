@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:grad/screens/chat/chat_view.dart';
-import 'package:grad/screens/edit_personal_details/edit_personal_details.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/forget_password.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/login.dart';
@@ -24,7 +22,7 @@ class DonationBlood extends StatelessWidget {
       //     : const SplashScreen(),                /// This is the original code
 
 
-      home: EditPersonalDetails(),
+      home: const SplashScreen(),
       routes: {
         ResetPasswordView.id : (context)=>  const ResetPasswordView(),
       },

@@ -27,6 +27,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: kPrimaryColor,
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: formKey,

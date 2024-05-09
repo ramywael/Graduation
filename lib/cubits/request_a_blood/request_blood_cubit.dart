@@ -9,9 +9,6 @@ import '../../screens/thanks_registration_loading_screens/thanks_for_using_app.d
 part 'request_blood_state.dart';
 
 class RequestBloodCubit extends Cubit<RequestBloodState> {
-
-
-
   RequestBloodCubit() : super(RequestBloodInitial());
 
   CollectionReference bloodRequest = FirebaseFirestore.instance
@@ -19,19 +16,26 @@ class RequestBloodCubit extends Cubit<RequestBloodState> {
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .collection(kBloodRequestCollectionName);
 
-
-  void addRequestBlood(String bloodType, String urgencyLevel,
-      int bloodBracketCount, String medicalImage, DateTime date,context) async {
+  void addRequestBlood(
+      String bloodType,
+      String urgencyLevel,
+      int bloodBracketCount,
+      String medicalImage,
+      DateTime date,
+      context) async {
     emit(RequestBloodLoading());
     try {
       hasConnection(context);
-      DocumentReference response = await bloodRequest.add(RequestBloodModel(
-        bloodNeeded: bloodType,
-        urgencyLevel: urgencyLevel,
-        brackets: bloodBracketCount,
-        medicalImage: medicalImage,
-        date: date,
-      ).toJson());
+      String id = await generateUniqueDocumentId();
+      await bloodRequest.doc(id).set(RequestBloodModel(
+            bloodNeeded: bloodType,
+            urgencyLevel: urgencyLevel,
+            brackets: bloodBracketCount,
+            medicalImage: medicalImage,
+            date: date,
+            id: id,
+          ).toJson());
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -45,4 +49,8 @@ class RequestBloodCubit extends Cubit<RequestBloodState> {
       debugPrint("*****************Failed to add user: $e");
     }
   }
+}
+
+Future<String> generateUniqueDocumentId() async {
+  return DateTime.now().millisecondsSinceEpoch.toString();
 }

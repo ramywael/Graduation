@@ -172,7 +172,7 @@ class _LoginViewState extends State<LoginView> {
                           child: const Text(
                             "Forget Password?",
                             style: TextStyle(
-                              color: Color(0xff81201a),
+                              color: kPrimaryColor,
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
                             ),

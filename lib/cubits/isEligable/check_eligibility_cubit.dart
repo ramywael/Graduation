@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
-import 'package:grad/cubits/profile/get_current_user_cubit.dart';
 import '../../contents/donatenow/eligability_check_model.dart';
 import '../../screens/donateNowCategory/donate.dart';
 import '../../screens/home/user_home_page.dart';
@@ -15,6 +14,8 @@ class CheckEligibilityCubit extends Cubit<CheckEligibilityState> {
   int currentQuestionIndex = 0;
   bool isEligible= false;
   bool hasDone = false;
+
+
   void answerWithNo(context) {
     emit(CheckEligibilityInitial());
     userAnswers.add("No");
@@ -61,14 +62,17 @@ class CheckEligibilityCubit extends Cubit<CheckEligibilityState> {
     }
   }
 
+
   void answerWithYes(context) {
-    emit(CheckEligibilityInitial());
     userAnswers.add("Yes");
+    isEligible = false;
+    hasDone = true;
     FirebaseFirestore.instance
         .collection(kUserCollectionName)
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({
       "IsDonor": isEligible,
+      "hasDone": hasDone,
     });
     emit(CheckEligibilityFailure());
     Navigator.of(context).pushReplacement(
@@ -77,4 +81,5 @@ class CheckEligibilityCubit extends Cubit<CheckEligibilityState> {
       ),
     );
   }
+
 }
