@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'my_chat_bubble.dart';
+import '../custom_widgets/chat/chat_bubble.dart';
 class ChatListView extends StatelessWidget {
   const ChatListView({super.key});
 
@@ -18,15 +18,15 @@ class ChatListView extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              width: constraints.maxWidth * 0.8,
-              child: ListView.builder(
-                itemCount: 15,
-                itemBuilder: (context, index) {
-                  return const MyChatBubble();
-                },
-              ),
-            ),
+            // SizedBox(
+            //   width: constraints.maxWidth * 0.8,
+            //   child: ListView.builder(
+            //     itemCount: 15,
+            //     itemBuilder: (context, index) {
+            //       return const ChatBubble();
+            //     },
+            //   ),
+            // ),
           ],
         );
       },

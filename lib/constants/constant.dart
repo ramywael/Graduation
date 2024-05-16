@@ -13,6 +13,8 @@ final List<BoxShadow> kBoxShadow = [
 ];
 String kBloodRequestCollectionName = "BloodRequests";
 String kUserCollectionName = "users";
+String kChatRoom = "chat_room";
+String kMessages = "messages";
 
 List<String> bloodGroups = [
   "A+",
