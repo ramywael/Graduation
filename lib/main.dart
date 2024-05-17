@@ -13,12 +13,13 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(BlocProvider(create: (BuildContext context) {
-    return LoginCubit();
-    },
-  child: BlocProvider(create: (BuildContext context) { return GetCurrentUserCubit(); },
-  child: const DonationBlood())
-  )
-  );
-
+  runApp(BlocProvider(
+      create: (BuildContext context) {
+        return LoginCubit();
+      },
+      child: BlocProvider(
+          create: (BuildContext context) {
+            return GetCurrentUserCubit();
+          },
+          child: const DonationBlood())));
 }
