@@ -7,7 +7,9 @@ import 'package:grad/screens/thanks_registration_loading_screens/thanks_for_savi
 
 class BookingScreenBody extends StatelessWidget {
   final double screenWidth;
-  const BookingScreenBody({Key? key, required this.screenWidth})
+  final String bloodRequestId;
+  final DateTime estimatedTime;
+  const BookingScreenBody({Key? key, required this.screenWidth, required this.bloodRequestId, required this.estimatedTime})
       : super(key: key);
 
   @override
@@ -15,6 +17,7 @@ class BookingScreenBody extends StatelessWidget {
     return Column(
       children: [
         TableBasicsExample(
+          estimatedTime: estimatedTime,
           screenWidth: screenWidth,
         ),
         TimeSlotContainer(

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:grad/screens/booking_donate_now/booking_screen_body.dart';
 
 class BookingScreen extends StatelessWidget {
-  const BookingScreen({Key? key}) : super(key: key);
+  final String bloodRequestId;
+  final DateTime estimatedTime;
+  const BookingScreen({Key? key, required this.bloodRequestId, required this.estimatedTime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class BookingScreen extends StatelessWidget {
           ),
         ),
       ),
-      body:  BookingScreenBody(screenWidth: screenWidth,),
+      body:  BookingScreenBody(screenWidth: screenWidth, bloodRequestId: bloodRequestId, estimatedTime: estimatedTime,),
     );
   }
 }

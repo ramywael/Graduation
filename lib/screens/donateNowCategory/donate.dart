@@ -73,7 +73,9 @@ class DonateNow extends StatelessWidget {
                   return ListView.builder(
                     itemCount: state.bloodRequests.length,
                     itemBuilder: (context, index) => DonateContainer(
-                      urgencyLevel: state.bloodRequests[index].urgencyLevel,
+                      estimatedTime: state.bloodRequests[index].date,
+                       bloodRequestId: state.bloodRequests[index].id,
+                       urgencyLevel: state.bloodRequests[index].urgencyLevel,
                         bloodType: state.bloodRequests[index].bloodNeeded,
                         screenHeight: screenHeight,
                         screenWidth: screenWidth,

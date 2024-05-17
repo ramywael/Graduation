@@ -4,11 +4,15 @@ import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/custom_widgets/text.dart';
 import 'package:grad/screens/bloodreq_bloodtype_notifications_screens/userr_notification.dart';
 
+import '../booking_donate_now/booking_screen.dart';
+
 class DonateContainer extends StatelessWidget {
   final double screenWidth;
   final double screenHeight;
   final String bloodType;
   final String urgencyLevel;
+  final String bloodRequestId;
+  final DateTime estimatedTime;
 
   const DonateContainer({
     super.key,
@@ -16,8 +20,9 @@ class DonateContainer extends StatelessWidget {
     required this.screenHeight,
     required this.bloodType,
     required this.urgencyLevel,
-  }
-);
+    required this.bloodRequestId,
+    required this.estimatedTime,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +82,10 @@ class DonateContainer extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const UserNotifications(),
+                    builder: (context) => BookingScreen(
+                      bloodRequestId: bloodRequestId,
+                      estimatedTime: estimatedTime,
+                    ),
                   ),
                 );
               },
