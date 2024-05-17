@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/cubits/find_blood_donor/find_blood_donor_cubit.dart';
+import 'package:grad/screens/chat/chat_view.dart';
 
 class ListViewDonors extends StatelessWidget {
   final List donorList;
@@ -59,9 +60,23 @@ class ListViewDonors extends StatelessWidget {
                     contentPadding: EdgeInsets.symmetric(
                         horizontal: horizontalPadding,
                         vertical: verticalPadding / 0.91),
-                    trailing: const Icon(
-                      Icons.arrow_forward,
-                      color: Colors.red, // Adjust color as needed
+                    trailing: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context){
+                              return ChatView(
+                                receiverEmail: donorList[index]["Email"],
+                                receiverID: donorList[index]["uid"],
+                                receiverName: donorList[index]["Name"],
+                              );
+                            }
+                            ),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.arrow_forward,
+                        color: Colors.red, // Adjust color as needed
+                      ),
                     ),
                     title: Text(
                       donorList[index]["Name"],
