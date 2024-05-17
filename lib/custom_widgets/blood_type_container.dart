@@ -39,7 +39,7 @@ class BloodTypeContainer extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       'Blood Type: ',
                       style: TextStyle(
                           fontSize: 22,
@@ -49,7 +49,7 @@ class BloodTypeContainer extends StatelessWidget {
                     ),
                     Text(
                       bloodType,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.w900,
                           fontSize: 22,
                           fontFamily: "Roboto-Regular"
@@ -61,7 +61,7 @@ class BloodTypeContainer extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       'Donor Name: ',
                       style: TextStyle(
                           fontSize: 18,
@@ -70,7 +70,7 @@ class BloodTypeContainer extends StatelessWidget {
                     ),
                     Text(
                       name,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 18,
                           fontFamily: "Roboto-Regular"
                       ),
@@ -81,7 +81,7 @@ class BloodTypeContainer extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       'Governorate: ',
                       style: TextStyle(
                           fontSize: 18,
@@ -90,7 +90,7 @@ class BloodTypeContainer extends StatelessWidget {
                     ),
                     Text(
                       governorate,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 18,
                           fontFamily: "Roboto-Regular"
                       ),
@@ -101,7 +101,7 @@ class BloodTypeContainer extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       'Time Limit: ',
                       style: TextStyle(
                           fontSize: 18,
@@ -110,7 +110,7 @@ class BloodTypeContainer extends StatelessWidget {
                     ),
                     Text(
                       timeLimit,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 18,
                           fontFamily: "Roboto-Regular"
                       ),
@@ -127,11 +127,11 @@ class BloodTypeContainer extends StatelessWidget {
                       height: 50,
                       width: 165,
                       decoration: BoxDecoration(
-                        color: Color(0xff81201a),
+                        color: const Color(0xff81201a),
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: TextButton(onPressed: (){},
-                        child: Text(
+                        child: const Text(
                           'Accept',
                           style: TextStyle(
                               color: Colors.white,

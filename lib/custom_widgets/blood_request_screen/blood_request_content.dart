@@ -8,7 +8,6 @@ import 'package:grad/constants/constant.dart';
 import 'package:grad/custom_widgets/blood_request_screen/time_blood_request_container.dart';
 import 'package:grad/custom_widgets/blood_request_screen/urgent_blood_request_container.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/custom_button_connection.dart';
-import 'package:grad/screens/thanks_registration_loading_screens/thanks_for_using_app.dart';
 import 'package:image_picker/image_picker.dart';
 import 'attached_blood_request_container.dart';
 

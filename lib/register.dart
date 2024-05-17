@@ -1,8 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:grad/screens/home/user_home_page.dart';
-import 'package:grad/screens/login_signup_forgetpass_screens/forget_password.dart';
-import 'package:grad/screens/login_signup_forgetpass_screens/login.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/reset_password.dart';
 import 'package:grad/screens/onBoarding/onBoarding.dart';
 class DonationBlood extends StatelessWidget {
@@ -20,8 +16,6 @@ class DonationBlood extends StatelessWidget {
       // home: (FirebaseAuth.instance.currentUser != null && FirebaseAuth.instance.currentUser!.emailVerified)
       //     ? const HomePage()
       //     : const SplashScreen(),                /// This is the original code
-
-
       home: const SplashScreen(),
       routes: {
         ResetPasswordView.id : (context)=>  const ResetPasswordView(),

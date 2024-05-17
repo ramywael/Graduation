@@ -3,9 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/contents/donatenow/eligability_check_model.dart';
 import 'package:grad/cubits/isEligable/check_eligibility_cubit.dart';
-
-import '../../cubits/profile/get_current_user_cubit.dart';
-
 class EligibilityCheck extends StatelessWidget {
   const EligibilityCheck({
     Key? key,
