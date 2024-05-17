@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grad/cubits/donate_now/donate_now_cubit.dart';
 import 'package:grad/custom_widgets/text.dart';
 import 'package:grad/screens/donateNowCategory/donate_container.dart';
 import 'package:grad/screens/donateNowCategory/search_bar.dart';
@@ -31,35 +33,67 @@ class DonateNow extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SearchComponent(
-              screenHeight: screenHeight,
-              screenWidth: screenWidth,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SearchComponent(
+            screenHeight: screenHeight,
+            screenWidth: screenWidth,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: screenWidth * 0.05,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: screenWidth * 0.05,
-              ),
-              child: CustomTextWidget(
-                text: "Blood Donation Requests",
-                fontSize: screenWidth * 0.065,
-                color: Colors.black,
-              ),
+            child: CustomTextWidget(
+              text: "Blood Donation Requests",
+              fontSize: screenWidth * 0.065,
+              color: Colors.black,
             ),
-            DonateContainer(
-              screenHeight: screenHeight,
-              screenWidth: screenWidth,
+          ),
+          Expanded(
+            child: BlocBuilder<DonateNowCubit,DonateNowState>(
+              builder: (context, state) {
+                if (state is DonateNowInitial) {
+                  return const Center(
+                    child: Text(
+                      "No Blood Requests Available",
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                } else if (state is DonateNowLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is DonateNowSuccess) {
+                  debugPrint("Blood Requests: ${BlocProvider.of<DonateNowCubit>(context).bloodRequestsList.length}");
+                  debugPrint("Blood Requests: ${state.bloodRequests}");
+                  return ListView.builder(
+                    itemCount: state.bloodRequests.length,
+                    itemBuilder: (context, index) => DonateContainer(
+                      urgencyLevel: state.bloodRequests[index].urgencyLevel,
+                        bloodType: state.bloodRequests[index].bloodNeeded,
+                        screenHeight: screenHeight,
+                        screenWidth: screenWidth,
+                      ),
+                  );
+                } else {
+                  return const Center(
+                    child: Text(
+                      "Failed to load Blood Requests",
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
-            DonateContainer(
-              screenWidth: screenWidth,
-              screenHeight: screenHeight,
-            ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

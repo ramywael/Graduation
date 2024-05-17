@@ -7,11 +7,17 @@ import 'package:grad/screens/bloodreq_bloodtype_notifications_screens/userr_noti
 class DonateContainer extends StatelessWidget {
   final double screenWidth;
   final double screenHeight;
+  final String bloodType;
+  final String urgencyLevel;
+
   const DonateContainer({
     super.key,
     required this.screenWidth,
     required this.screenHeight,
-  });
+    required this.bloodType,
+    required this.urgencyLevel,
+  }
+);
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +32,12 @@ class DonateContainer extends StatelessWidget {
         boxShadow: kBoxShadow,
         borderRadius: BorderRadius.circular(screenWidth * 0.05),
       ),
-      child:  Padding(
+      child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: screenWidth * 0.05,
           vertical: screenHeight * 0.021,
         ),
-        child:  Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTextWidget(
@@ -40,13 +46,13 @@ class DonateContainer extends StatelessWidget {
               color: Colors.black,
             ),
             CustomTextWidget(
-              text: "Blood Type: A+",
+              text: "Blood Type: $bloodType",
               fontSize: screenHeight * 0.02,
               color: Colors.black,
               fontWeight: FontWeight.normal,
             ),
             CustomTextWidget(
-              text: "Urgency: High",
+              text: "Urgency: $urgencyLevel",
               fontSize: screenHeight * 0.02,
               color: Colors.black,
               fontWeight: FontWeight.normal,

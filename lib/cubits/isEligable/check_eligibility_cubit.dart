@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
+import 'package:grad/cubits/donate_now/donate_now_cubit.dart';
 import '../../contents/donatenow/eligability_check_model.dart';
 import '../../screens/donateNowCategory/donate.dart';
 import '../../screens/home/user_home_page.dart';
@@ -12,9 +13,8 @@ class CheckEligibilityCubit extends Cubit<CheckEligibilityState> {
   CheckEligibilityCubit() : super(CheckEligibilityInitial());
   List<String> userAnswers = [];
   int currentQuestionIndex = 0;
-  bool isEligible= false;
+  bool isEligible = false;
   bool hasDone = false;
-
 
   void answerWithNo(context) {
     emit(CheckEligibilityInitial());
@@ -56,12 +56,14 @@ class CheckEligibilityCubit extends Cubit<CheckEligibilityState> {
       emit(CheckEligibilitySuccess());
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const DonateNow(),
+          builder: (context) => BlocProvider(
+              create: (BuildContext context) {
+                return DonateNowCubit()..getBloodRequests();
+              }, child: const DonateNow()),
         ),
       );
     }
   }
-
 
   void answerWithYes(context) {
     userAnswers.add("Yes");
@@ -81,5 +83,4 @@ class CheckEligibilityCubit extends Cubit<CheckEligibilityState> {
       ),
     );
   }
-
 }

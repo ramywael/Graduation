@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class RequestBloodModel {
   final String bloodNeeded;
   final String urgencyLevel;
@@ -16,6 +18,20 @@ class RequestBloodModel {
     required this.medicalImage,
     required this.date,
   });
+
+  factory RequestBloodModel.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    return RequestBloodModel(
+      id: data["BloodRequestId"],
+      bloodNeeded: data['BloodNeeded'],
+      urgencyLevel: data['UrgencyLevel'],
+      brackets: data['Brackets'],
+      medicalImage: data['MedicalImage'],
+      date: (data['Date'] as Timestamp).toDate(),
+      isAccepted: data['IsAccepted'],
+    );
+  }
+
   toJson() {
     return {
       "BloodRequestId": id,

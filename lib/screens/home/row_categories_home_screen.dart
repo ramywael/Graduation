@@ -11,6 +11,7 @@ import 'package:grad/screens/requestablood/request_a_blood.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
     as MaterialSymbolsIcons;
 
+import '../../cubits/donate_now/donate_now_cubit.dart';
 import '../../cubits/isEligable/check_eligibility_cubit.dart';
 
 class RowCategoriesHomeScreen extends StatefulWidget {
@@ -52,7 +53,10 @@ class _RowCategoriesHomeScreenState extends State<RowCategoriesHomeScreen> {
                  if( snapshot.data!["IsDonor"] == true && snapshot.data!["hasDone"] == true){
                    Navigator.of(context).push(
                      MaterialPageRoute(
-                       builder: (context) => const DonateNow(),
+                       builder: (context) => BlocProvider(create: (BuildContext context) {
+                          return DonateNowCubit()..getBloodRequests();
+                       },
+                       child: const DonateNow()),
                      ),
                    );
                  }else if (snapshot.data!["IsDonor"] == false && snapshot.data!["hasDone"] == true){
