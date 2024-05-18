@@ -28,6 +28,7 @@ class RequestBloodCubit extends Cubit<RequestBloodState> {
       hasConnection(context);
       String id = await generateUniqueDocumentId();
       await bloodRequest.doc(id).set(RequestBloodModel(
+            uid: FirebaseAuth.instance.currentUser!.uid,
             bloodNeeded: bloodType,
             urgencyLevel: urgencyLevel,
             brackets: bloodBracketCount,

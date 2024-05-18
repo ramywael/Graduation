@@ -1,9 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/custom_widgets/text.dart';
-import 'package:grad/screens/bloodreq_bloodtype_notifications_screens/userr_notification.dart';
-
 import '../booking_donate_now/booking_screen.dart';
 
 class DonateContainer extends StatelessWidget {
@@ -13,6 +12,7 @@ class DonateContainer extends StatelessWidget {
   final String urgencyLevel;
   final String bloodRequestId;
   final DateTime estimatedTime;
+  final String userRequestId;
 
   const DonateContainer({
     super.key,
@@ -22,6 +22,7 @@ class DonateContainer extends StatelessWidget {
     required this.urgencyLevel,
     required this.bloodRequestId,
     required this.estimatedTime,
+    required this.userRequestId,
   });
 
   @override
@@ -51,19 +52,20 @@ class DonateContainer extends StatelessWidget {
               color: Colors.black,
             ),
             CustomTextWidget(
-              text: "Blood Type: $bloodType",
+              text: "Blood Type : $bloodType",
               fontSize: screenHeight * 0.02,
               color: Colors.black,
               fontWeight: FontWeight.normal,
             ),
             CustomTextWidget(
-              text: "Urgency: $urgencyLevel",
+              text: "Urgency : $urgencyLevel",
               fontSize: screenHeight * 0.02,
               color: Colors.black,
               fontWeight: FontWeight.normal,
             ),
             CustomTextWidget(
-              text: "Distance: 2.5km",
+              text:
+                  "Time Estimated : ${estimatedTime.difference(DateTime.now()).inDays + 1} day",
               fontSize: screenHeight * 0.02,
               color: Colors.black,
               fontWeight: FontWeight.normal,
@@ -95,4 +97,11 @@ class DonateContainer extends StatelessWidget {
       ),
     );
   }
+}
+
+void calculateDaysLeft(DateTime estimatedTime) {
+  final DateTime now = DateTime.now();
+  final Duration difference = estimatedTime.difference(now);
+  final int daysLeft = difference.inDays;
+  debugPrint("Days Left: $daysLeft");
 }

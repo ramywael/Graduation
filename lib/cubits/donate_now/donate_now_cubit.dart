@@ -23,6 +23,9 @@ class DonateNowCubit extends Cubit<DonateNowState> {
           for (var doc in bloodRequests.docs) {
             try{
               final request = RequestBloodModel.fromFirestore(doc);
+              if(request.date.isBefore(DateTime.now())){
+                FirebaseFirestore.instance.collection("users").doc(userDoc.id).collection("BloodRequests").doc(doc.id).delete();
+              }
               bloodRequestsList.add(request);
               debugPrint("Added blood request: ${request.toJson()}");
             }catch(e){

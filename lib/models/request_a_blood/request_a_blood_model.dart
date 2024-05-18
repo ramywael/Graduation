@@ -8,8 +8,10 @@ class RequestBloodModel {
   final DateTime date;
   final bool isAccepted;
   final String id;
+  final String uid;
 
   RequestBloodModel({
+    required this.uid,
     this.isAccepted = false,
     required this.bloodNeeded,
     required this.id,
@@ -22,6 +24,7 @@ class RequestBloodModel {
   factory RequestBloodModel.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return RequestBloodModel(
+      uid: data["uid"],
       id: data["BloodRequestId"],
       bloodNeeded: data['BloodNeeded'],
       urgencyLevel: data['UrgencyLevel'],
@@ -34,6 +37,7 @@ class RequestBloodModel {
 
   toJson() {
     return {
+      "uid": uid,
       "BloodRequestId": id,
       'BloodNeeded': bloodNeeded,
       'UrgencyLevel': urgencyLevel,
