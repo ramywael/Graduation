@@ -14,8 +14,3 @@ final class DonateNowFailure extends DonateNowState {
   DonateNowFailure(this.message);
 }
 
-final class DonateNowPending extends DonateNowState {
-  final List<RequestBloodModel> bloodRequests;
-  DonateNowPending(this.bloodRequests);
-}
-

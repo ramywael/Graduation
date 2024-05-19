@@ -10,5 +10,4 @@ final class SelectTimeRequestFailure extends SelectTimeRequestState {
   SelectTimeRequestFailure(this.message);
 }
 final class SelectTimeRequestLoading extends SelectTimeRequestState {}
-final class SelectTimeRequestPending extends SelectTimeRequestState {}
 

@@ -146,7 +146,11 @@ class SelectTimeRequestCubit extends Cubit<SelectTimeRequestState> {
                 email: email,
               ).toJson(),
             );
-
+            FirebaseFirestore.instance.collection(kUserCollectionName).doc(recipientId).update(
+                {
+                  "IsSaved": true
+                }
+            );
             FirebaseFirestore.instance.collection(kUserCollectionName).doc(recipientId).collection(kBloodRequestCollectionName).doc(bloodRequestId).update(
                 {
                   "IsAccepted": true
@@ -157,8 +161,8 @@ class SelectTimeRequestCubit extends Cubit<SelectTimeRequestState> {
                 builder: (context) => const ThanksForSavingLife(),
               ),
             );
+            emit(SelectTimeRequestSuccess());
             debugPrint("*********************Updated");
-            emit(SelectTimeRequestPending());
           }else {
             // Update the bloodRequest document with the new counter
             transaction.update(
@@ -187,6 +191,11 @@ class SelectTimeRequestCubit extends Cubit<SelectTimeRequestState> {
             debugPrint("*********************Request Added");
           }
         } else if (currentCounter == bloodBracketCount){
+          FirebaseFirestore.instance.collection(kUserCollectionName).doc(recipientId).update(
+              {
+                "IsSaved": true
+              }
+          );
         FirebaseFirestore.instance.collection(kUserCollectionName).doc(recipientId).collection(kBloodRequestCollectionName).doc(bloodRequestId).update(
           {
             "IsAccepted": true
