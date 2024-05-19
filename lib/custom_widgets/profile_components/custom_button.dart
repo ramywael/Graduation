@@ -32,9 +32,8 @@ class CustomButton extends StatelessWidget {
           color: color,
           borderRadius: BorderRadius.circular(screenWidth * 0.08),
         ),
-        child: isLoading == true ? SizedBox(
-          height: screenHeight * 0.06,
-          child: const CircularProgressIndicator(
+        child: isLoading == true ? const Center(
+          child: CircularProgressIndicator(
             color: Colors.white,
           ),
         ) :Text(

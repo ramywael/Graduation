@@ -5,6 +5,8 @@ import 'package:grad/custom_widgets/text.dart';
 import 'package:grad/screens/donateNowCategory/donate_container.dart';
 import 'package:grad/screens/donateNowCategory/search_bar.dart';
 
+import '../../cubits/donate_request_time/select_time_request_cubit.dart';
+
 class DonateNow extends StatelessWidget {
   const DonateNow({Key? key}) : super(key: key);
 
@@ -51,7 +53,7 @@ class DonateNow extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: BlocBuilder<DonateNowCubit,DonateNowState>(
+            child: BlocBuilder<DonateNowCubit, DonateNowState>(
               builder: (context, state) {
                 if (state is DonateNowInitial) {
                   return const Center(
@@ -68,19 +70,22 @@ class DonateNow extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is DonateNowSuccess) {
-                  debugPrint("Blood Requests: ${BlocProvider.of<DonateNowCubit>(context).bloodRequestsList.length}");
+                  debugPrint(
+                      "Blood Requests: ${BlocProvider.of<DonateNowCubit>(context).bloodRequestsList.length}");
                   debugPrint("Blood Requests: ${state.bloodRequests}");
                   return ListView.builder(
                     itemCount: state.bloodRequests.length,
                     itemBuilder: (context, index) => DonateContainer(
+                      isFull: state.bloodRequests[index].isAccepted,
                       userRequestId: state.bloodRequests[index].uid,
                       estimatedTime: state.bloodRequests[index].date,
-                       bloodRequestId: state.bloodRequests[index].id,
-                       urgencyLevel: state.bloodRequests[index].urgencyLevel,
-                        bloodType: state.bloodRequests[index].bloodNeeded,
-                        screenHeight: screenHeight,
-                        screenWidth: screenWidth,
-                      ),
+                      bloodRequestId: state.bloodRequests[index].id,
+                      urgencyLevel: state.bloodRequests[index].urgencyLevel,
+                      bloodType: state.bloodRequests[index].bloodNeeded,
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      bloodBracketCount: state.bloodRequests[index].brackets,
+                    ),
                   );
                 } else {
                   return const Center(

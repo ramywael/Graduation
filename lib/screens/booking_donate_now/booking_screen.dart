@@ -4,7 +4,10 @@ import 'package:grad/screens/booking_donate_now/booking_screen_body.dart';
 class BookingScreen extends StatelessWidget {
   final String bloodRequestId;
   final DateTime estimatedTime;
-  const BookingScreen({Key? key, required this.bloodRequestId, required this.estimatedTime}) : super(key: key);
+  final int bloodBracketCount;
+  final String userRequestId;
+
+  const BookingScreen({Key? key, required this.bloodRequestId, required this.estimatedTime, required this.bloodBracketCount, required this.userRequestId, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class BookingScreen extends StatelessWidget {
           ),
         ),
       ),
-      body:  BookingScreenBody(screenWidth: screenWidth, bloodRequestId: bloodRequestId, estimatedTime: estimatedTime,),
+      body:  BookingScreenBody(screenWidth: screenWidth, bloodRequestId: bloodRequestId, estimatedTime: estimatedTime, bloodBracketCount: bloodBracketCount, userRequestId: userRequestId,),
     );
   }
 }

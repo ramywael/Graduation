@@ -5,7 +5,8 @@ import 'package:table_calendar/table_calendar.dart';
 class TableBasicsExample extends StatefulWidget {
   final double screenWidth;
   final DateTime estimatedTime;
-  const TableBasicsExample({Key? key, required this.screenWidth, required this.estimatedTime}) : super(key: key);
+  final Function(DateTime) onDaySelected;
+  const TableBasicsExample({Key? key, required this.screenWidth, required this.estimatedTime, required this.onDaySelected}) : super(key: key);
   @override
   TableBasicsExampleState createState() => TableBasicsExampleState();
 }
@@ -62,6 +63,7 @@ class TableBasicsExampleState extends State<TableBasicsExample> {
               _selectedDay = selectedDay; //is the day that the user has tapped on to select.
               _focusedDay = focusedDay; // is the day that the calendar is currently focused on.
             });
+            widget.onDaySelected(selectedDay);
           }
         },
         onFormatChanged: (format) {

@@ -15,7 +15,8 @@ String kBloodRequestCollectionName = "BloodRequests";
 String kUserCollectionName = "users";
 String kChatRoom = "chat_room";
 String kMessages = "messages";
-
+String kDonationRequestCollectionName = "DonationRequest";
+String kTimeRequestCollectionName = "TimeRequest";
 List<String> bloodGroups = [
   "A+",
   "A-",

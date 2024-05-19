@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grad/screens/home/user_home_page.dart';
 
 class ThanksScreen extends StatelessWidget {
   const ThanksScreen({
@@ -15,10 +16,6 @@ class ThanksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        toolbarHeight: MediaQuery.of(context).size.height * 0.07,
-      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SizedBox(
@@ -67,7 +64,9 @@ class ThanksScreen extends StatelessWidget {
                     ),
                   ),
                   child: TextButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const HomePage(),), (route) => false);
+                    },
                     child: Text(
                       'Home',
                       style: TextStyle(

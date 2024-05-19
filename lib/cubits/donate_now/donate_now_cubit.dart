@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../constants/constant.dart';
 import '../../models/request_a_blood/request_a_blood_model.dart';
 part 'donate_now_state.dart';
 
@@ -39,4 +40,11 @@ class DonateNowCubit extends Cubit<DonateNowState> {
       emit(DonateNowFailure(e.toString()));
     }
   }
+  
+//   void getPendingRequests(String bloodRequestId) async {
+//   DocumentSnapshot  bloodRequests = await FirebaseFirestore.instance.collection(kBloodRequestCollectionName).doc(bloodRequestId).get();
+//   QuerySnapshot donationRequest = await  FirebaseFirestore.instance.collection(kBloodRequestCollectionName).doc(bloodRequestId).collection(kDonationRequestCollectionName).where("bloodBracket", isEqualTo: bloodRequests.get("currentCounter")).get().whenComplete(() => emit(DonateNowPending(bloodRequests)));
+// }
+//
+
 }
