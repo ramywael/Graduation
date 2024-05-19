@@ -4,8 +4,7 @@ import 'package:grad/cubits/donate_now/donate_now_cubit.dart';
 import 'package:grad/custom_widgets/text.dart';
 import 'package:grad/screens/donateNowCategory/donate_container.dart';
 import 'package:grad/screens/donateNowCategory/search_bar.dart';
-
-import '../../cubits/donate_request_time/select_time_request_cubit.dart';
+import 'package:grad/screens/home/user_home_page.dart';
 
 class DonateNow extends StatelessWidget {
   const DonateNow({Key? key}) : super(key: key);
@@ -27,7 +26,11 @@ class DonateNow extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const HomePage(),
+              ));
+            },
             icon: const Icon(
               Icons.person,
               color: Colors.black,
@@ -39,6 +42,9 @@ class DonateNow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SearchComponent(
+            onChanged: (p0) {
+              BlocProvider.of<DonateNowCubit>(context).searchBloodRequests(p0);
+            },
             screenHeight: screenHeight,
             screenWidth: screenWidth,
           ),
@@ -87,17 +93,18 @@ class DonateNow extends StatelessWidget {
                       bloodBracketCount: state.bloodRequests[index].brackets,
                     ),
                   );
-                } else {
-                  return const Center(
+                } else if(state is DonateNowFailure){
+                  return  Center(
                     child: Text(
-                      "Failed to load Blood Requests",
-                      style: TextStyle(
-                        fontSize: 24.0,
+                      state.message,
+                      style: const TextStyle(
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   );
                 }
+                return const SizedBox();
               },
             ),
           )

@@ -4,8 +4,9 @@ import 'package:grad/constants/constant.dart';
 class SearchComponent extends StatelessWidget {
   final double screenWidth;
   final double screenHeight;
+  final void Function(String)? onChanged;
   const SearchComponent(
-      {super.key, required this.screenWidth, required this.screenHeight});
+      {super.key, required this.screenWidth, required this.screenHeight, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,7 @@ class SearchComponent extends StatelessWidget {
         ),
       ),
       child: TextField(
+        onChanged: onChanged,
         decoration: InputDecoration(
           hintText: "Search by Blood Group",
           border: InputBorder.none,

@@ -11,8 +11,6 @@ import 'package:grad/screens/home/row_categories_home_screen.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
     as MaterialSymbolsIcons;
-
-import '../../cubits/isEligable/check_eligibility_cubit.dart';
 import '../chatbot_profile_rate_screens/profile.dart';
 
 class ContainerHomeScreen extends StatelessWidget {
