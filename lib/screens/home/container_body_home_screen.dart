@@ -71,7 +71,7 @@ class ContainerHomeScreen extends StatelessWidget {
               ),
             ),
             const RowCategoriesHomeScreen(),
-           Row(
+            Row(
              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
              children: [
                Expanded(

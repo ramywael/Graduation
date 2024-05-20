@@ -25,7 +25,7 @@ class DonateNowCubit extends Cubit<DonateNowState> {
       bool requestsFound = false;
 
       for (var userDoc in userData.docs) {
-        final bloodRequests = await userDoc.reference.collection("BloodRequests").get();
+        final bloodRequests = await userDoc.reference.collection(kBloodRequestCollectionName).get();
         debugPrint("Fetched blood requests for user ${userDoc.id}: ${bloodRequests.docs.length}");
 
         if (bloodRequests.docs.isNotEmpty) {
@@ -83,7 +83,7 @@ class DonateNowCubit extends Cubit<DonateNowState> {
       for (var userDoc in userData.docs) {
         
         final bloodRequests = await userDoc.reference
-            .collection(kBloodRequestCollectionName)
+            .collection(kBloodRequestCollectionName).where("IsAccepted", isEqualTo: false)
             .get(); /// This used to get the query of the blood request collection
 
         debugPrint("Fetched blood requests for user ${userDoc.id}: ${bloodRequests.docs.length}");

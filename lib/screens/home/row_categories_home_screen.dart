@@ -80,7 +80,7 @@ class _RowCategoriesHomeScreenState extends State<RowCategoriesHomeScreen> {
           ),
           Expanded(
             child: CustomCategoryHomeScreen(
-              text: "Request a Blood",
+              text: "Blood Request",
               icon: MaterialSymbolsIcons.Symbols.bloodtype,
               // navigateToScreen: DonateNow(),
               onTap: () {
