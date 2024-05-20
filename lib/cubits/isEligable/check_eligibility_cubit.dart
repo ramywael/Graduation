@@ -64,7 +64,6 @@ class CheckEligibilityCubit extends Cubit<CheckEligibilityState> {
       );
     }
   }
-
   void answerWithYes(context) {
     userAnswers.add("Yes");
     isEligible = false;

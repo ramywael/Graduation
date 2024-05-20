@@ -76,7 +76,7 @@ class DonateContainer extends StatelessWidget {
               fontWeight: FontWeight.normal,
             ),
             CustomButton(
-              color: kSecondaryColor,
+              color: isFull ? kPrimaryColor : kSecondaryColor,
               text: isFull ?"Pending" :"Donate",
               fontSize: screenHeight * 0.018,
               margin: EdgeInsets.symmetric(
