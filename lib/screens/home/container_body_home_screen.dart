@@ -11,13 +11,13 @@ import 'package:grad/screens/home/row_categories_home_screen.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
     as MaterialSymbolsIcons;
+import '../anime_predict_ai/anime_detection.dart';
 import '../chatbot_profile_rate_screens/profile.dart';
 
 class ContainerHomeScreen extends StatelessWidget {
 
   const ContainerHomeScreen({
     super.key,
-
   });
 
   @override
@@ -71,28 +71,59 @@ class ContainerHomeScreen extends StatelessWidget {
               ),
             ),
             const RowCategoriesHomeScreen(),
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: screenHeight * 0.09, // Adjusted based on screen height
-                left: screenWidth * 0.1, // Adjusted based on screen width
-                right: screenWidth * 0.1, // Adjusted based on screen width
-              ),
-              child: CustomCategoryHomeScreen(
-                text: "Find a Blood Donor",
-                icon: MaterialSymbolsIcons.Symbols.local_hospital,
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => BlocProvider(
-                          create: (BuildContext context) {
-                            return FindBloodDonorCubit();
-                          },
-                          child: const ChooseDonor()),
-                    ),
-                  );
-                },
-              ),
-            ),
+           Row(
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+             children: [
+               Expanded(
+                 child: Padding(
+                   padding: EdgeInsets.only(
+                     bottom: screenHeight * 0.09, // Adjusted based on screen height
+                     left: screenWidth * 0.045, // Adjusted based on screen width
+                     right: screenWidth * 0.012, // Adjusted based on screen width
+                   // ),
+           ),
+                   child: CustomCategoryHomeScreen(
+                     text: "Blood Donor",
+                     icon: MaterialSymbolsIcons.Symbols.local_hospital,
+                     onTap: () {
+                       Navigator.of(context).push(
+                         MaterialPageRoute(
+                           builder: (context) => BlocProvider(
+                               create: (BuildContext context) {
+                                 return FindBloodDonorCubit();
+                               },
+                               child: const ChooseDonor()),
+                         ),
+                       );
+                     },
+                   ),
+                 ),
+               ),
+               SizedBox(
+                  width: screenWidth * 0.02, // Adjusted based on screen width
+                ),
+               Expanded(
+                 child: Padding(
+                   padding: EdgeInsets.only(
+                     bottom: screenHeight * 0.09, // Adjusted based on screen height
+                     left: screenWidth * 0.015, // Adjusted based on screen width
+                     right: screenWidth * 0.048, // Adjusted based on screen width
+                   ),
+                   child: CustomCategoryHomeScreen(
+                     text: "Ask AI",
+                     icon: MaterialSymbolsIcons.Symbols.blood_pressure_sharp,
+                     onTap: () {
+                       Navigator.of(context).push(
+                         MaterialPageRoute(
+                           builder: (context) => const AnemiaPredictionForm(),
+                         ),
+                       );
+                     },
+                   ),
+                 ),
+               ),
+             ],
+           ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(

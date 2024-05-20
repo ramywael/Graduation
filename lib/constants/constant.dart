@@ -11,6 +11,9 @@ final List<BoxShadow> kBoxShadow = [
     spreadRadius: 3,
   )
 ];
+final List<String> inputFeatures = [
+  'Hemoglobin', 'MCH', 'MCHC', 'MCV'
+];
 String kBloodRequestCollectionName = "BloodRequests";
 String kUserCollectionName = "users";
 String kChatRoom = "chat_room";
