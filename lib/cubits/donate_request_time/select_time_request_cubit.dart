@@ -157,12 +157,29 @@ class SelectTimeRequestCubit extends Cubit<SelectTimeRequestState> {
                 }
             );
 
+
+            if(DateTime.now() == date.add(const Duration(days: 183))){
+              FirebaseFirestore.instance.collection(kUserCollectionName).doc(FirebaseAuth.instance.currentUser!.uid).update(
+                {
+                  "hasDone": false,
+                  "IsDonor": false,
+                }
+              );
+            }else {
+              FirebaseFirestore.instance.collection(kUserCollectionName).doc(
+                  FirebaseAuth.instance.currentUser!.uid).update(
+                  {
+                    "IsDonor": false,
+                  }
+              );
+            }
+            emit(SelectTimeRequestSuccess());
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => const ThanksForSavingLife(),
               ),
             );
-            emit(SelectTimeRequestSuccess());
+
             debugPrint("*********************Updated");
           }else {
             // Update the bloodRequest document with the new counter
@@ -183,12 +200,28 @@ class SelectTimeRequestCubit extends Cubit<SelectTimeRequestState> {
                 email: email,
               ).toJson(),
             );
+            if(DateTime.now() == date.add(const Duration(days: 183))){
+              FirebaseFirestore.instance.collection(kUserCollectionName).doc(FirebaseAuth.instance.currentUser!.uid).update(
+                  {
+                    "hasDone": false,
+                    "IsDonor": false,
+                  }
+              );
+            }else {
+              FirebaseFirestore.instance.collection(kUserCollectionName).doc(
+                  FirebaseAuth.instance.currentUser!.uid).update(
+                  {
+                    "IsDonor": false,
+                  }
+              );
+            }
+
+            emit(SelectTimeRequestSuccess());
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => const ThanksForSavingLife(),
               ),
             );
-            emit(SelectTimeRequestSuccess());
             debugPrint("*********************Request Added");
           }
         } else if (currentCounter == bloodBracketCount){

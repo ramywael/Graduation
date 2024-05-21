@@ -4,7 +4,8 @@ part of 'select_time_request_cubit.dart';
 class SelectTimeRequestState {}
 
 final class SelectTimeRequestInitial extends SelectTimeRequestState {}
-final class SelectTimeRequestSuccess extends SelectTimeRequestState {}
+final class SelectTimeRequestSuccess extends SelectTimeRequestState {
+}
 final class SelectTimeRequestFailure extends SelectTimeRequestState {
   final String message;
   SelectTimeRequestFailure(this.message);
