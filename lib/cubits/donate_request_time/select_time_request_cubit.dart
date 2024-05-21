@@ -156,6 +156,7 @@ class SelectTimeRequestCubit extends Cubit<SelectTimeRequestState> {
                   "IsAccepted": true
                 }
             );
+
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => const ThanksForSavingLife(),

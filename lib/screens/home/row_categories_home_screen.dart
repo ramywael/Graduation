@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
-import 'package:grad/cubits/profile/get_current_user_cubit.dart';
 import 'package:grad/custom_widgets/category_home_screen.dart';
 import 'package:grad/screens/donateNowCategory/donate.dart';
 import 'package:grad/screens/donateNowCategory/eligibility_check.dart';
