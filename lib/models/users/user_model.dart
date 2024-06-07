@@ -11,6 +11,7 @@ class UserModel {
     required this.email,
     required this.name,
     required this.photoUrl,
+    this.token,
   });
 
   final String? uid;
@@ -22,6 +23,7 @@ class UserModel {
   final String photoUrl;
   final bool isDonor;
   final bool hasDone;
+  late final String? token;
 
   Map<String, dynamic> toJson() {
     return {
@@ -34,6 +36,7 @@ class UserModel {
       'Password': password,
       'IsDonor': isDonor,
       'hasDone': hasDone,
+      'token' : token,
     };
   }
 }

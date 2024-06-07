@@ -3,13 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/custom_widgets/curved_navigation_bar.dart';
-import 'package:grad/screens/chatbot_profile_rate_screens/chatbot.dart';
+import 'package:grad/screens/chatbot/chat_definition.dart';
+import 'package:grad/screens/edit_personal_details/edit_personal_details.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import '../../constants/constant.dart';
 import '../../cubits/profile/get_current_user_cubit.dart';
 import '../../custom_widgets/profile_components/container_items_and_buttons.dart';
 import '../../custom_widgets/profile_components/row_of_user_data.dart';
 import '../bloodreq_bloodtype_notifications_screens/notifications.dart';
+import '../chatbot/chatbot.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -124,22 +126,26 @@ class _ProfileViewState extends State<ProfileView> {
                         child: Row(
                           children: [
                             ItemsAndButtons(
-                              text: 'Live Impacted',
-                              textNum: '34',
+                              text: 'Bonus',
+                              textNum: '+100',
                               buttonText: 'Settings',
-                              function: () {},
+                              function: () {
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                                  return EditPersonalDetails(
+                                    oldName: snapShot["Name"],
+                                    oldPhone: snapShot["PhotoUrl"],
+                                    oldEmail: snapShot["Email"],
+                                    oldHome: snapShot["location"],
+                                  );
+                                }));
+                              },
                             ),
                             ItemsAndButtons(
                               text: 'Treatments',
-                              textNum: '4',
+                              textNum: '1',
                               buttonText: 'Notification',
                               function: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const Notifications(),
-                                    ),
-                                );
+
                               },
                             )
                           ],
@@ -163,9 +169,7 @@ class _ProfileViewState extends State<ProfileView> {
         icon2: Icons.person,
         icon3: Icons.home,
         screens: [
-          Chatbot(
-            screenName: ProfileView(),
-          ),
+          ChatbotHomeView(),
           ProfileView(),
           HomePage()
         ],

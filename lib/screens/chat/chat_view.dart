@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart%20'as fd;
 import 'package:flutter/material.dart';
-import 'package:flutter_fgbg/flutter_fgbg.dart';
 import 'package:grad/constants/constant.dart';
 
 import 'package:grad/services/firebase_provider.dart';
@@ -52,14 +51,14 @@ class _ChatViewState extends State<ChatView> {
       });
       Future.delayed(const Duration(milliseconds: 500), () =>scrollDown());
 
-      firebaseProvider.configurePresence();
-      subscription = FGBGEvents.stream.listen((event) {
-      if (event == FGBGType.foreground) {
-        firebaseProvider.connect();
-      } else if (event == FGBGType.background) {
-        firebaseProvider.disconnect();
-      }
-    });
+    //   firebaseProvider.configurePresence();
+    //   subscription = FGBGEvents.stream.listen((event) {
+    //   if (event == FGBGType.foreground) {
+    //     firebaseProvider.connect();
+    //   } else if (event == FGBGType.background) {
+    //     firebaseProvider.disconnect();
+    //   }
+    // });
   }
 
   @override
@@ -69,7 +68,7 @@ class _ChatViewState extends State<ChatView> {
     super.dispose();
   }
   final firebaseProvider = FirebaseProvider();
-  StreamSubscription<FGBGType>? subscription;
+  // StreamSubscription<FGBGType>? subscription;
   // var state = Message.onlineStatus;
 
   @override
