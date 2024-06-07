@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../constants/constant.dart';
 import '../../models/request_a_blood/request_a_blood_model.dart';
 part 'donate_now_state.dart';
-
 class DonateNowCubit extends Cubit<DonateNowState> {
   DonateNowCubit() : super(DonateNowInitial());
   List<RequestBloodModel> bloodRequestsList = [];
@@ -108,5 +107,6 @@ class DonateNowCubit extends Cubit<DonateNowState> {
     }
   }
 }
+
 
 
