@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/custom_widgets/curved_navigation_bar.dart';
-import 'package:grad/screens/chatbot_profile_rate_screens/profile.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import '../../custom_widgets/blood_request_screen/app_bar_title.dart';
 import '../../custom_widgets/blood_request_screen/blood_request_body.dart';
+import '../profile_and_rate_screens/profile.dart';
 
 class BloodRequest extends StatelessWidget {
   final String bloodType;

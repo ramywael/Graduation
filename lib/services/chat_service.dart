@@ -29,11 +29,11 @@ class ChatService {
     final timestamp = Timestamp.now();
 
     Message newMessage = Message(
-        senderID: currentUserID,
-        senderEmail: currentUserEmail,
-        receiverID: receiverID,
-        message: message,
-        timestamp: timestamp,
+      senderID: currentUserID,
+      senderEmail: currentUserEmail,
+      receiverID: receiverID,
+      message: message,
+      timestamp: timestamp,
     );
 
     //chat room ID for 2 users
@@ -64,5 +64,7 @@ class ChatService {
         .orderBy("timestamp",descending: false)
         .snapshots();
   }
+
+
 
 }

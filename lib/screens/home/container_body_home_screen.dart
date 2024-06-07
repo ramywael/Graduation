@@ -5,14 +5,15 @@ import 'package:grad/cubits/find_blood_donor/find_blood_donor_cubit.dart';
 import 'package:grad/custom_widgets/category_home_screen.dart';
 import 'package:grad/custom_widgets/curved_navigation_bar.dart';
 import 'package:grad/custom_widgets/text.dart';
-import 'package:grad/screens/chatbot_profile_rate_screens/chatbot.dart';
+import 'package:grad/screens/chatbot/chat_definition.dart';
+import 'package:grad/screens/chatbot/chatbot.dart';
 import 'package:grad/screens/findBloodDonor/choose_donor.dart';
 import 'package:grad/screens/home/row_categories_home_screen.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
     as MaterialSymbolsIcons;
 import '../anime_predict_ai/anime_detection.dart';
-import '../chatbot_profile_rate_screens/profile.dart';
+import '../profile_and_rate_screens/profile.dart';
 
 class ContainerHomeScreen extends StatelessWidget {
 
@@ -131,9 +132,7 @@ class ContainerHomeScreen extends StatelessWidget {
                 ),
                 child: const CustomCurvedNavBar(
                   screens: [
-                    Chatbot(
-                      screenName: HomePage(),
-                    ),
+                    ChatbotHomeView(),
                     HomePage(),
                     ProfileView(),
                   ],

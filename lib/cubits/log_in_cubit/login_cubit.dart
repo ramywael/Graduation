@@ -33,6 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginSuccess());
       }else{
         showScaffoldMessenger(context: context, message: "Please verify your email", color: kPrimaryColor);
+        FirebaseAuth.instance.currentUser!.sendEmailVerification();
         emit(LoginFailure("Please verify your email"));
       }
     } on FirebaseAuthException catch (e) {

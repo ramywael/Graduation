@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grad/custom_widgets/curved_navigation_bar.dart';
-import 'package:grad/screens/chatbot_profile_rate_screens/chatbot.dart';
-import 'package:grad/screens/chatbot_profile_rate_screens/profile.dart';
+import 'package:grad/screens/chatbot/chatbot.dart';
 import 'package:grad/screens/home/user_home_page.dart';
 import '../../custom_widgets/blood_type_container.dart';
+
+import '../profile_and_rate_screens/profile.dart';
 
 class BloodType extends StatelessWidget {
   const BloodType({super.key});

@@ -7,13 +7,17 @@ class FieldAndItsText extends StatelessWidget {
     required this.controller,
     required this.type,
     required this.hintText,
-    required this.text
+    required this.text,
+    this.validator,
+    this.onSaved,
   });
   final String text;
   final TextEditingController controller;
   final TextInputType type;
   final double screenWidth;
   final String hintText;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,6 +38,8 @@ class FieldAndItsText extends StatelessWidget {
           inputType: type,
           hintText: hintText,
           screenWidth: screenWidth * 0.9,
+          validator: validator,
+          onSaved: onSaved,
         )
       ],
     );

@@ -4,7 +4,6 @@ class UserModel {
   UserModel({
     this.hasDone = false,
     this.isDonor = false,
-    this.isSaved = false,
     this.uid,
     required this.password,
     required this.location,
@@ -23,7 +22,6 @@ class UserModel {
   final String photoUrl;
   final bool isDonor;
   final bool hasDone;
-  final bool isSaved;
 
   Map<String, dynamic> toJson() {
     return {
@@ -36,7 +34,6 @@ class UserModel {
       'Password': password,
       'IsDonor': isDonor,
       'hasDone': hasDone,
-      "IsSaved": isSaved,
     };
   }
 }

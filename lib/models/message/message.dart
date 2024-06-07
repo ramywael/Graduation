@@ -7,12 +7,14 @@ class Message {
   final String message;
   final Timestamp timestamp;
 
+
   Message({
     required this.senderID,
     required this.senderEmail,
     required this.receiverID,
     required this.message,
     required this.timestamp,
+
   });
 
   Map <String,dynamic> toMap(){
@@ -24,4 +26,17 @@ class Message {
       'timestamp' : timestamp,
     };
   }
+
+//   Message copyWith ({
+//     String? senderID,String? senderEmail, String? receiverID, String? message,Timestamp? timestamp,String? status
+// }){
+//     return Message(
+//       senderID: senderID ?? this.senderID,
+//       senderEmail: senderEmail ?? this.senderEmail,
+//       receiverID: receiverID ?? this.receiverID,
+//       message: message ?? this.message,
+//       timestamp: timestamp ?? this.timestamp,
+//       status: status ?? this.status
+//     );
+//   }
 }

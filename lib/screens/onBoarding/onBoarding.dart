@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:grad/constants/constant.dart';
 import 'package:grad/contents/contents_onBiarding_Model.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/login.dart';
+import 'package:grad/services/notification_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
