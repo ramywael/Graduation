@@ -11,36 +11,32 @@ class ChatbotView extends StatefulWidget {
 }
 
 class _ChatbotViewState extends State<ChatbotView> {
-
   final _user = ChatUser(id: '1', firstName: 'ahmed');
-  final _bot = ChatUser(id: '2',firstName: 'Bot');
+  final _bot = ChatUser(id: '2', firstName: 'Bot');
 
   List<ChatMessage> messages = [];
 
   final _chatGpt = OpenAI.instance.build(
-    token: 'sk-proj-1rvopZArsJkU3dYsBVW0T3BlbkFJb3y4v6mte04lQbsvQ27d',
-    baseOption: HttpSetup(
-      receiveTimeout: const Duration(seconds: 10),
-    )
-  );
+      token: 'sk-proj-1rvopZArsJkU3dYsBVW0T3BlbkFJb3y4v6mte04lQbsvQ27d',
+      baseOption: HttpSetup(
+        receiveTimeout: const Duration(seconds: 10),
+      ));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'ChatGPT',
+          'Chat',
           style: TextStyle(fontSize: 28, fontFamily: 'Ubuntu'),
         ),
         centerTitle: true,
-        toolbarHeight: 80,
       ),
       body: DashChat(
         currentUser: _user,
         onSend: onSend,
         messages: messages,
-        messageOptions: const MessageOptions(
-          currentUserContainerColor: kPrimaryColor
-        ),
+        messageOptions:
+            const MessageOptions(currentUserContainerColor: kPrimaryColor),
       ),
     );
   }
@@ -91,10 +87,7 @@ class _ChatbotViewState extends State<ChatbotView> {
     } catch (e) {
       debugPrint("Error: $e");
       showScaffoldMessenger(
-          context: context,
-          message: e.toString(),
-          color: kPrimaryColor)
-      ;
+          context: context, message: e.toString(), color: kPrimaryColor);
     }
   }
 }
