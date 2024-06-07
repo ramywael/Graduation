@@ -5,6 +5,7 @@ import 'package:grad/cubits/sign_up_cubit/sign_up_cubit.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/register_button.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/wave_clipper.dart';
 import 'package:grad/models/users/user_model.dart';
+import 'package:grad/screens/login_signup_forgetpass_screens/login.dart';
 import '../../constants/constant.dart';
 import 'Sign_up_clipper_text.dart';
 import 'custom_text_form_field.dart';
@@ -138,8 +139,10 @@ class _SignUpBodyState extends State<SignUpBody> {
                           ),
                           hintText: "Blood Type",
                           validator: (value) {
-                            if (value!.isEmpty && !value.contains(" ")) {
-                              return "Ex, A+  B-  AB+  O-  etc.";
+                            if (value!.isEmpty) {
+                              return "Invalid Data";
+                            } else if (!RegExp(r'^(A|B|AB|O)[+-]$').hasMatch(value)) {
+                              return "Use A+, B-, AB+, O-, etc.";
                             }
                             return null;
                           },
@@ -195,10 +198,13 @@ class _SignUpBodyState extends State<SignUpBody> {
                     prefixIcon: const Icon(Icons.phone, color: kPrimaryColor),
                     hintText: "Number",
                     validator: (value) {
+                      // Check if the value is empty
                       if (value!.isEmpty) {
                         return "Number must not be empty";
-                      } else if (value.length < 11) {
-                        return "Number must be 11 digits";
+                      }
+                      // Check if the value is exactly 11 digits and starts with "01"
+                      else if (!RegExp(r'^01\d{9}$').hasMatch(value)) {
+                        return "Number must start with '01' and be 11 digits long";
                       }
                       return null;
                     },
@@ -250,6 +256,23 @@ class _SignUpBodyState extends State<SignUpBody> {
                       },
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginView(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Already have an account? Login',
+                      style: TextStyle(
+                        color: const Color(0xff81201a),
+                        fontWeight: FontWeight.bold,
+                        fontSize: screenWidth * 0.039,
+                      ),
                     ),
                   ),
                 ],

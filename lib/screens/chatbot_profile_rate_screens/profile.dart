@@ -50,16 +50,9 @@ class _ProfileViewState extends State<ProfileView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Center(
-                    child: Container(
+                    child: SizedBox(
                       height: screenWidth * 0.3,
                       width: screenWidth * 0.3,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage("assets/images/profile_image.png"),
-                        ),
-                      ),
                     ),
                   ),
                   SizedBox(
@@ -145,7 +138,8 @@ class _ProfileViewState extends State<ProfileView> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => const Notifications(),
-                                    ));
+                                    ),
+                                );
                               },
                             )
                           ],

@@ -14,7 +14,8 @@ class CustomCurvedNavBar extends StatefulWidget {
     required this.icon1,
     required this.icon2,
     required this.icon3,
-    required this.screens, this.navBarWidth,
+    required this.screens,
+    this.navBarWidth,
   }) : super(key: key);
 
   @override
@@ -50,7 +51,7 @@ class _CustomCurvedNavBarState extends State<CustomCurvedNavBar> {
     ];
 
     return CurvedNavigationBar(
-     // height: screenWidth * 0.135, // Adjusted height
+      // height: screenWidth * 0.135, // Adjusted height
       height: widget.navBarWidth ?? screenWidth * 0.14, // Adjusted height
       index: currentIndex,
       backgroundColor: kPrimaryColor,
@@ -60,13 +61,13 @@ class _CustomCurvedNavBarState extends State<CustomCurvedNavBar> {
         setState(() {
           if (currentIndex != value) {
             currentIndex = value;
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => widget.screens[currentIndex],
+              ),
+            );
           }
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => widget.screens[currentIndex],
-            ),
-          );
         });
       },
     );

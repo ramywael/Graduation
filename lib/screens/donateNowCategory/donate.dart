@@ -19,20 +19,13 @@ class DonateNow extends StatelessWidget {
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              color: Colors.black,
-            ),
-          ),
-          IconButton(
             onPressed: () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) => const HomePage(),
               ));
             },
             icon: const Icon(
-              Icons.person,
+              Icons.home,
               color: Colors.black,
             ),
           ),

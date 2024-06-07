@@ -66,57 +66,47 @@ class DonateNowCubit extends Cubit<DonateNowState> {
     }
   }
 
-
-
   void searchBloodRequests(String query) async {
     emit(DonateNowLoading());
     bloodRequestsListSearch.clear();
     try {
-
       final userData = await FirebaseFirestore.instance
-          .collection(kUserCollectionName).where("uid", isNotEqualTo: FirebaseAuth.instance.currentUser!.uid)
-          .get(); /// This used to get the query of the user collection
-
+          .collection(kUserCollectionName)
+          .where("uid", isNotEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .get();
 
       bool isRequestFound = false;
 
       for (var userDoc in userData.docs) {
-        
         final bloodRequests = await userDoc.reference
-            .collection(kBloodRequestCollectionName).where("IsAccepted", isEqualTo: false)
-            .get(); /// This used to get the query of the blood request collection
+            .collection(kBloodRequestCollectionName)
+            .where("IsAccepted", isEqualTo: false)
+            .get();
 
         debugPrint("Fetched blood requests for user ${userDoc.id}: ${bloodRequests.docs.length}");
 
-        if (bloodRequestsList.isNotEmpty) {
-          for (var doc in bloodRequests.docs) {
-              final request =  RequestBloodModel.fromFirestore(doc);
-              if (request.bloodNeeded.toLowerCase().contains(query.toLowerCase())) {
-                isRequestFound = true;
-                bloodRequestsListSearch.add(request);
-                debugPrint("Added blood request: ${request.toJson()}");
-                emit(DonateNowSuccess(bloodRequestsListSearch));
-              }else if (isRequestFound == false){
-                emit(DonateNowFailure("No Matching with this blood type"));
-              }else{
-                emit(DonateNowSuccess(bloodRequestsListSearch));
-              }
+        for (var doc in bloodRequests.docs) {
+          final request = RequestBloodModel.fromFirestore(doc);
+          if (request.bloodNeeded.toLowerCase().contains(query.toLowerCase())) {
+            isRequestFound = true;
+            bloodRequestsListSearch.add(request);
+            debugPrint("Added blood request: ${request.toJson()}");
           }
-        }else{
-          emit(DonateNowFailure("No Matching with this blood type"));
         }
+      }
 
+      if (query.isEmpty) {
+        // If the query is empty, return all requests
+        emit(DonateNowSuccess(bloodRequestsList));
+      } else if (isRequestFound) {
+        emit(DonateNowSuccess(bloodRequestsListSearch));
+      } else {
+        emit(DonateNowFailure("No matching requests for this blood type"));
       }
     } catch (e) {
       emit(DonateNowFailure(e.toString()));
     }
   }
-  }
-
-//   void getPendingRequests(String bloodRequestId) async {
-//   DocumentSnapshot  bloodRequests = await FirebaseFirestore.instance.collection(kBloodRequestCollectionName).doc(bloodRequestId).get();
-//   QuerySnapshot donationRequest = await  FirebaseFirestore.instance.collection(kBloodRequestCollectionName).doc(bloodRequestId).collection(kDonationRequestCollectionName).where("bloodBracket", isEqualTo: bloodRequests.get("currentCounter")).get().whenComplete(() => emit(DonateNowPending(bloodRequests)));
-// }
-//
+}
 
 

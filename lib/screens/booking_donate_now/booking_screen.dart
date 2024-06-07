@@ -7,14 +7,20 @@ class BookingScreen extends StatelessWidget {
   final int bloodBracketCount;
   final String userRequestId;
 
-  const BookingScreen({Key? key, required this.bloodRequestId, required this.estimatedTime, required this.bloodBracketCount, required this.userRequestId, }) : super(key: key);
+  const BookingScreen({
+    Key? key,
+    required this.bloodRequestId,
+    required this.estimatedTime,
+    required this.bloodBracketCount,
+    required this.userRequestId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title:  Text(
+        title: Text(
           "Schedule your donation",
           style: TextStyle(
             fontSize: screenWidth * 0.07,
@@ -22,7 +28,14 @@ class BookingScreen extends StatelessWidget {
           ),
         ),
       ),
-      body:  BookingScreenBody(screenWidth: screenWidth, bloodRequestId: bloodRequestId, estimatedTime: estimatedTime, bloodBracketCount: bloodBracketCount, userRequestId: userRequestId,),
+      body: SingleChildScrollView(
+          child: BookingScreenBody(
+        screenWidth: screenWidth,
+        bloodRequestId: bloodRequestId,
+        estimatedTime: estimatedTime,
+        bloodBracketCount: bloodBracketCount,
+        userRequestId: userRequestId,
+      )),
     );
   }
 }
