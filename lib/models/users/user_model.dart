@@ -23,7 +23,7 @@ class UserModel {
   final String photoUrl;
   final bool isDonor;
   final bool hasDone;
-  late final String? token;
+  String? token;
 
   Map<String, dynamic> toJson() {
     return {

@@ -24,7 +24,7 @@ class DonationBlood extends StatelessWidget {
       //     : const SplashScreen(),                /// This is the original code
 
 
-      home: const ProfileView(),
+      home: const SplashScreen(),
       routes: {
         ResetPasswordView.id : (context)=>  const ResetPasswordView(),
       },
