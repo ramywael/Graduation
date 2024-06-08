@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../custom_widgets/chatbot/bottom_app_bar.dart';
-import '../../custom_widgets/chatbot/chatbot_text.dart';
-import '../../custom_widgets/chatbot/user_text.dart';
+import '../../../custom_widgets/chatbot/bottom_app_bar.dart';
+import '../../../custom_widgets/chatbot/chatbot_text.dart';
+import '../../../custom_widgets/chatbot/user_text.dart';
 
 class Chatbot extends StatelessWidget {
   final Widget screenName;

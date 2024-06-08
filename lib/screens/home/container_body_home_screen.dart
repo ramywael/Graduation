@@ -6,7 +6,7 @@ import 'package:grad/custom_widgets/category_home_screen.dart';
 import 'package:grad/custom_widgets/curved_navigation_bar.dart';
 import 'package:grad/custom_widgets/text.dart';
 import 'package:grad/screens/chatbot/chat_definition.dart';
-import 'package:grad/screens/chatbot/chatbot.dart';
+import 'package:grad/screens/chatbot/dead_chatbot_files/chatbot.dart';
 import 'package:grad/screens/findBloodDonor/choose_donor.dart';
 import 'package:grad/screens/home/row_categories_home_screen.dart';
 import 'package:grad/screens/home/user_home_page.dart';

@@ -49,7 +49,7 @@ class _ChatbotHomeViewState extends State<ChatbotHomeView> {
             ),
           ),
           title: const Text(
-            "ChatGPT",
+            "Gemini",
             style: TextStyle(
                 fontFamily: "Pacifico",
                 color: Colors.white70,
@@ -128,7 +128,7 @@ class _ChatbotHomeViewState extends State<ChatbotHomeView> {
             },
             elevation: 15,
             backgroundColor: Colors.white70,
-            tooltip: "Chat with chatGPT",
+            tooltip: "Chat with Gemini",
             child: Image.asset(
               "assets/images/gpt.png",
               width: 33,

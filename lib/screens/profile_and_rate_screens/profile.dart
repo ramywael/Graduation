@@ -11,7 +11,7 @@ import '../../cubits/profile/get_current_user_cubit.dart';
 import '../../custom_widgets/profile_components/container_items_and_buttons.dart';
 import '../../custom_widgets/profile_components/row_of_user_data.dart';
 import '../bloodreq_bloodtype_notifications_screens/notifications.dart';
-import '../chatbot/chatbot.dart';
+import '../chatbot/dead_chatbot_files/chatbot.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
