@@ -6,6 +6,7 @@ import 'package:grad/custom_widgets/curved_navigation_bar.dart';
 import 'package:grad/screens/chatbot/chat_definition.dart';
 import 'package:grad/screens/edit_personal_details/edit_personal_details.dart';
 import 'package:grad/screens/home/user_home_page.dart';
+import 'package:grad/screens/login_signup_forgetPass_screens/login.dart';
 import '../../constants/constant.dart';
 import '../../cubits/profile/get_current_user_cubit.dart';
 import '../../custom_widgets/profile_components/container_items_and_buttons.dart';
@@ -279,9 +280,12 @@ class _ProfileViewState extends State<ProfileView> {
                             ItemsAndButtons(
                               text: 'Treatments',
                               textNum: '1',
-                              buttonText: 'Notification',
+                              buttonText: 'SignOut',
                               function: () {
-
+                                FirebaseAuth.instance.signOut();
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                                  return const LoginView();
+                                }));
                               },
                             )
                           ],

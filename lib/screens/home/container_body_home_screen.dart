@@ -111,7 +111,7 @@ class ContainerHomeScreen extends StatelessWidget {
                      right: screenWidth * 0.048, // Adjusted based on screen width
                    ),
                    child: CustomCategoryHomeScreen(
-                     text: "Ask AI",
+                     text: "Am I Animatic?",
                      icon: MaterialSymbolsIcons.Symbols.blood_pressure_sharp,
                      onTap: () {
                        Navigator.of(context).push(

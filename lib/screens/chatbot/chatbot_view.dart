@@ -129,7 +129,7 @@ class _ChatbotViewState extends State<ChatbotView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-            "Gemini",
+            "Chatbot",
           style: TextStyle(
               fontSize: 28,
               fontFamily: 'Ubuntu',
@@ -150,7 +150,7 @@ class _ChatbotViewState extends State<ChatbotView> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(
-                      chatList[index].isMe ? "Me" : "Gemini",
+                      chatList[index].isMe ? "Me" : "Chatbot",
                     style: const TextStyle(
                       fontSize: 25,
                       fontFamily: 'Ubuntu',
