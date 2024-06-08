@@ -149,37 +149,37 @@ class _LoginViewState extends State<LoginView> {
                         return null;
                       },
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        right: constraints.maxWidth * 0.01,
-                      ),
-                      child: Container(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return ForgetPasswordView(
-                                    screenWidth: constraints.maxWidth,
-                                    screenHeight: constraints.maxHeight,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            "Forget Password?",
-                            style: TextStyle(
-                              color: kPrimaryColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(
+                    //     right: constraints.maxWidth * 0.01,
+                    //   ),
+                    //   child: Container(
+                    //     alignment: Alignment.centerRight,
+                    //     child: TextButton(
+                    //       onPressed: () {
+                    //         Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //             builder: (context) {
+                    //               return ForgetPasswordView(
+                    //                 screenWidth: constraints.maxWidth,
+                    //                 screenHeight: constraints.maxHeight,
+                    //               );
+                    //             },
+                    //           ),
+                    //         );
+                    //       },
+                    //       child: const Text(
+                    //         "Forget Password?",
+                    //         style: TextStyle(
+                    //           color: kPrimaryColor,
+                    //           fontWeight: FontWeight.w600,
+                    //           fontSize: 18,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: constraints.maxHeight * 0.01,
                     ),
