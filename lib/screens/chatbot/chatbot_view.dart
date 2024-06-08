@@ -211,7 +211,7 @@ class _ChatbotViewState extends State<ChatbotView> {
                       hintText: "Enter your message ... ",
                       border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(
-                          Radius.circular(20),
+                          Radius.circular(21),
                         ),
                       ),
                     ),
