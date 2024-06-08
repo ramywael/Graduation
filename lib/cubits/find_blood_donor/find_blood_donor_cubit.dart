@@ -21,12 +21,6 @@ class FindBloodDonorCubit extends Cubit<FindBloodDonorState> {
        donorList.addAll(querySnapshot.docs);
        emit(FindBloodDonorSuccess());
      }
-      // final QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('users').get();
-      // querySnapshot.docs.forEach((element) {
-      //   if (element['isDonor'] == true) {
-      //     donorList.add(element);
-      //   }
-      // });
     } catch (e) {
       emit(FindBloodDonorFailure());
     }

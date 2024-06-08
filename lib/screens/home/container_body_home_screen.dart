@@ -136,7 +136,7 @@ class ContainerHomeScreen extends StatelessWidget {
                     HomePage(),
                     ProfileView(),
                   ],
-                  icon1: MaterialSymbolsIcons.Symbols.chat,
+                  icon1: MaterialSymbolsIcons.Symbols.android,
                   icon2: MaterialSymbolsIcons.Symbols.home,
                   icon3: MaterialSymbolsIcons.Symbols.person,
                 ),

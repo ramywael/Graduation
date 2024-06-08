@@ -17,19 +17,6 @@ class DonateNow extends StatelessWidget {
       appBar: AppBar(
         scrolledUnderElevation: 0.0,
         backgroundColor: Colors.transparent,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const HomePage(),
-              ));
-            },
-            icon: const Icon(
-              Icons.home,
-              color: Colors.black,
-            ),
-          ),
-        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

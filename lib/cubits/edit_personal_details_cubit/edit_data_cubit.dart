@@ -36,9 +36,6 @@ class EditDataCubit extends Cubit<EditDataStates>{
     emit(GetNewDataStateSuccess());
     await user.updateEmail(emailAddress.text);
   }
-
-
-
   Future <void> signOut(context) async{
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const LoginView()));

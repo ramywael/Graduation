@@ -44,16 +44,6 @@ class _ChooseDonorState extends State<ChooseDonor> {
           child: AppBar(
             toolbarHeight: 80,
             centerTitle: true,
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.person,
-                  color: Colors.black,
-                  size: 30,
-                ),
-              )
-            ],
             title: CustomTextWidget(
               text: "Blood Connect",
               fontSize: titleFontSize,
