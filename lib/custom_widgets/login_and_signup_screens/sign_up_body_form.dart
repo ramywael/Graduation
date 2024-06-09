@@ -227,6 +227,7 @@ class _SignUpBodyState extends State<SignUpBody> {
                             email: emailController.text,
                             name: nameController.text,
                             photoUrl: numberController.text,
+                            isSaved: false,
                           ),
                         );
                       } else if (state is SignUpFailure) {

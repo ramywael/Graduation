@@ -6,6 +6,7 @@ class UserModel {
     this.isDonor = false,
     this.uid,
     required this.password,
+    this.isSaved = false,
     required this.location,
     required this.bloodType,
     required this.email,
@@ -18,6 +19,7 @@ class UserModel {
   final String email;
   final String name;
   final String password;
+  final bool isSaved;
   final String location;
   final String bloodType;
   final String photoUrl;
@@ -32,6 +34,7 @@ class UserModel {
       'Name': name,
       'PhotoUrl': photoUrl,
       'location': location,
+      'IsSaved' : isSaved,
       'BloodType': bloodType,
       'Password': password,
       'IsDonor': isDonor,
