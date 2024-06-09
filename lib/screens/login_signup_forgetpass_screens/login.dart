@@ -166,7 +166,7 @@ class _LoginViewState extends State<LoginView> {
                                   color: kPrimaryColor
                               );
                             }
-                            else if (emailController.text == FirebaseAuth.instance.currentUser!.email){
+                            else {
                               Navigator.pushReplacementNamed(
                                 context,
                                 ResetPasswordView.id,
