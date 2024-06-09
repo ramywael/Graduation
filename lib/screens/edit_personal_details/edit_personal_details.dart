@@ -140,6 +140,8 @@ class _EditPersonalDetailsState extends State<EditPersonalDetails> {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return "Enter a new number please";
+                                } else if (!RegExp(r'^01\d{9}$').hasMatch(value)) {
+                                  return "Number must start with '01' and be 11 digits long";
                                 }
                                 return null;
                               },
