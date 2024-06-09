@@ -6,6 +6,7 @@ import 'package:grad/custom_widgets/login_and_signup_screens/custom_button_conne
 import 'package:grad/custom_widgets/requestablood/personal_details.dart';
 import 'package:grad/custom_widgets/text.dart';
 import 'package:grad/screens/home/user_home_page.dart';
+import 'package:grad/screens/profile_and_rate_screens/profile.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart'
 as MaterialSymbolsIcons;
 import '../../cubits/request_a_blood/request_blood_cubit.dart';
@@ -110,7 +111,7 @@ class _RequestBloodState extends State<RequestBlood> {
         screens: [
           HomePage(),
           RequestBlood(),
-          HomePage(),
+          ProfileView(),
         ],
         icon1: MaterialSymbolsIcons.Symbols.home,
         icon2: MaterialSymbolsIcons.Symbols.bloodtype,
