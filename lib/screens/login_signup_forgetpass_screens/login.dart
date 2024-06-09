@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grad/constants/constant.dart';
@@ -5,6 +6,7 @@ import 'package:grad/cubits/log_in_cubit/login_cubit.dart';
 import 'package:grad/custom_widgets/login_and_signup_screens/custom_button_connection.dart';
 import 'package:grad/custom_widgets/profile_components/custom_button.dart';
 import 'package:grad/screens/home/user_home_page.dart';
+import 'package:grad/screens/login_signup_forgetpass_screens/reset_password.dart';
 import 'package:grad/screens/login_signup_forgetpass_screens/signup.dart';
 import '../../cubits/sign_up_cubit/sign_up_cubit.dart';
 import '../../custom_widgets/login_and_signup_screens/custom_text_form_field.dart';
@@ -149,37 +151,41 @@ class _LoginViewState extends State<LoginView> {
                         return null;
                       },
                     ),
-                    // Padding(
-                    //   padding: EdgeInsets.only(
-                    //     right: constraints.maxWidth * 0.01,
-                    //   ),
-                    //   child: Container(
-                    //     alignment: Alignment.centerRight,
-                    //     child: TextButton(
-                    //       onPressed: () {
-                    //         Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) {
-                    //               return ForgetPasswordView(
-                    //                 screenWidth: constraints.maxWidth,
-                    //                 screenHeight: constraints.maxHeight,
-                    //               );
-                    //             },
-                    //           ),
-                    //         );
-                    //       },
-                    //       child: const Text(
-                    //         "Forget Password?",
-                    //         style: TextStyle(
-                    //           color: kPrimaryColor,
-                    //           fontWeight: FontWeight.w600,
-                    //           fontSize: 18,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        right: constraints.maxWidth * 0.01,
+                      ),
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+                            if(emailController.text == ''){
+                              showScaffoldMessenger(
+                                  context: context,
+                                  message: "Enter your email before clicking forget password",
+                                  color: kPrimaryColor
+                              );
+                            }
+                            else if (emailController.text == FirebaseAuth.instance.currentUser!.email){
+                              Navigator.pushReplacementNamed(
+                                context,
+                                ResetPasswordView.id,
+                                arguments: emailController.text,
+                              );
+                              FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text);
+                            }
+                          },
+                          child: const Text(
+                            "Forget Password?",
+                            style: TextStyle(
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: constraints.maxHeight * 0.01,
                     ),
